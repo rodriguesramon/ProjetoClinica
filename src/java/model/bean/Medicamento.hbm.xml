@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 24/03/2019 14:55:26 by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="model.bean.Medicamento" table="medicamento" catalog="dbclinica">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="fabricante" class="model.bean.Fabricante" fetch="select">
+            <column name="idFabricante" />
+        </many-to-one>
+        <property name="nomeGenerico" type="string">
+            <column name="nomeGenerico" length="45" />
+        </property>
+        <property name="nomeDeFabrica" type="string">
+            <column name="nomeDeFabrica" length="45" />
+        </property>
+        <property name="dtCadastro" type="date">
+            <column name="dtCadastro" length="10" />
+        </property>
+        <set name="receitas" inverse="true">
+            <key>
+                <column name="idMedicamento" />
+            </key>
+            <one-to-many class="model.bean.Receita" />
+        </set>
+    </class>
+</hibernate-mapping>

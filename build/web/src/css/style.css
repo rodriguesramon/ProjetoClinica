@@ -1,0 +1,25 @@
+.well{
+    background-color: #e7e7e7;    
+}
+
+legend{
+    margin-bottom: 5px;
+    padding-bottom: 2px;
+    border-bottom: 2px solid #e35959;
+}
+
+.btnTable{
+    padding-bottom: 0px; padding-top: 0px; padding-right: 0px; padding-left: 0px;
+}
+
+.input-group-addon {
+    background-color: #c1dbe1;
+}
+
+table{
+    background-color:#FFFFFF
+}
+
+thead{
+    background-color: #c1dbe1 !important;
+}
