@@ -1,5 +1,5 @@
 <%-- 
-    Document   : BairroLista
+    Document   : ...
     Created on : 23/02/2019, 23:48:44
     Author     : Ramon Costa
 --%>
@@ -22,25 +22,9 @@
         <c:import url="../tags/metas.jsp"/>
         <c:import url="../tags/metas.jsp"/>
         <c:import url="../tags/stylesheet.jsp"/>
-        
         <title>Projeto Clinica</title>
-        <style>
-            .input-group-addon {
-                background-color: #c1dbe1;
-            }
-            
-            table{
-                background-color:#FFFFFF
-            }
-            
-            thead{
-                background-color: #c1dbe1 !important;
-            }
-
-        </style>
     </head>
     <body>
-        
         <div class="container">            
             <c:import url="../tags/menu.jsp"/>
         </div>

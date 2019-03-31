@@ -25,6 +25,7 @@ public class PacienteDao {
     
     public PacienteDao(){
         session = new ConnectionFactory().getSessionFactory();
+        //session = ConnectionFactory.getSessionFactory();
     }
     
     public boolean salvaPaciente(Paciente paciente) {

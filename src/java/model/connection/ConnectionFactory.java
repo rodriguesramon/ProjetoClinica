@@ -25,7 +25,7 @@ public class ConnectionFactory {
             sessionFactory = new AnnotationConfiguration().configure("model/connection/hibernate.cfg.xml").buildSessionFactory();
         } catch (Throwable ex) {
             // Log the exception. 
-            System.err.println("Initial SessionFactory creation failed." + ex);
+            System.err.println("Initial SessionFactory creation failed." + ex.getCause() );
             throw new ExceptionInInitializerError(ex);
         }
     }
