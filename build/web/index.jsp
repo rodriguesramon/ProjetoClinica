@@ -27,19 +27,19 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> 
         <style type="text/css">
-                body {
-                        color: #fff;
-                        background: #2c3e50;
-                }
-                .form-control {
-                min-height: 41px;
-                        background: #fff;
-                        box-shadow: none !important;
-                        border-color: #e3e3e3;
-                }
-                .form-control:focus {
-                        border-color: #70c5c0;
-                }
+            body {
+                    color: #fff;
+                    background: #2c3e50;
+            }
+            .form-control {
+            min-height: 41px;
+                    background: #fff;
+                    box-shadow: none !important;
+                    border-color: #e3e3e3;
+            }
+            .form-control:focus {
+                    border-color: #70c5c0;
+            }
             .form-control, .btn {        
                 border-radius: 2px;
             }
@@ -111,26 +111,45 @@
     </head>
     <body>
         <div class="login-form">
-            <form action="/examples/actions/confirmation.php" method="post">
-                        <div class="avatar">
-                                <!--<img src="/examples/images/avatar.png" alt="Avatar">-->
-                        </div>
+            <form>
+                <div class="avatar">
+                        <!--<img src="/examples/images/avatar.png" alt="Avatar">-->
+                </div>
                 <h2 class="text-center">Sistema - Login</h2>   
                 <div class="form-group">
-                    <input type="text" class="form-control" name="username" placeholder="Login" required="required" autocomplete="off" >
+                    <input type="text" class="form-control" name="login" id="login"  placeholder="Login" required="required" autocomplete="off" >
                 </div>
                         <div class="form-group">
-                    <input type="password" class="form-control" name="password" placeholder="Senha" required="required">
+                    <input type="password" class="form-control" name="senha" id="senha" placeholder="Senha" required="required">
                 </div>        
                 <div class="form-group">
-                    <button type="submit" class="btn btn-primary btn-lg btn-block">Entrar</button>
+                    <button type="button" id="btnEntrar" class="btn btn-primary btn-lg btn-block">Entrar</button>
                 </div>
                         <div class="clearfix">
-
-
-                </div>
+                </div>            
+                <!--    <p class="text-center small">Don't have an account? <a href="#">Sign up here!</a></p>-->
             </form>
-        <!--    <p class="text-center small">Don't have an account? <a href="#">Sign up here!</a></p>-->
         </div>
     </body>
+    <script>
+        $( "#btnEntrar" ).click(function() {
+            //$("#statusSalvando").css({"display":"block"});
+            $.post("ControllerUsuario", {
+                option  :  "Autenticar",
+                login   :  $("#login").val(),
+                senha   :  $("#senha").val()
+            })
+            .done(function(data) {
+                //$("#statusSalvando").css({"display":"none"});
+                var value = JSON.parse(data);
+                console.log(value);
+                console.log(value.result);
+                if(value.result == "true"){
+                    window.location.href = "mainpage.jsp";
+                }else{
+                    //processFail();d
+                }
+            });
+        });
+    </script>
 </html>                            

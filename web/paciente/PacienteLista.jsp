@@ -16,10 +16,7 @@
         <c:import url="../tags/metas.jsp"/>
         <c:import url="../tags/metas.jsp"/>
         <c:import url="../tags/stylesheet.jsp"/>
-        <script src="..\node_modules\jquery\dist\jquery.js"></script>
-        <script src="..\node_modules\bootstrap3\dist\js\bootstrap.js"></script>
-        <script src="..\node_modules\datatables\media\js\jquery.dataTables.js"></script>
-        <script src="..\node_modules\datatables-bootstrap3-plugin\media\js\datatables-bootstrap3.js"></script>
+        
         <title>Projeto Clinica</title>
         <style>
             .input-group-addon {
@@ -66,13 +63,7 @@
                             <input type="text" class="form-control" id="cpf" autocomplete="off" name="cpf">
                         </div>
                     </div>
-                    <div class="form-group col-md-3" style="margin-top:25px">
-                        <div class="btn-group btn-group-sm">
-                            <button type="button" id="btnBusca" class="btn btn-primary">Buscar <i class="fas fa-search fa-lg"></i></button>
-                            <button type="button" id="btnReset" class="btn btn-info">Limpar <i class="fas fa-sync fa-lg"></i></button>
-                      </div>
-                        
-                    </div>
+                    
                 </div>
                 <div class="form-group">
                     <table class="table table-bordered table-hover" id="tableData">
@@ -82,7 +73,7 @@
                                 <th>RG</th>
                                 <th>CPF</th>
                                 <th>Dt.&nbsp;Nascimento</th>
-                                <th>Gerenciar</th>
+                                
                             </tr>
                         </thead>
                         <tbody>
@@ -99,7 +90,6 @@
                                 <td><%= paciente.getRg() %></td>
                                 <td><%= paciente.getCpf() %></td>
                                 <td><%= paciente.getDtNascimento() %></td>
-                                <td></td>
                             </tr>
                             <% } %>
                            
@@ -111,11 +101,17 @@
         
         
         
-        
+        <c:import url="../tags/javascript.jsp"/>
         <script>
             $(document).ready(function() {
-                $('#tableData').DataTable();
+                $('#tableData').DataTable({
+                    scrollY:        '40vh',
+                    scrollCollapse: true,
+                    paging:         false,
+                    bFilter: false
+                });
             } );
+            
             $( "#btnBusca" ).click(function() {
                 var stringUrl = "PacienteLista.jsp?nome="+$("#nome").val()+"&rg="+$("#rg").val()+"&cpf="+$("#cpf").val();
                 window.location = stringUrl;

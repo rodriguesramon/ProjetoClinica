@@ -4,9 +4,9 @@
  */
 package controller;
 
-import com.sun.faces.facelets.tag.jsf.core.ConvertDateTimeHandler;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import javax.servlet.ServletException;
@@ -80,8 +80,7 @@ public class ControllerEspecialidade extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String option = request.getParameter("option");
         EspecialidadeDao especialidadeDao = new EspecialidadeDao();
         Especialidade especialidade = new Especialidade();
@@ -89,17 +88,18 @@ public class ControllerEspecialidade extends HttpServlet {
         Map<String, String> mapEspecialidade = new HashMap<String, String>();
         
         if (option.equals("CadastrarEspecialidade")) {
-            
-        }
-        
-        if (option.equals("BuscarEspecialidade")) {
+            especialidade.setNome(request.getParameter("nome"));
+            especialidade.setDescricao(request.getParameter("descricao"));
+            especialidade.setStatus(1);
+            especialidade.setDtCadastro(new Date());
+            printWriter.print(especialidadeDao.salvaEspecialidade(especialidade));
+        }else if (option.equals("BuscarEspecialidade")) {
             especialidade = especialidadeDao.buscaEspecialidade(Integer.parseInt(request.getParameter("id")));
             printWriter.print("{"
                             + "\"id\" : \"" + especialidade.getId() + "\", "
                             + "\"nome\" : \"" + especialidade.getNome() + "\" "
                         + "}");
         }
-        
     }
 
     /**

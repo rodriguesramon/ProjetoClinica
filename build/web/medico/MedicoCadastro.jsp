@@ -38,7 +38,7 @@
         </div>
         <div class="container" style='margin-top:80px'>
             <div class="well bs-component">
-                <legend>Cadastro - Medico</legend>
+                <legend>Cadastro - Medico<button class="btn btn-primary btn-sm pull-right" id="btnCadastrar" style="margin-top:-10px">Cadastrar <i class="fas fa-save fa-lg"></i></button> </legend>
                 <div class="row">
                     <div class="form-group col-sm-5">
                         <label for="estado">Nome</label>
@@ -96,7 +96,7 @@
                 
                 <div class="row">
                     <div class="form-group col-md-2">
-                        <button type="button" class="btn btn-primary" id="btnCadastrar">Cadastrar <i class="far fa-save fa-lg"></i> </button> 
+                        
                     </div>
                     
                 </div>

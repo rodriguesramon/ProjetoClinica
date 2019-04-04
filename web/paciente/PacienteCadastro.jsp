@@ -166,7 +166,7 @@
                     if(value == true){
                         processSuccess();
                     }else{
-                        processFail();d
+                        processFail();
                     }
                 });
             });
