@@ -23,3 +23,8 @@ table{
 thead{
     background-color: #c1dbe1 !important;
 }
+
+.form-control[disabled], .form-control[readonly], fieldset[disabled] .form-control {
+    background-color: #ffffff;
+    opacity: 1;
+}

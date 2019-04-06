@@ -49,7 +49,7 @@
                         <label for="sigla">Dt.&nbsp;Nascimento</label>
                         <div class="input-group input-group-sm">
                             <span class="input-group-addon"><i class="fas fa-grip-horizontal"></i></span>
-                            <input type="text" class="form-control" id="dtNascimento" autocomplete="off" name="dtNascimento">
+                            <input type="text" class="form-control datepicker" id="dtNascimento" autocomplete="off" name="dtNascimento">
                         </div>
                     </div>
                 </div>
@@ -66,7 +66,7 @@
                         <label for="sigla">Fone&nbsp;Residencial</label>
                         <div class="input-group input-group-sm">
                             <span class="input-group-addon"><i class="fas fa-grip-horizontal"></i></span>
-                            <input type="text" class="form-control" id="foneResidencial" autocomplete="off" name="foneResidencial">
+                            <input type="text" class="form-control" id="foneResidencial" pattern="\([0-9]{2}\)[\s][0-9]{4}-[0-9]{4,5}" autocomplete="off" name="foneResidencial">
                         </div>
                     </div>
                     <div class="form-group col-md-3">

@@ -63,7 +63,13 @@
                             <input type="text" class="form-control" id="cpf" autocomplete="off" name="cpf">
                         </div>
                     </div>
-                    
+                    <div class="form-group col-md-3" style="margin-top:25px">
+                        <div class="btn-group btn-group-sm">
+                            <button type="button" id="btnBusca" class="btn btn-primary">Buscar <i class="fas fa-search fa-lg"></i></button>
+                            <button type="button" id="btnReset" class="btn btn-info">Limpar <i class="fas fa-sync fa-lg"></i></button>
+                      </div>
+                        
+                    </div>
                 </div>
                 <div class="form-group">
                     <table class="table table-bordered table-hover" id="tableData">

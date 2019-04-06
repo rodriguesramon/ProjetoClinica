@@ -14,6 +14,19 @@
     
     function processFail(){
         $("#statusSalvando").fadeOut(600);
-        $("#statusErro").fadeIn(600);
-        $("#statusErro").fadeOut(600);
+        $("#statusErro").show( "fast").delay(5000).fadeOut('fast', function() {
+          $(this).fadeOut(600);
+        });    
+        //$("#statusErro").fadeOut(5000);
     }
+    
+    $(function(){
+        $('.datepicker').datepicker({
+           format: 'dd/mm/yyyy',
+           Readonly: false
+         }).on('changeDate', function(e){
+            $(this).datepicker('hide');
+        }).attr("readonly", "readonly");
+        
+        $("#foneResidencial, #foneCelular").mask("(00) 00000-0000");
+     });

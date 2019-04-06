@@ -8,7 +8,7 @@
     <strong>Sucesso!</strong> Registro salvo.
 </div>
 
-<div class="alert alert-danger" id="statusErro" style="display:none">
+<div class="alert alert-danger alert-dismissible fade in" id="statusErro" role="alert" style="display:none">
     <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
     <strong>Erro!</strong> Falha ao registrar.
 </div>
