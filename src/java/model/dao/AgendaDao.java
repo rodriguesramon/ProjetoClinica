@@ -50,11 +50,13 @@ public class AgendaDao {
         }
     }
     
-    public List<Agenda> listaAgendaMedico(int idMedico) {
+    public List<Agenda> listaAgendaMedico(int idMedico, int idEspecialidade) {
         try{
             sql = "SELECT a.* " + 
                   "  FROM agenda a " + 
-                  " WHERE idMedico = " + idMedico + " AND dia > CURDATE() ";
+                  " WHERE idMedico = " + idMedico +
+                  "   AND idEspecialidade = " + idEspecialidade +
+                  "   AND dia > CURDATE() ";
             query = session.createSQLQuery(sql).addEntity(Agenda.class);
             listaAgenda = query.list();
             return listaAgenda;

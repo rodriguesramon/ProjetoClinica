@@ -92,11 +92,12 @@
                         <label for="estado">Agenda</label>
                         <div class="input-group input-group-sm">
                             <span class="input-group-addon"><i class="fas fa-grip-horizontal"></i></span>
-                            <select id="idMedico" class="form-control">
+                            <select id="idAgenda" class="form-control">
                             <%
                                 AgendaDao agendaDao = new AgendaDao();
                                 int idMedico = Integer.parseInt(request.getParameter("idMedico"));
-                                for(Agenda agenda : agendaDao.listaAgendaMedico(idMedico) ){
+                                int idEspecialidade = Integer.parseInt(request.getParameter("idEspecialidade"));
+                                for(Agenda agenda : agendaDao.listaAgendaMedico(idMedico, idEspecialidade) ){
                             %>
                                 <option value="<%= agenda.getId() %>"><%= agenda.getDia() %> - <%= agenda.getHora() %></option>
                             <% } %>
@@ -108,14 +109,12 @@
                 
                 <div class="row">
                     <div class="form-group col-md-2">
-                        <button type="button" class="btn btn-primary" id="btnProsseguirConsultaPassoUm">Cadastrar <i class="far fa-save fa-lg"></i> </button> 
+                        <button type="button" class="btn btn-primary" id="btnCadastrar">Cadastrar <i class="far fa-save fa-lg"></i> </button> 
                     </div>  
                 </div>
             </div>
         </div>
-        
-        <script src="..\node_modules\jquery\dist\jquery.js"></script>
-        <script src="..\node_modules\bootstrap3\dist\js\bootstrap.js"></script>
+        <c:import url="../tags/javascript.jsp"/>
         <script>
             function buscarDadosPacienteId(){
                 $.post("../ControllerPaciente", {
@@ -168,12 +167,23 @@
                 });
             }
             
-           var getQueryString = function ( field, url ) {
+            var getQueryString = function ( field, url ) {
                     var href = url ? url : window.location.href;
                     var reg = new RegExp( '[?&]' + field + '=([^&#]*)', 'i' );
                     var string = reg.exec(href);
                     return string ? string[1] : null;
             };
+            
+            $( "#btnCadastrar" ).click(function() {
+                $.post("../ControllerConsulta", {
+                    option  :   "CadastrarConsulta",
+                    idPaciente  :  $("#idPaciente").val(),
+                    idAgenda    :  $("#idAgenda").val()
+                })
+                .done(function(data) {
+                    
+                });
+            });
             
             $(function() {
                 buscarDadosPacienteId();

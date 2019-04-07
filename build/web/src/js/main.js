@@ -30,3 +30,36 @@
         
         $("#foneResidencial, #foneCelular").mask("(00) 00000-0000");
      });
+     
+     function msgErro(msg){
+         $.confirm({
+            title: 'Sistema Cl&iacute;nico',
+            content: msg,
+            type: 'red',
+            typeAnimated: true,
+            buttons: {
+                btn: {
+                    text: 'Ok',
+                    btnClass: 'btn-red',
+                    action: function(){
+                    }
+                }
+            }
+        });
+     }
+     
+     // Restricts input for the given textbox to the given inputFilter.
+    function setInputFilter(textbox, inputFilter) {
+      ["input", "keydown", "keyup", "mousedown", "mouseup", "select", "contextmenu", "drop"].forEach(function(event) {
+        textbox.addEventListener(event, function() {
+          if (inputFilter(this.value)) {
+            this.oldValue = this.value;
+            this.oldSelectionStart = this.selectionStart;
+            this.oldSelectionEnd = this.selectionEnd;
+          } else if (this.hasOwnProperty("oldValue")) {
+            this.value = this.oldValue;
+            this.setSelectionRange(this.oldSelectionStart, this.oldSelectionEnd);
+          }
+        });
+      });
+    }

@@ -23,6 +23,7 @@
             <c:import url="../tags/status.jsp"/>
             <div class="well bs-component">
                 <legend>Cadastro - Paciente<button class="btn btn-primary btn-sm pull-right" id="btnCadastrar" style="margin-top:-10px">Cadastrar <i class="fas fa-save fa-lg"></i></button> </legend>
+                
                 <div class="row">
                     <div class="form-group col-sm-5">
                         <label for="estado">Nome</label>
@@ -123,6 +124,16 @@
         
         <c:import url="../tags/javascript.jsp"/>
         <script>
+            setInputFilter(document.getElementById("rg"), function(value) {
+                return /^\d*$/.test(value); 
+            });
+            setInputFilter(document.getElementById("cpf"), function(value) {
+                return /^\d*$/.test(value); 
+            });
+            setInputFilter(document.getElementById("cep"), function(value) {
+                return /^\d*$/.test(value); 
+            });
+            
             $( "#cep" ).keypress(function(e) {
                 if(e.which === 13) {
                     $("#logradouro").val("...");
@@ -143,6 +154,26 @@
             });
             
             $( "#btnCadastrar" ).click(function() {
+                var contentErro = "";
+                if(!$("#nome").val()){ contentErro += "<br>- Nome";}
+                if(!$("#rg").val()){ contentErro += "<br>- RG";}
+                if(!$("#cpf").val()){ contentErro += "<br>- CPF ";}
+                
+                if(!$("#email").val()){ contentErro += "<br>- Email ";}
+                if(!$("#foneResidencial").val()){ contentErro += "<br>- Fone Residencial ";}
+                if(!$("#foneCelular").val()){ contentErro += "<br>- Fone Celular ";}
+                
+                if(!$("#dtNascimento").val()){ contentErro += "<br>- Dt. Nascimento ";}
+                if(!$("#cep").val()){ contentErro += "<br>- CEP";}
+                if(!$("#logradouro").val()){ contentErro += "<br>- Logradouro ";}
+                if(!$("#logradouro").val()){ contentErro += "<br>- Logradouro";}
+                if(!$("#numeroEndereco").val()){ contentErro += "<br>- N&#186; da Endere&ccedil;o";}
+                if(!$("#cidade").val()){ contentErro += "<br>- Cidade";}
+                if(!$("#uf").val()){ contentErro += "<br>- UF ";}
+                
+                console.log(contentErro);
+                if(contentErro){ msgErro("Preencha todos os campos" + contentErro); return false; }
+                
                 $("#statusSalvando").css({"display":"block"});
                 $.post("../ControllerPaciente", {
                     option          :   "CadastrarPaciente",
@@ -165,11 +196,26 @@
                     console.log(value);
                     if(value == true){
                         processSuccess();
+                        limparCamposCadastroPaciente();
                     }else{
                         processFail();
                     }
                 });
             });
+            
+            function limparCamposCadastroPaciente(){
+                $("#rg").val("");
+                $("#cpf").val("");
+                $("#email").val("");
+                $("#foneCelular").val("");
+                $("#foneResidencial").val("");
+                $("#dtNascimento").val("");
+                $("#cep").val("");
+                $("#logradouro").val("");
+                $("#numeroEndereco").val("");
+                $("#cidade").val("");
+                $("#uf").val("");
+            }
             
         </script>
     </body>

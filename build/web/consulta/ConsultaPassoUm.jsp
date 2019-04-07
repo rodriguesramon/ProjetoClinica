@@ -91,8 +91,7 @@
             </div>
         </div>
         
-        <script src="..\node_modules\jquery\dist\jquery.js"></script>
-        <script src="..\node_modules\bootstrap3\dist\js\bootstrap.js"></script>
+        <c:import url="../tags/javascript.jsp"/>
         <script>
             $( "#btnCadastrar" ).click(function() {
                 $.post("../ControllerMedico", {
@@ -108,15 +107,17 @@
                     //$("#statusSalvando").css({"display":"block"});
                 })
                 .done(function(data) {
-                    
-                    
                     //if(){}
-                    
                     //$("#statusSalvando").css({"display":"none"});
                     //$("#statusSalvo").css({"display":"block"});
                     //alert("Agora realmente chegou  " + data);
                 });
             });
+            
+             $( "#rg, #cpf" ).keypress(function(e) {
+                if(e.which === 13) {
+                    buscarDadosPaciente();
+                }});
             
             function buscarDadosPaciente(){
                 $.post("../ControllerPaciente", {
@@ -138,12 +139,12 @@
                 });
             }
             
+            
+            
             function buscarDadosPacienteId(){
                 $.post("../ControllerPaciente", {
                     option  :   "BuscarPacienteId",
                     id      :   location.search.split('id=')[1]
-                }, function(data){
-                  
                 })
                 .done(function(data) {
                     var value = JSON.parse(data);
@@ -158,7 +159,7 @@
             }
             
             $( "#btnProsseguirConsultaPassoUm" ).click(function() {
-                var stringUrl = "ConsultaPassoDois.jsp?nome="+$("#nome").val()+"&rg="+$("#rg").val()+"&cpf="+$("#cpf").val();
+                var stringUrl = "ConsultaPassoDois.jsp?idPaciente="+$("#idPaciente").val()+"&idEspecialidade="+$("#especialidade").val();
                 window.location = stringUrl;
             });
             

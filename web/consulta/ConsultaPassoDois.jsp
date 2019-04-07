@@ -71,7 +71,7 @@
                             <%
                                 MedicoDao medicoDao = new MedicoDao();
                                 int idEspecialidade = Integer.parseInt(request.getParameter("idEspecialidade"));
-                                for(Medico medico : medicoDao.listaMedicoEspecialidade(idEspecialidade) ){
+                                for(Medico medico : medicoDao.listaMedicoEspecialidade(idEspecialidade)){
                             %>
                                 <option value="<%= medico.getId() %>"><%= medico.getNome()%></option>
                             <% } %>
@@ -80,25 +80,30 @@
                     </div>
                 </div>
                 
-                 
-                
                 <div class="row">
                     <div class="form-group col-md-2">
-                        <button type="button" class="btn btn-primary" id="btnProsseguirConsultaPassoUm">Prosseguir <i class="far fa-save fa-lg"></i> </button> 
+                        <button type="button" class="btn btn-primary" id="btnProsseguirConsultaPassoDois">
+                            Prosseguir <i class="far fa-save fa-lg"></i>
+                        </button> 
                     </div>  
                 </div>
             </div>
         </div>
         
-        <script src="..\node_modules\jquery\dist\jquery.js"></script>
-        <script src="..\node_modules\bootstrap3\dist\js\bootstrap.js"></script>
+        <c:import url="../tags/javascript.jsp"/>
         <script>
+            
+            $( "#btnProsseguirConsultaPassoDois" ).click(function() {
+                var stringUrl = "ConsultaPassoTres.jsp?";
+                stringUrl += "idPaciente=" + $("#idPaciente").val();
+                stringUrl +="&idEspecialidade=" + getQueryString('idEspecialidade');
+                stringUrl +="&idMedico=" + $("#idMedico").val();
+                window.location = stringUrl;
+            });
             function buscarDadosPacienteId(){
                 $.post("../ControllerPaciente", {
                     option  :   "BuscarPacienteId",
                     id      :   getQueryString('idPaciente')
-                }, function(data){
-                  console.log("Processando...");
                 })
                 .done(function(data) {
                     var value = JSON.parse(data);
@@ -128,17 +133,7 @@
                 });
             }
             
-           var getQueryString = function ( field, url ) {
-                    var href = url ? url : window.location.href;
-                    var reg = new RegExp( '[?&]' + field + '=([^&#]*)', 'i' );
-                    var string = reg.exec(href);
-                    return string ? string[1] : null;
-            };
-            
             $(function() {
-                //var thisOne = getQueryString('this');
-                // console.log("idPaciente " + getQueryString('idPaciente'));
-                //console.log("idEspecialidade " + getQueryString('idEspecialidade'));
                 buscarDadosPacienteId();
                 buscarEspecialidade();
            });

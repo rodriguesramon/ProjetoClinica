@@ -6,6 +6,7 @@ package controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import javax.servlet.ServletException;
@@ -13,10 +14,12 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.bean.Agenda;
 import model.bean.Consulta;
-import model.bean.Medico;
+import model.bean.Paciente;
+import model.dao.AgendaDao;
 import model.dao.ConsultaDao;
-import model.dao.MedicoDao;
+import model.dao.PacienteDao;
 
 /**
  *
@@ -89,11 +92,16 @@ public class ControllerConsulta extends HttpServlet {
         ConsultaDao consultaDao = new ConsultaDao();
         Consulta consulta = new Consulta();
         
+        Agenda agenda = new Agenda();
+        AgendaDao agendaDao = new AgendaDao();
+        
+        Paciente paciente = new Paciente();
+        PacienteDao pacienteDao = new PacienteDao();
+        
         PrintWriter printWriter = response.getWriter();
         Map<String, String> mapMedico = new HashMap<String, String>();
-        
-        
-        if (option.equals("BuscarConsulta")) {
+                
+        if(option.equals("BuscarConsulta")){
             consulta = consultaDao.buscaConsulta(Integer.parseInt(request.getParameter("id")));
             respostaJson = "{"
                                 + "\"id\" : \"" + consulta.getId() + "\", "
@@ -108,6 +116,14 @@ public class ControllerConsulta extends HttpServlet {
                                 + "\"observacaoExame\" : \"" + consulta.getObservacaoExame() + "\" "
                          + "}";
             printWriter.print(respostaJson);
+        }else if(option.equals("CadastrarConsulta")){
+            agenda = agendaDao.buscaAgenda(Integer.parseInt(request.getParameter("idAgenda")));
+            paciente = pacienteDao.buscaPaciente(Integer.parseInt(request.getParameter("idPaciente")));
+            
+            consulta.setAgenda(agenda);
+            consulta.setPaciente(paciente);
+            consulta.setDtCadastro(new Date());
+            printWriter.print(consultaDao.salvaConsulta(consulta));
         }
     }
 

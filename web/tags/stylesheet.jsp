@@ -8,8 +8,10 @@
 <link rel="stylesheet" type="text/css" href="<%=  linkpath %>\node_modules\@fortawesome\fontawesome-free\css\all.css">
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/css/bootstrap-datepicker.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
 
-<link rel="stylesheet" type="text/css" href="<%=  linkpath %>\src\css\style.css"><link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
+<link rel="stylesheet" type="text/css" href="<%=  linkpath %>\src\css\style.css">
+<link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
 <link rel="apple-touch-icon" sizes="60x60" href="<%=  linkpath %>/src/img/apple-icon-60x60.png">
 <link rel="apple-touch-icon" sizes="72x72" href="<%=  linkpath %>/src/img/apple-icon-72x72.png">
 <link rel="apple-touch-icon" sizes="76x76" href="<%=  linkpath %>/src/img/apple-icon-76x76.png">
