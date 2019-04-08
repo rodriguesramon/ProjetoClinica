@@ -16,10 +16,18 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.bean.Agenda;
 import model.bean.Consulta;
+import model.bean.Exame;
+import model.bean.Medicamento;
 import model.bean.Paciente;
+import model.bean.Receita;
+import model.bean.Tipoexame;
 import model.dao.AgendaDao;
 import model.dao.ConsultaDao;
+import model.dao.ExameDao;
+import model.dao.MedicamentoDao;
 import model.dao.PacienteDao;
+import model.dao.ReceitaDao;
+import model.dao.TipoexameDao;
 
 /**
  *
@@ -98,6 +106,18 @@ public class ControllerConsulta extends HttpServlet {
         Paciente paciente = new Paciente();
         PacienteDao pacienteDao = new PacienteDao();
         
+        Exame exame = new Exame();
+        ExameDao exameDao = new ExameDao();
+        
+        Tipoexame tipoExame = new Tipoexame();
+        TipoexameDao tipoExameDao = new TipoexameDao();
+        
+        Medicamento medicamento = new Medicamento();
+        MedicamentoDao medicamentoDao = new MedicamentoDao();
+        
+        Receita receita = new Receita();
+        ReceitaDao receitaDao = new ReceitaDao();
+        
         PrintWriter printWriter = response.getWriter();
         Map<String, String> mapMedico = new HashMap<String, String>();
                 
@@ -109,7 +129,7 @@ public class ControllerConsulta extends HttpServlet {
                                 + "\"rg\" : \"" + consulta.getPaciente().getRg() + "\", "
                                 + "\"cpf\" : \"" + consulta.getPaciente().getCpf() + "\", "
                                 + "\"medico\" : \"" + consulta.getAgenda().getMedico().getNome() + "\", "
-                                + "\"especialidade\" : \"" + consulta.getEspecialidade().getNome() + "\", "
+                                + "\"especialidade\" : \"" + consulta.getAgenda().getEspecialidade().getNome() + "\", "
                                 + "\"agenda\" : \"" + consulta.getAgenda().getDia() + " - " + consulta.getAgenda().getHora() + "\", "
                                 + "\"observacao\" : \"" + consulta.getObservacao() + "\", "
                                 + "\"observacaoReceita\" : \"" + consulta.getObservacaoReceita() + "\", "
@@ -120,10 +140,39 @@ public class ControllerConsulta extends HttpServlet {
             agenda = agendaDao.buscaAgenda(Integer.parseInt(request.getParameter("idAgenda")));
             paciente = pacienteDao.buscaPaciente(Integer.parseInt(request.getParameter("idPaciente")));
             
+            consulta.setObservacao(request.getParameter("observacao"));
             consulta.setAgenda(agenda);
             consulta.setPaciente(paciente);
             consulta.setDtCadastro(new Date());
             printWriter.print(consultaDao.salvaConsulta(consulta));
+        }else if(option.equals("RegistrarConsulta")){
+            consulta = consultaDao.buscaConsulta(Integer.parseInt(request.getParameter("idConsulta")));
+            
+            consulta.setObservacao(request.getParameter("observacao"));
+            consulta.setObservacaoExame(request.getParameter("observacaoExame"));
+            consulta.setObservacaoReceita(request.getParameter("observacaoReceita"));
+            
+            consulta.setStatus(1);//Define como atendido
+            consultaDao.atualizarConsulta(consulta);
+        }else if(option.equals("AdicionarMedicamento")){
+            consulta = consultaDao.buscaConsulta(Integer.parseInt(request.getParameter("idConsulta")));
+            medicamento = medicamentoDao.buscaMedicamento(Integer.parseInt(request.getParameter("idMedicamento")));
+            receita.setConsulta(consulta);
+            receita.setDtCadastro(new Date());
+            receita.setMedicamento(medicamento);
+            receita.setObservacao(request.getParameter("observacaoMedicamento"));
+            printWriter.print(receitaDao.salvaReceita(receita));
+            
+        }else if(option.equals("AdicionarExame")){
+            consulta = consultaDao.buscaConsulta(Integer.parseInt(request.getParameter("idConsulta")));
+            tipoExame = tipoExameDao.buscaTipoexame(Integer.parseInt(request.getParameter("idTipoExame")));
+            
+            exame.setConsulta(consulta);
+            exame.setTipoexame(tipoExame);
+            exame.setObservacao(request.getParameter("observacaoExame"));
+            exame.setDtCadastro(new Date());
+            printWriter.print(exameDao.salvaExame(exame));
+            
         }
     }
 

@@ -4,6 +4,10 @@
     Author     : Ramon Costa
 --%>
 
+<%@page import="model.bean.Tipoexame"%>
+<%@page import="model.dao.TipoexameDao"%>
+<%@page import="model.dao.MedicamentoDao"%>
+<%@page import="model.bean.Medicamento"%>
 <%@page import="model.bean.Exame"%>
 <%@page import="model.dao.ExameDao"%>
 <%@page import="model.bean.Receita"%>
@@ -18,11 +22,8 @@
 <html>
     <head>
         <c:import url="../tags/metas.jsp"/>
-        <c:import url="../tags/metas.jsp"/>
         <c:import url="../tags/stylesheet.jsp"/>
-        
         <title>Projeto Clinica</title>
-        
     </head>
     <body>
         
@@ -30,29 +31,92 @@
             <c:import url="../tags/menu.jsp"/>
         </div>
         <div class="container" style='margin-top:80px'>
+            
+            <div class="modal fade" id="modalMedicamento" role="dialog">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title">Medicamento</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <p>Selecione um medicamento</p>
+                                <select class="form-control input-sm" id="idMedicamento">
+                                    <%
+                                        MedicamentoDao medicamentoDao = new MedicamentoDao();
+                                        for(Medicamento medicamento : medicamentoDao.listaMedicamento()){
+                                    %>
+                                        <option value="<%= medicamento.getId() %>"><%= medicamento.getNomeGenerico() %></option>
+                                    <%  } %>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <textarea class="form-control" placeholder="Observa&ccedil;&atilde;o"></textarea>
+                            </div>    
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                            <button type="button" class="btn btn-success" data-dismiss="modal" id="btnAddMedicamento">Adicionar</button>
+                        </div>
+                    </div>
+                </div>
+             </div>
+                            
+            <div class="modal fade" id="modalExame" role="dialog">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title">Exame</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <p>Selecione um Exame</p>
+                                <select class="form-control input-sm" id="idTipoExame">
+                                    <%
+                                        TipoexameDao tipoExameDao = new TipoexameDao();
+                                        for(Tipoexame tipoExame : tipoExameDao.listaTipoexame() ){
+                                    %>
+                                        <option value="<%= tipoExame.getId() %>"><%= tipoExame.getNome()%></option>
+                                    <%  } %>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <textarea class="form-control" placeholder="Observa&ccedil;&atilde;o"></textarea>
+                            </div>    
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                            <button type="button" class="btn btn-success" data-dismiss="modal" id="btnAddExame">Adicionar</button>
+                        </div>
+                    </div>
+                </div>
+             </div>
+                            
             <div class="well bs-component">
                 <legend>Atendimento - Consulta</legend>
                 <div class="row">
                     <input id="idPaciente" type="hidden">
                     <div class="form-group col-md-2">
-                        <label for="sigla">RG</label>
+                        <label for="rg">RG</label>
                         <div class="input-group input-group-sm">
                             <span class="input-group-addon"><i class="fas fa-grip-horizontal"></i></span>
-                            <input type="text" class="form-control" id="rg" autocomplete="off" name="rg">
+                            <input type="text" class="form-control" id="rg" autocomplete="off" name="rg" readonly>
                         </div>
                     </div>
                     <div class="form-group col-md-3">
-                        <label for="sigla">CPF</label>
+                        <label for="cpf">CPF</label>
                         <div class="input-group input-group-sm">
                             <span class="input-group-addon"><i class="fas fa-grip-horizontal"></i></span>
-                            <input type="text" class="form-control" id="cpf" autocomplete="off" name="cpf">
+                            <input type="text" class="form-control" id="cpf" autocomplete="off" name="cpf" readonly>
                         </div>
                     </div>
                     <div class="form-group col-sm-5">
                         <label for="estado">Nome</label>
                         <div class="input-group input-group-sm">
                             <span class="input-group-addon"><i class="fas fa-grip-horizontal"></i></span>
-                            <input type="text" class="form-control" id="nome" autocomplete="off" name="nome">
+                            <input type="text" class="form-control" id="nome" autocomplete="off" name="nome" readonly>
                        </div>
                     </div>
                 </div>
@@ -62,7 +126,7 @@
                         <label for="estado">Especialidade</label>
                         <div class="input-group input-group-sm">
                             <span class="input-group-addon"><i class="fas fa-grip-horizontal"></i></span>
-                            <input class="form-control" id="especialidade" autocomplete="off">
+                            <input class="form-control" id="especialidade" autocomplete="off" readonly>
                        </div>
                     </div>
                     
@@ -70,14 +134,14 @@
                         <label for="estado">M&eacute;dico</label>
                         <div class="input-group input-group-sm">
                             <span class="input-group-addon"><i class="fas fa-grip-horizontal"></i></span>
-                            <input type="text" class="form-control" id="medico" autocomplete="off">
+                            <input type="text" class="form-control" id="medico" autocomplete="off" readonly>
                        </div>
                     </div>
                     <div class="form-group col-sm-3">
                         <label for="estado">Agenda</label>
                         <div class="input-group input-group-sm">
                             <span class="input-group-addon"><i class="fas fa-grip-horizontal"></i></span>
-                            <input type="text" class="form-control" id="agenda" autocomplete="off">
+                            <input type="text" class="form-control" id="agenda" autocomplete="off" readonly>
                        </div>
                     </div>
                 </div>
@@ -94,7 +158,7 @@
                         <div class="panel-heading clearfix" style="background: #c1dbe1;">
                             <h5 class="panel-title pull-left" style="padding-top: 7.5px;">Receita</h5>
                             <div class="btn-group pull-right">
-                                <button class="btn btn-primary btn-sm">Adicionar</button>
+                                <button class="btn btn-primary btn-sm" id="btnAdicionarMedicamento">Adicionar</button>
                             </div>
                         </div>
                         <div class="panel-body">
@@ -135,9 +199,9 @@
                 <div class="form-group">
                     <div class="panel panel-default">
                         <div class="panel-heading clearfix" style="background: #c1dbe1;">
-                            <h5 class="panel-title pull-left" style="padding-top: 7.5px;">observacaoExame</h5>
+                            <h5 class="panel-title pull-left" style="padding-top: 7.5px;">Exame</h5>
                             <div class="btn-group pull-right">
-                                <button class="btn btn-primary btn-sm">Adicionar</button>
+                                <button class="btn btn-primary btn-sm" id="btnAdicionarExame">Adicionar</button>
                             </div>
                         </div>
                         <div class="panel-body">
@@ -168,8 +232,6 @@
                                                 <td></td>
                                             </tr>
                                         <%  } %>
-                                            
-                                            
                                         </tbody>
                                     </table>
                                 </div>
@@ -185,10 +247,46 @@
                 </div>
             </div>
         </div>
-        
-        <script src="..\node_modules\jquery\dist\jquery.js"></script>
-        <script src="..\node_modules\bootstrap3\dist\js\bootstrap.js"></script>
+        <c:import url="../tags/javascript.jsp"/>
         <script>
+            $("#btnAddMedicamento").click(function(){
+                $.post("../ControllerConsulta", {
+                    option        :   "AdicionarMedicamento",
+                    id            :   getQueryString('idConsulta'),
+                    idMedicamento : $("#idMedicamento").val(),
+                    observacaoMedicamento : $("#observacaoMedicamento").val(),
+                }, function(){
+                  console.log("Processando...");
+                })
+                .done(function(data){
+                    var value = JSON.parse(data);
+                    $("#idConsulta").val(value.id);
+                });
+            });
+            
+            $("#btnAddExame").click(function(){
+                $.post("../ControllerConsulta", {
+                    option  :   "AdicionarExame",
+                    id      :   getQueryString('idConsulta'),
+                    idTipoExame : $("#idTipoExame").val(),
+                    observacaoExame : $("#observacaoExame").val()
+                }, function(){
+                  console.log("Processando...");
+                })
+                .done(function(data){
+                    var value = JSON.parse(data);
+                    $("#idConsulta").val(value.id);
+                    
+                });
+            });
+            
+            $("#btnAdicionarMedicamento").click(function(){
+                $("#modalMedicamento").modal();
+            });
+            
+            $("#btnAdicionarExame").click(function(){
+                $("#modalExame").modal();
+            });
             
             function buscarDadosConsulta(){
                 $.post("../ControllerConsulta", {
@@ -211,13 +309,6 @@
                     $("#observacaoExame").val(value.observacaoExame);
                 });
             }
-            
-            var getQueryString = function ( field, url ) {
-                     var href = url ? url : window.location.href;
-                     var reg = new RegExp( '[?&]' + field + '=([^&#]*)', 'i' );
-                     var string = reg.exec(href);
-                     return string ? string[1] : null;
-            };
             
             $(function(){
                 buscarDadosConsulta();

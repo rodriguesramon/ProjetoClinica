@@ -1,5 +1,5 @@
 package model.bean;
-// Generated 31/03/2019 16:11:57 by Hibernate Tools 3.2.1.GA
+// Generated 07/04/2019 16:25:15 by Hibernate Tools 3.2.1.GA
 
 
 import java.util.Date;
@@ -15,7 +15,6 @@ public class Consulta  implements java.io.Serializable {
      private Integer id;
      private Paciente paciente;
      private Agenda agenda;
-     private Especialidade especialidade;
      private String observacao;
      private String observacaoReceita;
      private String observacaoExame;
@@ -27,10 +26,9 @@ public class Consulta  implements java.io.Serializable {
     public Consulta() {
     }
 
-    public Consulta(Paciente paciente, Agenda agenda, Especialidade especialidade, String observacao, String observacaoReceita, String observacaoExame, Integer status, Date dtCadastro, Set receitas, Set exames) {
+    public Consulta(Paciente paciente, Agenda agenda, String observacao, String observacaoReceita, String observacaoExame, Integer status, Date dtCadastro, Set receitas, Set exames) {
        this.paciente = paciente;
        this.agenda = agenda;
-       this.especialidade = especialidade;
        this.observacao = observacao;
        this.observacaoReceita = observacaoReceita;
        this.observacaoExame = observacaoExame;
@@ -60,13 +58,6 @@ public class Consulta  implements java.io.Serializable {
     
     public void setAgenda(Agenda agenda) {
         this.agenda = agenda;
-    }
-    public Especialidade getEspecialidade() {
-        return this.especialidade;
-    }
-    
-    public void setEspecialidade(Especialidade especialidade) {
-        this.especialidade = especialidade;
     }
     public String getObservacao() {
         return this.observacao;

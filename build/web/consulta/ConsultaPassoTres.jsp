@@ -10,8 +10,7 @@
 <%@page import="model.dao.MedicoDao"%>
 <%@page import="model.bean.Especialidade"%>
 <%@page import="model.dao.EspecialidadeDao"%>
-<%@page import="model.bean.Estado"%>
-<%@page import="model.dao.EstadoDao"%>
+
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -104,9 +103,14 @@
                             </select>
                        </div>
                     </div>
-                    
                 </div>
                 
+                <div class="row">
+                    <div class="form-group col-sm-12">
+                        <label for="observacao">Observa&ccedil;&atilde;o</label>
+                        <textarea class="form-control" rows="2" id="observacao" autocomplete="off"></textarea>
+                    </div>
+                </div>
                 <div class="row">
                     <div class="form-group col-md-2">
                         <button type="button" class="btn btn-primary" id="btnCadastrar">Cadastrar <i class="far fa-save fa-lg"></i> </button> 
@@ -178,7 +182,8 @@
                 $.post("../ControllerConsulta", {
                     option  :   "CadastrarConsulta",
                     idPaciente  :  $("#idPaciente").val(),
-                    idAgenda    :  $("#idAgenda").val()
+                    idAgenda    :  $("#idAgenda").val(),
+                    observacao  :  $("#observacao").val()
                 })
                 .done(function(data) {
                     

@@ -3,9 +3,10 @@
 %>
 
 <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<!--<link rel="stylesheet" type="text/css" href="<%=  linkpath %>\node_modules\bootstrap3\dist\css\bootstrap.css">-->
 <link rel="stylesheet" type="text/css" href="<%=  linkpath %>\src\css\bootstrap.min.bootswatch.css">
-<link rel="stylesheet" type="text/css" href="<%=  linkpath %>\node_modules\@fortawesome\fontawesome-free\css\all.css">
+
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.1/css/all.css">
+
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/css/bootstrap-datepicker.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">

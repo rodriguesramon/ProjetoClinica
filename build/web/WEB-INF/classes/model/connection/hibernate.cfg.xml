@@ -7,6 +7,7 @@
     <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/dbclinica?zeroDateTimeBehavior=convertToNull</property>
     <property name="hibernate.connection.username">root</property>
     <property name="hibernate.connection.password">12345</property>
+    <mapping resource="model/bean/Tela.hbm.xml"/>
     <mapping resource="model/bean/Medicamento.hbm.xml"/>
     <mapping resource="model/bean/Medico.hbm.xml"/>
     <mapping resource="model/bean/Paciente.hbm.xml"/>
@@ -21,6 +22,7 @@
     <mapping resource="model/bean/Medicoespecialidade.hbm.xml"/>
     <mapping resource="model/bean/Agenda.hbm.xml"/>
     <mapping resource="model/bean/Tipoexame.hbm.xml"/>
+    <mapping resource="model/bean/Acesso.hbm.xml"/>
     <mapping resource="model/bean/Estado.hbm.xml"/>
   </session-factory>
 </hibernate-configuration>

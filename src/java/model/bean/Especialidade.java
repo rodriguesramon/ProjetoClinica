@@ -1,5 +1,5 @@
 package model.bean;
-// Generated 31/03/2019 16:11:57 by Hibernate Tools 3.2.1.GA
+// Generated 07/04/2019 16:25:15 by Hibernate Tools 3.2.1.GA
 
 
 import java.util.Date;
@@ -17,21 +17,21 @@ public class Especialidade  implements java.io.Serializable {
      private String descricao;
      private Integer status;
      private Date dtCadastro;
+     private Set agendas = new HashSet(0);
      private Set medicos = new HashSet(0);
      private Set medicoespecialidades = new HashSet(0);
-     private Set consultas = new HashSet(0);
 
     public Especialidade() {
     }
 
-    public Especialidade(String nome, String descricao, Integer status, Date dtCadastro, Set medicos, Set medicoespecialidades, Set consultas) {
+    public Especialidade(String nome, String descricao, Integer status, Date dtCadastro, Set agendas, Set medicos, Set medicoespecialidades) {
        this.nome = nome;
        this.descricao = descricao;
        this.status = status;
        this.dtCadastro = dtCadastro;
+       this.agendas = agendas;
        this.medicos = medicos;
        this.medicoespecialidades = medicoespecialidades;
-       this.consultas = consultas;
     }
    
     public Integer getId() {
@@ -69,6 +69,13 @@ public class Especialidade  implements java.io.Serializable {
     public void setDtCadastro(Date dtCadastro) {
         this.dtCadastro = dtCadastro;
     }
+    public Set getAgendas() {
+        return this.agendas;
+    }
+    
+    public void setAgendas(Set agendas) {
+        this.agendas = agendas;
+    }
     public Set getMedicos() {
         return this.medicos;
     }
@@ -82,13 +89,6 @@ public class Especialidade  implements java.io.Serializable {
     
     public void setMedicoespecialidades(Set medicoespecialidades) {
         this.medicoespecialidades = medicoespecialidades;
-    }
-    public Set getConsultas() {
-        return this.consultas;
-    }
-    
-    public void setConsultas(Set consultas) {
-        this.consultas = consultas;
     }
 
 

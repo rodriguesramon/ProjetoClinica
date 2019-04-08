@@ -1,7 +1,8 @@
 package model.bean;
-// Generated 31/03/2019 16:11:57 by Hibernate Tools 3.2.1.GA
+// Generated 07/04/2019 16:25:15 by Hibernate Tools 3.2.1.GA
 
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -14,6 +15,7 @@ public class Agenda  implements java.io.Serializable {
 
      private Integer id;
      private Medico medico;
+     private Especialidade especialidade;
      private Date dia;
      private String hora;
      private Integer status;
@@ -23,8 +25,9 @@ public class Agenda  implements java.io.Serializable {
     public Agenda() {
     }
 
-    public Agenda(Medico medico, Date dia, String hora, Integer status, Date dtCadastro, Set consultas) {
+    public Agenda(Medico medico, Especialidade especialidade, Date dia, String hora, Integer status, Date dtCadastro, Set consultas) {
        this.medico = medico;
+       this.especialidade = especialidade;
        this.dia = dia;
        this.hora = hora;
        this.status = status;
@@ -46,8 +49,17 @@ public class Agenda  implements java.io.Serializable {
     public void setMedico(Medico medico) {
         this.medico = medico;
     }
-    public Date getDia() {
-        return this.dia;
+    public Especialidade getEspecialidade() {
+        return this.especialidade;
+    }
+    
+    public void setEspecialidade(Especialidade especialidade) {
+        this.especialidade = especialidade;
+    }
+    public String getDia() {
+        //datetime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+        String diaAgenda = new SimpleDateFormat("dd/MM/yyyy").format(this.dia);
+        return diaAgenda ;
     }
     
     public void setDia(Date dia) {

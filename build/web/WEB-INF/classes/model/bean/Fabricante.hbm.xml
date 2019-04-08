@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated 31/03/2019 16:12:11 by Hibernate Tools 3.2.1.GA -->
+<!-- Generated 07/04/2019 16:25:26 by Hibernate Tools 3.2.1.GA -->
 <hibernate-mapping>
     <class name="model.bean.Fabricante" table="fabricante" catalog="dbclinica">
         <id name="id" type="java.lang.Integer">

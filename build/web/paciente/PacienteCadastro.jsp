@@ -153,7 +153,7 @@
                 }
             });
             
-            $( "#btnCadastrar" ).click(function() {
+            $("#btnCadastrar").click(function() {
                 var contentErro = "";
                 if(!$("#nome").val()){ contentErro += "<br>- Nome";}
                 if(!$("#rg").val()){ contentErro += "<br>- RG";}

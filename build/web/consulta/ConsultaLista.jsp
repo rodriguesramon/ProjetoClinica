@@ -124,13 +124,13 @@
                             %>
                             <tr>
                                 <td><%= consulta.getPaciente().getNome() %></td>
-                                <td><%= consulta.getEspecialidade().getNome() %></td>
+                                <td><%= consulta.getAgenda().getEspecialidade().getNome() %></td>
                                 <td><%= consulta.getAgenda().getMedico().getNome() %></td>
                                 <td><%= consulta.getAgenda().getDia() %></td>
                                 <td><%= consulta.getAgenda().getHora() %></td>
                                 <td width="15%" align="center" style="padding-bottom: 0px; padding-top: 0px; padding-right: 0px; padding-left: 0px;">
                                     <div class="btn-group">
-                                        <button type="button" class="btn btn-success btn-sm">Atender</button>
+                                        <button type="button" onclick="acessarConsulta(<%= consulta.getId() %>)" class="btn btn-success btn-sm">Atender</button>
                                         <button type="button" class="btn btn-danger btn-sm">Cancelar</button>
                                     </div>
                                 </td>
@@ -144,6 +144,13 @@
         
         <c:import url="../tags/javascript.jsp"/>
         <script>
+            
+            function acessarConsulta(idConsulta){
+                var stringUrl = "ConsultaAtendimento.jsp?";
+                stringUrl += "idConsulta=" + idConsulta;
+                window.location = stringUrl;
+            }
+            
             $(function(){
                 //OnLoad
             });

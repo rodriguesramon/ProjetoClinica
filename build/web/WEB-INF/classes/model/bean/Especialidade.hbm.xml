@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated 31/03/2019 16:12:11 by Hibernate Tools 3.2.1.GA -->
+<!-- Generated 07/04/2019 16:25:26 by Hibernate Tools 3.2.1.GA -->
 <hibernate-mapping>
     <class name="model.bean.Especialidade" table="especialidade" catalog="dbclinica">
         <id name="id" type="java.lang.Integer">
@@ -20,6 +20,12 @@
         <property name="dtCadastro" type="date">
             <column name="dtCadastro" length="10" />
         </property>
+        <set name="agendas" inverse="true">
+            <key>
+                <column name="idEspecialidade" />
+            </key>
+            <one-to-many class="model.bean.Agenda" />
+        </set>
         <set name="medicos" inverse="true">
             <key>
                 <column name="idEspecialidade" />
@@ -31,12 +37,6 @@
                 <column name="idEspecialidade" />
             </key>
             <one-to-many class="model.bean.Medicoespecialidade" />
-        </set>
-        <set name="consultas" inverse="true">
-            <key>
-                <column name="idEspecialidade" />
-            </key>
-            <one-to-many class="model.bean.Consulta" />
         </set>
     </class>
 </hibernate-mapping>
