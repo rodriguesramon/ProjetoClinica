@@ -1,9 +1,3 @@
-<%-- 
-    Document   : ...
-    Created on : 23/02/2019, 23:48:44
-    Author     : Ramon Costa
---%>
-
 <%@page import="model.bean.Especialidade"%>
 <%@page import="model.dao.EspecialidadeDao"%>
 <%@page import="model.bean.Estado"%>

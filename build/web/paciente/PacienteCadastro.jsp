@@ -1,11 +1,3 @@
-<%-- 
-    Document   : ...
-    Created on : 23/02/2019, 23:48:44
-    Author     : Ramon Costa
---%>
-
-<%@page import="model.bean.Estado"%>
-<%@page import="model.dao.EstadoDao"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -204,6 +196,7 @@
             });
             
             function limparCamposCadastroPaciente(){
+                $("#nome").val("");
                 $("#rg").val("");
                 $("#cpf").val("");
                 $("#email").val("");

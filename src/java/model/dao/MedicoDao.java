@@ -50,7 +50,7 @@ public class MedicoDao {
         }
     }
     
-    public List<Medico> listaMedicoEspecialidade(int idEspecialidade) {
+    public List<Medico> lista(int idEspecialidade) {
         try{
             sql = "SELECT m.* " + 
                   "  FROM medico m " + 

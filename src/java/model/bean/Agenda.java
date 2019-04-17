@@ -1,8 +1,7 @@
 package model.bean;
-// Generated 07/04/2019 16:25:15 by Hibernate Tools 3.2.1.GA
+// Generated 15/04/2019 22:53:37 by Hibernate Tools 3.2.1.GA
 
 
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -56,10 +55,8 @@ public class Agenda  implements java.io.Serializable {
     public void setEspecialidade(Especialidade especialidade) {
         this.especialidade = especialidade;
     }
-    public String getDia() {
-        //datetime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-        String diaAgenda = new SimpleDateFormat("dd/MM/yyyy").format(this.dia);
-        return diaAgenda ;
+    public Date getDia() {
+        return this.dia;
     }
     
     public void setDia(Date dia) {

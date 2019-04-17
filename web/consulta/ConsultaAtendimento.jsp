@@ -1,9 +1,3 @@
-<%-- 
-    Document   : ...
-    Created on : 23/02/2019, 23:48:44
-    Author     : Ramon Costa
---%>
-
 <%@page import="model.bean.Tipoexame"%>
 <%@page import="model.dao.TipoexameDao"%>
 <%@page import="model.dao.MedicamentoDao"%>

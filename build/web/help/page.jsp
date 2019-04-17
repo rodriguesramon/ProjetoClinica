@@ -1,7 +1,7 @@
 <%-- 
     Document   : page
     Created on : 23/02/2019, 21:49:01
-    Author     : Ramon Costa
+    
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>

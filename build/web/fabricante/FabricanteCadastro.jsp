@@ -1,9 +1,3 @@
-<%-- 
-    Document   : ...
-    Created on : 23/02/2019, 23:48:44
-    Author     : Ramon Costa
---%>
-
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>

@@ -6,19 +6,20 @@ package controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.text.DateFormat;
-import java.text.ParseException;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.bean.Especialidade;
 import model.bean.Medico;
+import model.bean.Medicoespecialidade;
+import model.dao.EspecialidadeDao;
 import model.dao.MedicoDao;
+import model.dao.MedicoespecialidadeDao;
 
 /**
  *
@@ -88,6 +89,14 @@ public class ControllerMedico extends HttpServlet {
         String option = request.getParameter("option");
         MedicoDao medicoDao = new MedicoDao();
         Medico medico = new Medico();
+        
+        Especialidade especialidade = new Especialidade();
+        EspecialidadeDao especialidadeDao = new EspecialidadeDao();
+        
+        Medicoespecialidade medicoEspecialidade  = new Medicoespecialidade();
+        MedicoespecialidadeDao medicoEspecialidadeDao = new MedicoespecialidadeDao();
+        
+        
         PrintWriter printWriter = response.getWriter();
         Map<String, String> mapMedico = new HashMap<String, String>();
         
@@ -98,7 +107,16 @@ public class ControllerMedico extends HttpServlet {
             medico.setEmail(request.getParameter("email"));
             medico.setFoneResidencial(request.getParameter("foneResidencial"));
             medico.setFoneCelular(request.getParameter("foneCelular"));
-            printWriter.print(medicoDao.salvaMedico(medico));
+            
+            
+            especialidade = especialidadeDao.buscaEspecialidade(Integer.parseInt(request.getParameter("idEspecialidade")));
+            
+            medicoEspecialidade.setMedico(medico);
+            medicoEspecialidade.setDtCadastro(new Date());
+            medicoEspecialidade.setEspecialidade(especialidade);
+            medicoDao.salvaMedico(medico);
+            
+            printWriter.print(medicoEspecialidadeDao.salva(medicoEspecialidade));
         }
         
         if (option.equals("BuscarMedico")) {

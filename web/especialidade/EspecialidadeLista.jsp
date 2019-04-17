@@ -1,9 +1,3 @@
-<%-- 
-    Document   : EspecialidadeLista
-    Created on : 01/04/2019, 23:49:16
-    Author     : Ramon Costa
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>

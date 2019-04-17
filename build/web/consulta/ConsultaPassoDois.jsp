@@ -1,9 +1,3 @@
-<%-- 
-    Document   : ...
-    Created on : 23/02/2019, 23:48:44
-    Author     : Ramon Costa
---%>
-
 <%@page import="model.bean.Medico"%>
 <%@page import="model.dao.MedicoDao"%>
 <%@page import="model.bean.Especialidade"%>
@@ -71,7 +65,7 @@
                             <%
                                 MedicoDao medicoDao = new MedicoDao();
                                 int idEspecialidade = Integer.parseInt(request.getParameter("idEspecialidade"));
-                                for(Medico medico : medicoDao.listaMedicoEspecialidade(idEspecialidade)){
+                                for(Medico medico : medicoDao.lista(idEspecialidade)){
                             %>
                                 <option value="<%= medico.getId() %>"><%= medico.getNome()%></option>
                             <% } %>
