@@ -19,17 +19,7 @@
             <c:import url="tags/menu.jsp"/>
         </div>
         <div class="container" style='margin-top:80px'>
-            <c:import url="tags/status.jsp"/>
-            <%
-                URL url = new URL(request.getRequestURL().toString());
-            %>
-            <%= request.getRequestURI() %><br>
-            <%= request.getRequestURL().toString() %><br>
-            <%= url.getHost() %><br>
-            <%= url.getRef() %><br>
-            <%= url.getFile().toString() %><br>
-            <%= url.getPath().toString() %>
-            
+            <c:import url="tags/status.jsp"/> 
         </div>
         <c:import url="tags/javascript.jsp"/>
         

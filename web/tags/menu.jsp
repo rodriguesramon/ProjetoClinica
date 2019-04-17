@@ -37,6 +37,7 @@
                         <li><a href="<%= application.getContextPath() + "/fabricante/FabricanteCadastro.jsp" %>">Fabricante</a></li>
                         <li class="divider"></li>
                         <li><a href="<%= application.getContextPath() + "/medico/MedicoCadastro.jsp" %>">M&eacute;dico </a></li>
+                        <li><a href="<%= application.getContextPath() + "/medico/MedicoLista.jsp" %>">Gerenciar</a></li>
                         <li><a href="#">Agenda </a></li>
                         <li><a href="<%= application.getContextPath() + "/especialidade/EspecialidadeCadastro.jsp" %>">Especialidades</a></li>
                         <li class="divider"></li>
