@@ -31,7 +31,7 @@ import model.dao.TipoexameDao;
 
 /**
  *
- * @author Ramon Costa
+ * 
  */
 @WebServlet(name = "ControllerConsulta", urlPatterns = {"/ControllerConsulta"})
 public class ControllerConsulta extends HttpServlet {

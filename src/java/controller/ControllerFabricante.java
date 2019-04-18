@@ -19,7 +19,7 @@ import model.dao.FabricanteDao;
 
 /**
  *
- * @author Ramon Costa
+ * 
  */
 @WebServlet(name = "ControllerFabricante", urlPatterns = {"/ControllerFabricante"})
 public class ControllerFabricante extends HttpServlet {

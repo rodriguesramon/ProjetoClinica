@@ -14,7 +14,7 @@ import org.hibernate.Transaction;
 
 /**
  *
- * @author Ramon Costa
+ * 
  */
 public class EstadoDao {
     Session session;

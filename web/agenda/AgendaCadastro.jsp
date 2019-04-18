@@ -24,7 +24,7 @@
                         <label for="estado">M&eacute;dico</label>
                         <div class="input-group input-group-sm">
                             <span class="input-group-addon"><i class="fas fa-grip-horizontal"></i></span>
-                            <select class="form-control" id="medicoEspecialidade" name="medicoEspecialidade">
+                            <select class="form-control" id="idMedicoEspecialidade" name="idMedicoEspecialidade">
                                 <%
                                     MedicoespecialidadeDao medicoEspecialidadeDao = new MedicoespecialidadeDao();
                                     for(Medicoespecialidade medicoEspecialidade : medicoEspecialidadeDao.lista() ){
@@ -36,10 +36,10 @@
                        </div>
                     </div>
                     <div class="form-group col-md-2">
-                        <label for="sigla">Dt.&nbsp;Nascimento</label>
+                        <label for="sigla">Dia</label>
                         <div class="input-group input-group-sm">
                             <span class="input-group-addon"><i class="fas fa-grip-horizontal"></i></span>
-                            <input type="text" class="form-control datepicker" id="dtNascimento" autocomplete="off" name="dtNascimento">
+                            <input type="text" class="form-control datepicker" id="dia" autocomplete="off" name="dia">
                         </div>
                     </div>
                             
@@ -47,7 +47,7 @@
                         <label for="sigla">Hora</label>
                         <div class="input-group input-group-sm">
                             <span class="input-group-addon"><i class="fas fa-grip-horizontal"></i></span>
-                            <input type="text" class="form-control" id="dtNascimento" autocomplete="off" name="dtNascimento">
+                            <input type="text" class="form-control" id="hora" autocomplete="off" name="hora">
                         </div>
                     </div>
                 </div>
@@ -59,40 +59,19 @@
             
             $("#btnCadastrar").click(function() {
                 var contentErro = "";
-                if(!$("#nome").val()){ contentErro += "<br>- Nome";}
-                if(!$("#rg").val()){ contentErro += "<br>- RG";}
-                if(!$("#cpf").val()){ contentErro += "<br>- CPF ";}
-                
-                if(!$("#email").val()){ contentErro += "<br>- Email ";}
-                if(!$("#foneResidencial").val()){ contentErro += "<br>- Fone Residencial ";}
-                if(!$("#foneCelular").val()){ contentErro += "<br>- Fone Celular ";}
-                
-                if(!$("#dtNascimento").val()){ contentErro += "<br>- Dt. Nascimento ";}
-                if(!$("#cep").val()){ contentErro += "<br>- CEP";}
-                if(!$("#logradouro").val()){ contentErro += "<br>- Logradouro ";}
-                if(!$("#logradouro").val()){ contentErro += "<br>- Logradouro";}
-                if(!$("#numeroEndereco").val()){ contentErro += "<br>- N&#186; da Endere&ccedil;o";}
-                if(!$("#cidade").val()){ contentErro += "<br>- Cidade";}
-                if(!$("#uf").val()){ contentErro += "<br>- UF ";}
+                if(!$("#dia").val()){ contentErro += "<br>- Dia";}
+                if(!$("#hora").val()){ contentErro += "<br>- Hora";}
                 
                 console.log(contentErro);
                 if(contentErro){ msgErro("Preencha todos os campos" + contentErro); return false; }
                 
                 $("#statusSalvando").css({"display":"block"});
-                $.post("../ControllerPaciente", {
-                    option          :   "CadastrarPaciente",
-                    nome            :   $("#nome").val(),
-                    rg              :   $("#rg").val(),
-                    cpf             :   $("#cpf").val(),
-                    email           :   $("#email").val(),
-                    foneCelular     :   $("#foneCelular").val(),
-                    foneResidencial :   $("#foneResidencial").val(),
-                    dtNascimento    :   $("#dtNascimento").val(),
-                    cep             :   $("#cep").val(),
-                    logradouro      :   $("#logradouro").val(),
-                    numeroEndereco  :   $("#numeroEndereco").val(),
-                    cidade          :   $("#cidade").val(),
-                    uf              :   $("#uf").val()
+                
+                $.post("../ControllerAgenda", {
+                    option          :   "CadastrarAgenda",
+                    idMedicoEspecialidade :   $("#idMedicoEspecialidade").val(),
+                    dia     :   $("#dia").val(),
+                    hora    :   $("#hora").val()
                 })
                 .done(function(data) {
                     $("#statusSalvando").css({"display":"none"});
@@ -100,28 +79,17 @@
                     console.log(value);
                     if(value == true){
                         processSuccess();
-                        limparCamposCadastroPaciente();
+                        limparCamposCadastroAgenda();
                     }else{
                         processFail();
                     }
                 });
             });
             
-            function limparCamposCadastroPaciente(){
-                $("#nome").val("");
-                $("#rg").val("");
-                $("#cpf").val("");
-                $("#email").val("");
-                $("#foneCelular").val("");
-                $("#foneResidencial").val("");
-                $("#dtNascimento").val("");
-                $("#cep").val("");
-                $("#logradouro").val("");
-                $("#numeroEndereco").val("");
-                $("#cidade").val("");
-                $("#uf").val("");
-            }
-            
+            function limparCamposCadastroAgenda(){
+                $("#dia").val("");
+                $("#hora").val("");
+            }            
         </script>
     </body>
 </html>

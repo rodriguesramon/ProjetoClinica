@@ -14,7 +14,7 @@ import org.hibernate.Transaction;
 
 /**
  *
- * @author Ramon Costa
+ * 
  */
 public class MedicoespecialidadeDao {
  Session session;
@@ -68,7 +68,7 @@ public class MedicoespecialidadeDao {
     
     public Medicoespecialidade buscaMedicoespecialidade(int id) {
         try{
-            query = session.createSQLQuery("SELECT * FROM  WHERE id = " + id).addEntity(Medicoespecialidade.class);
+            query = session.createSQLQuery("SELECT * FROM medicoespecialidade WHERE id = " + id).addEntity(Medicoespecialidade.class);
             lista = query.list();
             return lista.get(0);
         }catch(Exception erro){

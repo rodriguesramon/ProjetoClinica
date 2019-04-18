@@ -23,7 +23,7 @@ import model.dao.MedicoespecialidadeDao;
 
 /**
  *
- * @author Ramon Costa
+ * 
  */
 @WebServlet(name = "ControllerMedico", urlPatterns = {"/ControllerMedico"})
 public class ControllerMedico extends HttpServlet {

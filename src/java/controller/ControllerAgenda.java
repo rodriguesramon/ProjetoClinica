@@ -6,21 +6,27 @@ package controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import model.bean.Usuario;
-import model.dao.UsuarioDao;
+import model.bean.Agenda;
+import model.bean.Medicoespecialidade;
+import model.dao.AgendaDao;
+import model.dao.MedicoespecialidadeDao;
 
 /**
  *
  * 
  */
-@WebServlet(name = "ControllerUsuario", urlPatterns = {"/ControllerUsuario"})
-public class ControllerUsuario extends HttpServlet {
+@WebServlet(name = "ControllerAgenda", urlPatterns = {"/ControllerAgenda"})
+public class ControllerAgenda extends HttpServlet {
 
     /**
      * Processes requests for both HTTP
@@ -41,10 +47,10 @@ public class ControllerUsuario extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet ControllerUsuario</title>");            
+            out.println("<title>Servlet ControllerAgenda</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet ControllerUsuario at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet ControllerAgenda at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         } finally {            
@@ -78,47 +84,32 @@ public class ControllerUsuario extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        
-        Usuario usuario = new Usuario();
-        UsuarioDao usuarioDao = new UsuarioDao();
-        HttpSession httpSession = request.getSession();
-        PrintWriter printWriter = response.getWriter();
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
         String option = request.getParameter("option");
-
-        if(option.equals("Cadastrar")){
-        }else if(option.equals("Atualizar")){
-        }else if(option.equals("Excluir")){
-        }else if(option.equals("Desativar")) {
-        }else if(option.equals("Autenticar")){            
-            //Trecho do codigo onde são capturados os valores que vem da view
-            String login = request.getParameter("login"), senha = request.getParameter("senha");
-            //É realizado a verificação atraves do método verificaLoginSenha, este metodo retorna null ou o proprio objeto
-            usuario = usuarioDao.verificaLoginSenha(login, senha);
-            //Se for diferente de nulo, cria um atributo e diz qual é o seu valor
-            if (usuario != null) {                
-                httpSession.setAttribute("sessionSistema", usuario);
-                //Aqui é feito o redirecionamento para a pagina mainpage com a autenticacao realizada
-                //printWriter.print("<script>location='mainpage.jsp';</script>");
-                
-                 printWriter.print("{"
-                                    + "\"result\" : \"" + true + "\" "
-                                 + "}");
-                
-            } else {
-                //Se a autenticacao não estiver correta, o usuario fica na mesma pagina., 
-                httpSession.setAttribute("sessionSistema", "loginOff");
-                //printWriter.print("<script>location='index.jsp'</script>");
-                
-                printWriter.print("{"
-                                    + "\"result\" : \"" + false + "\" "
-                                 + "}");
-                
+        PrintWriter printWriter = response.getWriter();
+        Agenda agenda = new Agenda();
+        AgendaDao agendaDao = new AgendaDao();
+        
+        Medicoespecialidade medicoEspecialidade = new Medicoespecialidade();
+        MedicoespecialidadeDao medicoEspecialidadeDao = new MedicoespecialidadeDao();
+        
+        if (option.equals("CadastrarAgenda")) {
+            medicoEspecialidade = medicoEspecialidadeDao.buscaMedicoespecialidade(Integer.parseInt(request.getParameter("idMedicoEspecialidade")));
+            agenda.setEspecialidade(medicoEspecialidade.getEspecialidade());
+            agenda.setMedico(medicoEspecialidade.getMedico());
+            
+            try {
+                agenda.setDia(DateFormat.getDateInstance().parse(request.getParameter("dia")));
+            } catch (ParseException ex) {
+                Logger.getLogger(ControllerPaciente.class.getName()).log(Level.SEVERE, null, ex);
             }
-        }else if (option.equals("Logoff")) {
-            httpSession.invalidate();
-            printWriter.print("<script>location='autenticacao.jsp';</script>");
+            
+            agenda.setHora(request.getParameter("hora"));
+            agenda.setDtCadastro(new Date());
+            printWriter.print(agendaDao.salvaAgenda(agenda));
         }
+        
     }
 
     /**

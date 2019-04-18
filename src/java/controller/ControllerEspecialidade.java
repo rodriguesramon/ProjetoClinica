@@ -19,7 +19,7 @@ import model.dao.EspecialidadeDao;
 
 /**
  *
- * @author Ramon Costa
+ * 
  */
 @WebServlet(name = "ControllerEspecialidade", urlPatterns = {"/ControllerEspecialidade"})
 public class ControllerEspecialidade extends HttpServlet {
