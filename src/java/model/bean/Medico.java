@@ -1,5 +1,5 @@
 package model.bean;
-// Generated 15/04/2019 22:53:37 by Hibernate Tools 3.2.1.GA
+// Generated 17/04/2019 22:26:13 by Hibernate Tools 3.2.1.GA
 
 
 import java.util.HashSet;
@@ -12,6 +12,7 @@ public class Medico  implements java.io.Serializable {
 
 
      private Integer id;
+     private Usuario usuario;
      private Especialidade especialidade;
      private String nome;
      private String crm;
@@ -28,7 +29,8 @@ public class Medico  implements java.io.Serializable {
     public Medico() {
     }
 
-    public Medico(Especialidade especialidade, String nome, String crm, String rg, String cpf, String email, String foneCelular, String foneResidencial, Integer status, String dtCadastro, Set agendas, Set medicoespecialidades) {
+    public Medico(Usuario usuario, Especialidade especialidade, String nome, String crm, String rg, String cpf, String email, String foneCelular, String foneResidencial, Integer status, String dtCadastro, Set agendas, Set medicoespecialidades) {
+       this.usuario = usuario;
        this.especialidade = especialidade;
        this.nome = nome;
        this.crm = crm;
@@ -49,6 +51,13 @@ public class Medico  implements java.io.Serializable {
     
     public void setId(Integer id) {
         this.id = id;
+    }
+    public Usuario getUsuario() {
+        return this.usuario;
+    }
+    
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
     public Especialidade getEspecialidade() {
         return this.especialidade;

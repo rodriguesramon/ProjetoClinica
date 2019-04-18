@@ -1,5 +1,5 @@
 package model.bean;
-// Generated 15/04/2019 22:53:37 by Hibernate Tools 3.2.1.GA
+// Generated 17/04/2019 22:26:13 by Hibernate Tools 3.2.1.GA
 
 
 import java.util.Date;
@@ -13,21 +13,29 @@ public class Usuario  implements java.io.Serializable {
 
 
      private Integer id;
+     private Tipousuario tipousuario;
+     private String nome;
+     private String email;
      private String login;
      private String senha;
      private Integer status;
      private Date dtCadastro;
      private Set acessos = new HashSet(0);
+     private Set medicos = new HashSet(0);
 
     public Usuario() {
     }
 
-    public Usuario(String login, String senha, Integer status, Date dtCadastro, Set acessos) {
+    public Usuario(Tipousuario tipousuario, String nome, String email, String login, String senha, Integer status, Date dtCadastro, Set acessos, Set medicos) {
+       this.tipousuario = tipousuario;
+       this.nome = nome;
+       this.email = email;
        this.login = login;
        this.senha = senha;
        this.status = status;
        this.dtCadastro = dtCadastro;
        this.acessos = acessos;
+       this.medicos = medicos;
     }
    
     public Integer getId() {
@@ -36,6 +44,27 @@ public class Usuario  implements java.io.Serializable {
     
     public void setId(Integer id) {
         this.id = id;
+    }
+    public Tipousuario getTipousuario() {
+        return this.tipousuario;
+    }
+    
+    public void setTipousuario(Tipousuario tipousuario) {
+        this.tipousuario = tipousuario;
+    }
+    public String getNome() {
+        return this.nome;
+    }
+    
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+    public String getEmail() {
+        return this.email;
+    }
+    
+    public void setEmail(String email) {
+        this.email = email;
     }
     public String getLogin() {
         return this.login;
@@ -71,6 +100,13 @@ public class Usuario  implements java.io.Serializable {
     
     public void setAcessos(Set acessos) {
         this.acessos = acessos;
+    }
+    public Set getMedicos() {
+        return this.medicos;
+    }
+    
+    public void setMedicos(Set medicos) {
+        this.medicos = medicos;
     }
 
 

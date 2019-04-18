@@ -120,7 +120,9 @@ public class ControllerConsulta extends HttpServlet {
         
         PrintWriter printWriter = response.getWriter();
         Map<String, String> mapMedico = new HashMap<String, String>();
-                
+               
+        Boolean resultado;
+        
         if(option.equals("BuscarConsulta")){
             consulta = consultaDao.buscaConsulta(Integer.parseInt(request.getParameter("id")));
             respostaJson = "{"
@@ -144,7 +146,15 @@ public class ControllerConsulta extends HttpServlet {
             consulta.setAgenda(agenda);
             consulta.setPaciente(paciente);
             consulta.setDtCadastro(new Date());
-            printWriter.print(consultaDao.salvaConsulta(consulta));
+            
+            resultado = consultaDao.salvaConsulta(consulta);
+            if(resultado){
+                agenda.setStatus(1);
+                agendaDao.atualizarAgenda(agenda);
+            }
+            printWriter.print(resultado);
+            
+            
         }else if(option.equals("RegistrarConsulta")){
             consulta = consultaDao.buscaConsulta(Integer.parseInt(request.getParameter("idConsulta")));
             

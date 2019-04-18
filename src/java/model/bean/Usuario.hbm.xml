@@ -1,13 +1,22 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated 15/04/2019 22:53:39 by Hibernate Tools 3.2.1.GA -->
+<!-- Generated 17/04/2019 22:26:14 by Hibernate Tools 3.2.1.GA -->
 <hibernate-mapping>
     <class name="model.bean.Usuario" table="usuario" catalog="dbclinica">
         <id name="id" type="java.lang.Integer">
             <column name="id" />
             <generator class="identity" />
         </id>
+        <many-to-one name="tipousuario" class="model.bean.Tipousuario" fetch="select">
+            <column name="idTipoUsuario" />
+        </many-to-one>
+        <property name="nome" type="string">
+            <column name="nome" length="100" />
+        </property>
+        <property name="email" type="string">
+            <column name="email" length="100" />
+        </property>
         <property name="login" type="string">
             <column name="login" length="45" />
         </property>
@@ -25,6 +34,12 @@
                 <column name="idUsuario" />
             </key>
             <one-to-many class="model.bean.Acesso" />
+        </set>
+        <set name="medicos" inverse="true">
+            <key>
+                <column name="idUsuario" />
+            </key>
+            <one-to-many class="model.bean.Medico" />
         </set>
     </class>
 </hibernate-mapping>

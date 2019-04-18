@@ -50,13 +50,12 @@ public class MedicoespecialidadeDao {
         }
     }
     
-    public List<Medicoespecialidade> listas(String nome, String rg, String cpf) {
+    public List<Medicoespecialidade> listaMedicoPorEspecialidade(int idEspecialidade) {
         try{
             sql = "SELECT * " + 
-                  "  FROM  " + 
-                  " WHERE nome LIKE '%"+ nome +"%' " + 
-                  "    OR nome LIKE '%"+ rg +"%' " + 
-                  "    OR cpf LIKE '%"+ cpf +"%'";
+                  "  FROM  medicoespecialidade" + 
+                  " WHERE idEspecialidade = "+ idEspecialidade ;
+                  
             query = session.createSQLQuery(sql).addEntity(Medicoespecialidade.class);
             lista = query.list();
             return lista;

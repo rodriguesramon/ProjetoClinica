@@ -1,5 +1,5 @@
 package model.bean;
-// Generated 15/04/2019 22:53:37 by Hibernate Tools 3.2.1.GA
+// Generated 17/04/2019 22:26:13 by Hibernate Tools 3.2.1.GA
 
 
 import java.util.Date;
@@ -13,16 +13,14 @@ public class Acesso  implements java.io.Serializable {
      private Integer id;
      private Usuario usuario;
      private Tela tela;
-     private String nome;
      private Date dtCadastro;
 
     public Acesso() {
     }
 
-    public Acesso(Usuario usuario, Tela tela, String nome, Date dtCadastro) {
+    public Acesso(Usuario usuario, Tela tela, Date dtCadastro) {
        this.usuario = usuario;
        this.tela = tela;
-       this.nome = nome;
        this.dtCadastro = dtCadastro;
     }
    
@@ -46,13 +44,6 @@ public class Acesso  implements java.io.Serializable {
     
     public void setTela(Tela tela) {
         this.tela = tela;
-    }
-    public String getNome() {
-        return this.nome;
-    }
-    
-    public void setNome(String nome) {
-        this.nome = nome;
     }
     public Date getDtCadastro() {
         return this.dtCadastro;

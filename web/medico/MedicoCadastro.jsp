@@ -14,7 +14,7 @@
         <c:import url="../tags/metas.jsp"/>
         <c:import url="../tags/stylesheet.jsp"/>
         <title>Projeto Clinica</title>
-        <c:import url="../tags/acesso.jsp"/>
+        
     </head>
     <body>
         

@@ -9,20 +9,19 @@
     <property name="hibernate.connection.password">12345</property>
     <mapping resource="model/bean/Tela.hbm.xml"/>
     <mapping resource="model/bean/Medicamento.hbm.xml"/>
+    <mapping resource="model/bean/Tipousuario.hbm.xml"/>
     <mapping resource="model/bean/Medico.hbm.xml"/>
     <mapping resource="model/bean/Paciente.hbm.xml"/>
     <mapping resource="model/bean/Especialidade.hbm.xml"/>
-    <mapping resource="model/bean/Cidade.hbm.xml"/>
     <mapping resource="model/bean/Resultado.hbm.xml"/>
     <mapping resource="model/bean/Exame.hbm.xml"/>
     <mapping resource="model/bean/Receita.hbm.xml"/>
     <mapping resource="model/bean/Consulta.hbm.xml"/>
-    <mapping resource="model/bean/Usuario.hbm.xml"/>
     <mapping resource="model/bean/Fabricante.hbm.xml"/>
+    <mapping resource="model/bean/Usuario.hbm.xml"/>
     <mapping resource="model/bean/Medicoespecialidade.hbm.xml"/>
-    <mapping resource="model/bean/Tipoexame.hbm.xml"/>
     <mapping resource="model/bean/Agenda.hbm.xml"/>
+    <mapping resource="model/bean/Tipoexame.hbm.xml"/>
     <mapping resource="model/bean/Acesso.hbm.xml"/>
-    <mapping resource="model/bean/Estado.hbm.xml"/>
   </session-factory>
 </hibernate-configuration>

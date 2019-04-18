@@ -56,7 +56,7 @@ public class AgendaDao {
                   "  FROM agenda a " + 
                   " WHERE idMedico = " + idMedico +
                   "   AND idEspecialidade = " + idEspecialidade +
-                  "   AND dia > CURDATE() ";
+                  "   AND dia > CURDATE() AND status <> 1 ";
             query = session.createSQLQuery(sql).addEntity(Agenda.class);
             listaAgenda = query.list();
             return listaAgenda;

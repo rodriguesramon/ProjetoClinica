@@ -1,3 +1,4 @@
+<%@page import="model.bean.Usuario"%>
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
         <div class="navbar-header">
@@ -58,9 +59,18 @@
                     </ul>
                 </li>
             </ul>
-
+            <%
+                Usuario usuario  =  (Usuario) session.getAttribute("sessionSistema");
+                String usuarioSistema;
+                if(usuario.equals(null)){
+                    usuarioSistema = "Login";
+                }else{
+                    usuarioSistema = usuario.getLogin();
+                }
+                
+            %>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="#">Link</a></li>
+                <li><a href="#"><%= usuarioSistema %></a></li>
             </ul>
         </div>
     </div>

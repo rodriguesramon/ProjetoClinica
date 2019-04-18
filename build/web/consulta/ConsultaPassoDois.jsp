@@ -1,3 +1,5 @@
+<%@page import="model.bean.Medicoespecialidade"%>
+<%@page import="model.dao.MedicoespecialidadeDao"%>
 <%@page import="model.bean.Medico"%>
 <%@page import="model.dao.MedicoDao"%>
 <%@page import="model.bean.Especialidade"%>
@@ -63,11 +65,11 @@
                             <span class="input-group-addon"><i class="fas fa-grip-horizontal"></i></span>
                             <select id="idMedico" class="form-control">
                             <%
-                                MedicoDao medicoDao = new MedicoDao();
+                                MedicoespecialidadeDao medicoEspecialidadeDao = new MedicoespecialidadeDao();
                                 int idEspecialidade = Integer.parseInt(request.getParameter("idEspecialidade"));
-                                for(Medico medico : medicoDao.lista(idEspecialidade)){
+                                for(Medicoespecialidade medico : medicoEspecialidadeDao.listaMedicoPorEspecialidade(idEspecialidade)){
                             %>
-                                <option value="<%= medico.getId() %>"><%= medico.getNome()%></option>
+                                <option value="<%= medico.getMedico().getId() %>"><%= medico.getMedico().getNome() %></option>
                             <% } %>
                             </select>
                        </div>

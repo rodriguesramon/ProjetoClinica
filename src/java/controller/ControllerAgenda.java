@@ -109,7 +109,6 @@ public class ControllerAgenda extends HttpServlet {
             agenda.setDtCadastro(new Date());
             printWriter.print(agendaDao.salvaAgenda(agenda));
         }
-        
     }
 
     /**
