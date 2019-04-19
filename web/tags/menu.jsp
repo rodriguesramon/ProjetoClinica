@@ -62,7 +62,7 @@
             <%
                 Usuario usuario  =  (Usuario) session.getAttribute("sessionSistema");
                 String usuarioSistema;
-                if(usuario.equals(null)){
+                if(usuario == null){
                     usuarioSistema = "Login";
                 }else{
                     usuarioSistema = usuario.getLogin().toUpperCase() ;

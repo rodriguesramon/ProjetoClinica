@@ -19,7 +19,12 @@
         </div>
         <div class="container" style='margin-top:80px'>
             <div class="well bs-component">
-                <legend>Cadastro - Consulta</legend>
+                <legend>
+                    Cadastro - Consulta
+                    <button type="button" class="btn btn-primary btn-sm pull-right" id="btnProsseguirConsultaPassoDois" style="margin-top:-10px">
+                        Prosseguir <i class="fas fa-arrow-circle-right"></i>
+                    </button>
+                </legend>
                 <div class="row">
                     <input id="idPaciente" type="hidden">
                     <div class="form-group col-md-2">
@@ -40,7 +45,7 @@
                         <label for="nome">Nome</label>
                         <div class="input-group input-group-sm">
                             <span class="input-group-addon"><i class="fas fa-grip-horizontal"></i></span>
-                            <input type="text" class="form-control" id="nome" autocomplete="off" name="nome">
+                            <input type="text" class="form-control" id="nome" autocomplete="off" name="nome" readonly>
                        </div>
                     </div>
                 </div>
@@ -51,7 +56,7 @@
                         <label for="estado">Especialidade</label>
                         <div class="input-group input-group-sm">
                             <span class="input-group-addon"><i class="fas fa-grip-horizontal"></i></span>
-                            <input class="form-control" id="especialidade">
+                            <input class="form-control" id="especialidade" readonly>
                        </div>
                     </div>
                     
@@ -72,13 +77,7 @@
                     </div>
                 </div>
                 
-                <div class="row">
-                    <div class="form-group col-md-2">
-                        <button type="button" class="btn btn-primary" id="btnProsseguirConsultaPassoDois">
-                            Prosseguir <i class="far fa-save fa-lg"></i>
-                        </button> 
-                    </div>  
-                </div>
+                
             </div>
         </div>
         

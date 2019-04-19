@@ -137,6 +137,20 @@
         
         <c:import url="../tags/javascript.jsp"/>
         <script>
+            
+            $(document).ready(function() {
+                $('#tableData').DataTable({
+                    scrollY:        '40vh',
+                    scrollCollapse: true,
+                    paging:         false,
+                    bFilter: false,
+                    "language": {
+                        "info":"_TOTAL_ registro(s)",
+                        "zeroRecords":" "
+                    }
+                });
+            });
+            
             function acessarConsulta(idConsulta){
                 var stringUrl = "ConsultaAtendimento.jsp?";
                 stringUrl += "idConsulta=" + idConsulta;

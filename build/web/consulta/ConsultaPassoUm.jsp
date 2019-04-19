@@ -16,7 +16,7 @@
         </div>
         <div class="container" style='margin-top:80px'>
             <div class="well bs-component">
-                <legend>Cadastro - Consulta</legend>
+                <legend>Cadastro - Consulta<button type="button" class="btn btn-primary btn-sm pull-right" id="btnProsseguirConsultaPassoUm" style="margin-top:-10px">Prosseguir <i class="fas fa-arrow-circle-right"></i> </button> </legend>
                 <div class="row">
                     <input id="idPaciente" type="hidden">
                     <div class="form-group col-md-2">
@@ -57,12 +57,6 @@
                             </select>
                        </div>
                     </div>
-                </div>
-                
-                <div class="row">
-                    <div class="form-group col-md-2">
-                        <button type="button" class="btn btn-primary" id="btnProsseguirConsultaPassoUm">Prosseguir <i class="far fa-save fa-lg"></i> </button> 
-                    </div>  
                 </div>
             </div>
         </div>
