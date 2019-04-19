@@ -13,7 +13,7 @@
     <head>
         <c:import url="../tags/metas.jsp"/>
         <c:import url="../tags/stylesheet.jsp"/>
-        <title>Projeto Clinica</title>
+        <title>Projeto Cl&iacute;nica</title>
         
     </head>
     <body>

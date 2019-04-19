@@ -4,20 +4,16 @@
 <%@page import="model.dao.MedicoDao"%>
 <%@page import="model.bean.Especialidade"%>
 <%@page import="model.dao.EspecialidadeDao"%>
-<%@page import="model.bean.Estado"%>
-<%@page import="model.dao.EstadoDao"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
         <c:import url="../tags/metas.jsp"/>
-        <c:import url="../tags/metas.jsp"/>
         <c:import url="../tags/stylesheet.jsp"/>
-        <title>Projeto Clinica</title>
+        <title>Projeto Cl&iacute;nica</title>
     </head>
     <body>
-        
         <div class="container">            
             <c:import url="../tags/menu.jsp"/>
         </div>
@@ -27,21 +23,21 @@
                 <div class="row">
                     <input id="idPaciente" type="hidden">
                     <div class="form-group col-md-2">
-                        <label for="sigla">RG</label>
+                        <label for="rg">RG</label>
                         <div class="input-group input-group-sm">
                             <span class="input-group-addon"><i class="fas fa-grip-horizontal"></i></span>
-                            <input type="text" class="form-control" id="rg" autocomplete="off" name="rg">
+                            <input type="text" class="form-control" id="rg" autocomplete="off" name="rg" readonly>
                         </div>
                     </div>
                     <div class="form-group col-md-3">
-                        <label for="sigla">CPF</label>
+                        <label for="cpf">CPF</label>
                         <div class="input-group input-group-sm">
                             <span class="input-group-addon"><i class="fas fa-grip-horizontal"></i></span>
-                            <input type="text" class="form-control" id="cpf" autocomplete="off" name="cpf">
+                            <input type="text" class="form-control" id="cpf" autocomplete="off" name="cpf" readonly>
                         </div>
                     </div>
                     <div class="form-group col-sm-5">
-                        <label for="estado">Nome</label>
+                        <label for="nome">Nome</label>
                         <div class="input-group input-group-sm">
                             <span class="input-group-addon"><i class="fas fa-grip-horizontal"></i></span>
                             <input type="text" class="form-control" id="nome" autocomplete="off" name="nome">

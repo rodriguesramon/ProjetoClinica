@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated 17/04/2019 22:26:14 by Hibernate Tools 3.2.1.GA -->
+<!-- Generated 18/04/2019 20:52:06 by Hibernate Tools 3.2.1.GA -->
 <hibernate-mapping>
     <class name="model.bean.Usuario" table="usuario" catalog="dbclinica">
         <id name="id" type="java.lang.Integer">
@@ -29,6 +29,12 @@
         <property name="dtCadastro" type="date">
             <column name="dtCadastro" length="10" />
         </property>
+        <set name="recepcionistas" inverse="true">
+            <key>
+                <column name="idUsuario" />
+            </key>
+            <one-to-many class="model.bean.Recepcionista" />
+        </set>
         <set name="acessos" inverse="true">
             <key>
                 <column name="idUsuario" />

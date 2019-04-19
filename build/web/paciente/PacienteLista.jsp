@@ -1,7 +1,5 @@
 <%@page import="model.dao.PacienteDao"%>
 <%@page import="model.bean.Paciente"%>
-<%@page import="model.bean.Estado"%>
-<%@page import="model.dao.EstadoDao"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -9,7 +7,7 @@
     <head>
         <c:import url="../tags/metas.jsp"/>
         <c:import url="../tags/stylesheet.jsp"/>
-        <title>Projeto Clinica</title>
+        <title>Projeto Cl&iacute;nica</title>
     </head>
     <body>
         <div class="container">            

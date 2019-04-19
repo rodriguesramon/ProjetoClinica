@@ -14,9 +14,8 @@
 <html>
     <head>
         <c:import url="../tags/metas.jsp"/>
-        <c:import url="../tags/metas.jsp"/>
         <c:import url="../tags/stylesheet.jsp"/>
-        <title>Projeto Clinica</title>
+        <title>Projeto Cl&iacute;nica</title>
     </head>
     <body>
         <div class="container">            
@@ -138,16 +137,11 @@
         
         <c:import url="../tags/javascript.jsp"/>
         <script>
-            
             function acessarConsulta(idConsulta){
                 var stringUrl = "ConsultaAtendimento.jsp?";
                 stringUrl += "idConsulta=" + idConsulta;
                 window.location = stringUrl;
             }
-            
-            $(function(){
-                //OnLoad
-            });
         </script>
     </body>
 </html>

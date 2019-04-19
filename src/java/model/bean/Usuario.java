@@ -1,5 +1,5 @@
 package model.bean;
-// Generated 17/04/2019 22:26:13 by Hibernate Tools 3.2.1.GA
+// Generated 18/04/2019 20:52:02 by Hibernate Tools 3.2.1.GA
 
 
 import java.util.Date;
@@ -20,13 +20,14 @@ public class Usuario  implements java.io.Serializable {
      private String senha;
      private Integer status;
      private Date dtCadastro;
+     private Set recepcionistas = new HashSet(0);
      private Set acessos = new HashSet(0);
      private Set medicos = new HashSet(0);
 
     public Usuario() {
     }
 
-    public Usuario(Tipousuario tipousuario, String nome, String email, String login, String senha, Integer status, Date dtCadastro, Set acessos, Set medicos) {
+    public Usuario(Tipousuario tipousuario, String nome, String email, String login, String senha, Integer status, Date dtCadastro, Set recepcionistas, Set acessos, Set medicos) {
        this.tipousuario = tipousuario;
        this.nome = nome;
        this.email = email;
@@ -34,6 +35,7 @@ public class Usuario  implements java.io.Serializable {
        this.senha = senha;
        this.status = status;
        this.dtCadastro = dtCadastro;
+       this.recepcionistas = recepcionistas;
        this.acessos = acessos;
        this.medicos = medicos;
     }
@@ -93,6 +95,13 @@ public class Usuario  implements java.io.Serializable {
     
     public void setDtCadastro(Date dtCadastro) {
         this.dtCadastro = dtCadastro;
+    }
+    public Set getRecepcionistas() {
+        return this.recepcionistas;
+    }
+    
+    public void setRecepcionistas(Set recepcionistas) {
+        this.recepcionistas = recepcionistas;
     }
     public Set getAcessos() {
         return this.acessos;

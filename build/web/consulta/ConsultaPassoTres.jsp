@@ -11,24 +11,8 @@
 <html>
     <head>
         <c:import url="../tags/metas.jsp"/>
-        <c:import url="../tags/metas.jsp"/>
         <c:import url="../tags/stylesheet.jsp"/>
-        
-        <title>Projeto Clinica</title>
-        <style>
-            .input-group-addon {
-                background-color: #c1dbe1;
-            }
-            
-            table{
-                background-color:#FFFFFF
-            }
-            
-            thead{
-                background-color: #c1dbe1 !important;
-            }
-
-        </style>
+        <title>Projeto Cl&iacute;nica</title>
     </head>
     <body>
         
@@ -164,13 +148,6 @@
                     $("#medico").val(value.nome);
                 });
             }
-            
-            var getQueryString = function ( field, url ) {
-                    var href = url ? url : window.location.href;
-                    var reg = new RegExp( '[?&]' + field + '=([^&#]*)', 'i' );
-                    var string = reg.exec(href);
-                    return string ? string[1] : null;
-            };
             
             $( "#btnCadastrar" ).click(function() {
                 $.post("../ControllerConsulta", {

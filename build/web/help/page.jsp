@@ -11,7 +11,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="..\node_modules\bootstrap3\dist\css\bootstrap.min.css">
         <link rel="stylesheet" href="..\src\css\bootstrap.min.bootswatch.css">
-        <title>Projeto Clinica</title>
+        <title>Projeto Cl&iacute;nica</title>
     </head>
     <body>
 

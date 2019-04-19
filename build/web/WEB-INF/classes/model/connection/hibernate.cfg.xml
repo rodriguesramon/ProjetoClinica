@@ -16,6 +16,7 @@
     <mapping resource="model/bean/Resultado.hbm.xml"/>
     <mapping resource="model/bean/Exame.hbm.xml"/>
     <mapping resource="model/bean/Receita.hbm.xml"/>
+    <mapping resource="model/bean/Recepcionista.hbm.xml"/>
     <mapping resource="model/bean/Consulta.hbm.xml"/>
     <mapping resource="model/bean/Fabricante.hbm.xml"/>
     <mapping resource="model/bean/Usuario.hbm.xml"/>

@@ -1,7 +1,8 @@
 package model.bean;
-// Generated 17/04/2019 22:26:13 by Hibernate Tools 3.2.1.GA
+// Generated 18/04/2019 20:52:02 by Hibernate Tools 3.2.1.GA
 
 
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -22,14 +23,14 @@ public class Medico  implements java.io.Serializable {
      private String foneCelular;
      private String foneResidencial;
      private Integer status;
-     private String dtCadastro;
+     private Date dtCadastro;
      private Set agendas = new HashSet(0);
      private Set medicoespecialidades = new HashSet(0);
 
     public Medico() {
     }
 
-    public Medico(Usuario usuario, Especialidade especialidade, String nome, String crm, String rg, String cpf, String email, String foneCelular, String foneResidencial, Integer status, String dtCadastro, Set agendas, Set medicoespecialidades) {
+    public Medico(Usuario usuario, Especialidade especialidade, String nome, String crm, String rg, String cpf, String email, String foneCelular, String foneResidencial, Integer status, Date dtCadastro, Set agendas, Set medicoespecialidades) {
        this.usuario = usuario;
        this.especialidade = especialidade;
        this.nome = nome;
@@ -122,11 +123,11 @@ public class Medico  implements java.io.Serializable {
     public void setStatus(Integer status) {
         this.status = status;
     }
-    public String getDtCadastro() {
+    public Date getDtCadastro() {
         return this.dtCadastro;
     }
     
-    public void setDtCadastro(String dtCadastro) {
+    public void setDtCadastro(Date dtCadastro) {
         this.dtCadastro = dtCadastro;
     }
     public Set getAgendas() {

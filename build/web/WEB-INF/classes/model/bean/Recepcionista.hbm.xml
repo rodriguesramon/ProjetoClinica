@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 18/04/2019 20:52:06 by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="model.bean.Recepcionista" table="recepcionista" catalog="dbclinica">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="usuario" class="model.bean.Usuario" fetch="select">
+            <column name="idUsuario" />
+        </many-to-one>
+        <property name="nome" type="string">
+            <column name="nome" length="45" />
+        </property>
+        <property name="crm" type="string">
+            <column name="crm" length="45" />
+        </property>
+        <property name="rg" type="string">
+            <column name="rg" length="45" />
+        </property>
+        <property name="cpf" type="string">
+            <column name="cpf" length="45" />
+        </property>
+        <property name="email" type="string">
+            <column name="email" length="45" />
+        </property>
+        <property name="foneCelular" type="string">
+            <column name="foneCelular" length="45" />
+        </property>
+        <property name="foneResidencial" type="string">
+            <column name="foneResidencial" length="45" />
+        </property>
+        <property name="status" type="java.lang.Integer">
+            <column name="status" />
+        </property>
+        <property name="dtCadastro" type="date">
+            <column name="dtCadastro" length="10" />
+        </property>
+    </class>
+</hibernate-mapping>

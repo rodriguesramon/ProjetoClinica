@@ -39,7 +39,7 @@
                         <li class="divider"></li>
                         <li><a href="<%= application.getContextPath() + "/medico/MedicoCadastro.jsp" %>">M&eacute;dico </a></li>
                         <li><a href="<%= application.getContextPath() + "/medico/MedicoLista.jsp" %>">Gerenciar</a></li>
-                        <li><a href="#">Agenda </a></li>
+                        <li><a href="<%= application.getContextPath() + "/agenda/AgendaCadastro.jsp" %>">Agenda </a></li>
                         <li><a href="<%= application.getContextPath() + "/especialidade/EspecialidadeCadastro.jsp" %>">Especialidades</a></li>
                         <li class="divider"></li>
                         <li><a href="#">Tipo de Exames</a></li>
@@ -65,12 +65,12 @@
                 if(usuario.equals(null)){
                     usuarioSistema = "Login";
                 }else{
-                    usuarioSistema = usuario.getLogin();
+                    usuarioSistema = usuario.getLogin().toUpperCase() ;
                 }
                 
             %>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="#"><%= usuarioSistema %></a></li>
+                <li><a href="#"><%= usuarioSistema %> <i class="fa fa-power-off"></i></a></li>
             </ul>
         </div>
     </div>

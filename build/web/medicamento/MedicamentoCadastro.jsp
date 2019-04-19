@@ -1,3 +1,7 @@
+<%@page import="model.bean.Fabricante"%>
+<%@page import="model.dao.FabricanteDao"%>
+<%@page import="model.bean.Medicamento"%>
+<%@page import="model.dao.MedicamentoDao"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -5,7 +9,7 @@
     <head>
         <c:import url="../tags/metas.jsp"/>
         <c:import url="../tags/stylesheet.jsp"/>
-        <title>Projeto Clinica</title>
+        <title>Projeto Cl&iacute;nica</title>
     </head>
     <body>
         <div class="container">            
@@ -20,23 +24,28 @@
                         <label for="estado">Nome G&eacute;nerico</label>
                         <div class="input-group input-group-sm">
                             <span class="input-group-addon"><i class="fas fa-grip-horizontal"></i></span>
-                            <input type="text" class="form-control" id="nome" autocomplete="off" name="nome">
+                            <input type="text" class="form-control" id="nomeGenerico" autocomplete="off" name="nomeGenerico">
                        </div>
                     </div>
                     <div class="form-group col-md-3">
                         <label for="sigla">Nome de F&aacute;brica</label>
                         <div class="input-group input-group-sm">
                             <span class="input-group-addon"><i class="fas fa-grip-horizontal"></i></span>
-                            <input type="text" class="form-control" id="descricao" autocomplete="off" name="descricao">
+                            <input type="text" class="form-control" id="nomeDeFabrica" autocomplete="off" name="nomeDeFabrica">
                         </div>
                     </div>
                     
                     <div class="form-group col-md-3">
-                        <label for="sigla">Nome de F&aacute;brica</label>
+                        <label for="sigla">Fabricante</label>
                         <div class="input-group input-group-sm">
                             <span class="input-group-addon"><i class="fas fa-grip-horizontal"></i></span>
-                            <select class="form-control input-sm" id="nomef">
-                                <option></option>
+                            <select class="form-control input-sm" id="idFabricante" name="idFabricante">
+                            <%
+                                FabricanteDao fabricanteDao = new FabricanteDao();
+                                for(Fabricante fabricante : fabricanteDao.listaFabricante()){
+                            %>
+                            <option value="<%= fabricante.getId() %>"><%= fabricante.getNome() %></option>
+                            <%  }   %>
                             </select>
                         </div>
                     </div>
@@ -45,14 +54,24 @@
                     <table class="table table-bordered table-hover" id="tableData">
                         <thead>
                             <tr>
-                                <td>Teste</td>
-                                <td>Teste</td>
+                                <th>Medicamento [Nome G&ecirc;nerico]</th>
+                                <th>Medicamento [Nome de F&aacute;brica]</th>
+                                <th>Fabricante</th>
+                                <th>Dt. Cadastro</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <%
-                                
-                            %>
+                        <%
+                            MedicamentoDao medicamentoDao = new MedicamentoDao();
+                            for(Medicamento medicamento : medicamentoDao.listaMedicamento()){
+                        %>
+                            <tr>
+                                <td><%= medicamento.getNomeGenerico() %></td>
+                                <td><%= medicamento.getNomeDeFabrica() %></td>
+                                <td><%= medicamento.getFabricante().getNome() %></td>
+                                <td><%= medicamento.getDtCadastro() %></td>
+                            </tr>
+                        <%  } %>
                         </tbody>
                     </table>
                 </div>
@@ -66,16 +85,21 @@
                     scrollY:        '40vh',
                     scrollCollapse: true,
                     paging:         false,
-                    bFilter: false
+                    bFilter: false,
+                    "language": {
+                        "info":"_TOTAL_ registro(s)",
+                        "zeroRecords":" "
+                    }
                 });
-            } );
+            });
             
-            $( "#btnCadastrar" ).click(function() {
+            $("#btnCadastrar").click(function() {
                 $("#statusSalvando").css({"display":"block"});
-                $.post("../ControllerEspecialidade", {
-                    option      :   "CadastrarEspecialidade",
-                    nome        :   $("#nome").val(),
-                    descricao   :   $("#descricao").val()
+                $.post("../ControllerMedicamento", {
+                    option         :  "CadastrarMedicamento",
+                    idFabricante   :  $("#idFabricante").val(),
+                    nomeGenerico   :  $("#nomeGenerico").val(),
+                    nomeDeFabrica  :  $("#nomeDeFabrica").val()
                 })
                 .done(function(data) {
                     $("#statusSalvando").css({"display":"none"});

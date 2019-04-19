@@ -1,31 +1,13 @@
 <%@page import="model.bean.Especialidade"%>
 <%@page import="model.dao.EspecialidadeDao"%>
-<%@page import="model.bean.Estado"%>
-<%@page import="model.dao.EstadoDao"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
         <c:import url="../tags/metas.jsp"/>
-        <c:import url="../tags/metas.jsp"/>
         <c:import url="../tags/stylesheet.jsp"/>
-        
-        <title>Projeto Clinica</title>
-        <style>
-            .input-group-addon {
-                background-color: #c1dbe1;
-            }
-            
-            table{
-                background-color:#FFFFFF
-            }
-            
-            thead{
-                background-color: #c1dbe1 !important;
-            }
-
-        </style>
+        <title>Projeto Cl&iacute;nica</title>
     </head>
     <body>
         
@@ -55,7 +37,7 @@
                         <label for="estado">Nome</label>
                         <div class="input-group input-group-sm">
                             <span class="input-group-addon"><i class="fas fa-grip-horizontal"></i></span>
-                            <input type="text" class="form-control" id="nome" autocomplete="off" name="nome">
+                            <input type="text" class="form-control" id="nome" autocomplete="off" name="nome" readonly>
                        </div>
                     </div>
                 </div>
@@ -87,41 +69,18 @@
         
         <c:import url="../tags/javascript.jsp"/>
         <script>
-            $( "#btnCadastrar" ).click(function() {
-                $.post("../ControllerMedico", {
-                    option  :   "CadastrarMedico",
-                    nome    :   $("#nome").val(),
-                    rg      :   $("#rg").val(),
-                    cpf     :   $("#cpf").val(),
-                    crm     :   $("#crm").val(),
-                    email   :   $("#email").val(),
-                    foneCelular       :   $("#foneCelular").val(),
-                    foneResidencial   :   $("#foneResidencial").val()
-                }, function(){
-                    //$("#statusSalvando").css({"display":"block"});
-                })
-                .done(function(data) {
-                    //if(){}
-                    //$("#statusSalvando").css({"display":"none"});
-                    //$("#statusSalvo").css({"display":"block"});
-                    //alert("Agora realmente chegou  " + data);
-                });
-            });
-            
-             $( "#rg, #cpf" ).keypress(function(e) {
+            $( "#rg, #cpf" ).keypress(function(e) {
                 if(e.which === 13) {
                     buscarDadosPaciente();
-                }});
+                }
+            });
             
             function buscarDadosPaciente(){
                 $.post("../ControllerPaciente", {
                     option  :   "BuscarPaciente",
                     rg      :   $("#rg").val(),
                     cpf     :   $("#cpf").val()
-                }, function(data){
-                  
-                })
-                .done(function(data) {
+                }).done(function(data) {
                     var value = JSON.parse(data);
                     console.log(value.id);
                     console.log(value.nome);
@@ -132,8 +91,6 @@
                     $("#cpf").val(value.cpf);
                 });
             }
-            
-            
             
             function buscarDadosPacienteId(){
                 $.post("../ControllerPaciente", {
@@ -153,6 +110,11 @@
             }
             
             $( "#btnProsseguirConsultaPassoUm" ).click(function() {
+                if($("#nome").val() == ""){
+                    msgErro("Defina um paciente!<br>Busque pelo RG ou CPF");
+                    return;
+                }
+                
                 var stringUrl = "ConsultaPassoDois.jsp?idPaciente="+$("#idPaciente").val()+"&idEspecialidade="+$("#especialidade").val();
                 window.location = stringUrl;
             });

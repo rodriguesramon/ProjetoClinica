@@ -1,3 +1,5 @@
+<%@page import="model.bean.Agenda"%>
+<%@page import="model.dao.AgendaDao"%>
 <%@page import="model.dao.MedicamentoDao"%>
 <%@page import="model.dao.MedicoespecialidadeDao"%>
 <%@page import="model.bean.Medicoespecialidade"%>
@@ -8,7 +10,7 @@
     <head>
         <c:import url="../tags/metas.jsp"/>
         <c:import url="../tags/stylesheet.jsp"/>
-        <title>Projeto Clinica</title>
+        <title>Projeto Cl&iacute;nica</title>
     </head>
     <body>
         <div class="container">            
@@ -51,11 +53,51 @@
                         </div>
                     </div>
                 </div>
+                <div class="row">
+                    <table class="table table-bordered table-hover" id="tableData">
+                        <thead>
+                            <tr>
+                                <th>M&eacute;dico</th>
+                                <th>Especialidade</th>
+                                <th>Dia</th>
+                                <th>Hora</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        <%
+                             AgendaDao agendaDao = new AgendaDao();
+                             for(Agenda agenda : agendaDao.listaAgendaDisponivel()){
+                        %>
+                            <tr>
+                                <td><%= agenda.getMedico().getNome() %></td>
+                                <td><%= agenda.getEspecialidade().getNome() %></td>
+                                <td><%= agenda.getDia() %></td>
+                                <td><%= agenda.getHora() %></td>
+                            </tr>
+                        <%
+                             }
+                        %>
+                        </tbody>
+                    </table>
+                </div>
+                            
             </div>
         </div>
         
         <c:import url="../tags/javascript.jsp"/>
         <script>
+            $(document).ready(function() {
+                $('#tableData').DataTable({
+                    scrollY:        '40vh',
+                    scrollCollapse: true,
+                    paging:         false,
+                    bFilter: false,
+                    "language": {
+                        "info":"_TOTAL_ registros",
+                        "zeroRecords":" "
+                    }
+                });
+            });
             
             $("#btnCadastrar").click(function() {
                 var contentErro = "";
