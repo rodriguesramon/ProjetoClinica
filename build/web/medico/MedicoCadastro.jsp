@@ -102,6 +102,18 @@
         </div>
         <c:import url="../tags/javascript.jsp"/>
         <script>
+            
+            setInputFilter(document.getElementById("rg"), function(value) {
+                return /^\d*$/.test(value); 
+            });
+            setInputFilter(document.getElementById("cpf"), function(value) {
+                return /^\d*$/.test(value); 
+            });
+            
+            setInputFilter(document.getElementById("crm"), function(value) {
+                return /^\d*$/.test(value); 
+            });
+            
             $( "#btnCadastrar" ).click(function() {
                 $.post("../ControllerMedico", {
                     option  :   "CadastrarMedico",
@@ -114,7 +126,7 @@
                     foneCelular       :   $("#foneCelular").val(),
                     foneResidencial   :   $("#foneResidencial").val()
                 }, function(){
-                    //$("#statusSalvando").css({"display":"block"});
+                    console.log("Processando...");
                 })
                 .done(function(data) {
                     $("#statusSalvando").css({"display":"none"});

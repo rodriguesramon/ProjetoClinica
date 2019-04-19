@@ -1,3 +1,5 @@
+<%@page import="model.bean.Fabricante"%>
+<%@page import="model.dao.FabricanteDao"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -23,8 +25,34 @@
                             <input type="text" class="form-control" id="nome" autocomplete="off" name="nome">
                        </div>
                     </div>
-                    
                 </div>
+                
+                <div class="row">
+                    <table class="table table-bordered table-hover" id="tableData">
+                        <thead>
+                            <tr>
+                                <th>Especialidade</th>
+                                <th>Dt. Cadastro</th>
+                                <th>Gerenciar</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        <%
+                             FabricanteDao fabricanteDao = new FabricanteDao();
+                             for(Fabricante fabricante : fabricanteDao.listaFabricante()){
+                        %>
+                            <tr>
+                                <td><%= fabricante.getNome() %></td>
+                                <td><%= fabricante.getDtCadastro() %></td>
+                                <td width="5%"><button class="btn btn-success btn-sm">Gerenciar</button></td>
+                            </tr>
+                        <%
+                             }
+                        %>
+                        </tbody>
+                    </table>
+                </div>
+                
             </div>
         </div>
         

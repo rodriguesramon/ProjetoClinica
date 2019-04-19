@@ -13,7 +13,7 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
+<html lang="pt-br">
     <head>
         <c:import url="../tags/metas.jsp"/>
         <c:import url="../tags/stylesheet.jsp"/>
@@ -46,7 +46,7 @@
                                 </select>
                             </div>
                             <div class="form-group">
-                                <textarea class="form-control" placeholder="Observa&ccedil;&atilde;o"></textarea>
+                                <textarea class="form-control" id="observacaoMedicamento" name="observacaoMedicamento" placeholder="Observa&ccedil;&atilde;o"></textarea>
                             </div>    
                         </div>
                         <div class="modal-footer">
@@ -62,7 +62,8 @@
                     <div class="modal-content">
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal">&times;</button>
-                            <h4 class="modal-title">Exame</h4>
+                            <h4 class="modal-title">Exame</h4>                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+
                         </div>
                         <div class="modal-body">
                             <div class="form-group">
@@ -77,7 +78,7 @@
                                 </select>
                             </div>
                             <div class="form-group">
-                                <textarea class="form-control" placeholder="Observa&ccedil;&atilde;o"></textarea>
+                                <textarea class="form-control" id="observacaoExame" name="observacaoExame" placeholder="Observa&ccedil;&atilde;o"></textarea>
                             </div>    
                         </div>
                         <div class="modal-footer">
@@ -159,7 +160,7 @@
                             <div class="row">
                                 <div class="form-group col-sm-12">
                                     <label for="observacaoReceita">Observa&ccedil;&atilde;o</label>
-                                    <textarea class="form-control" id="observacaoReceita" rows="2"></textarea>
+                                    <textarea class="form-control" id="obsMedicamento" rows="2"></textarea>
                                 </div>
                             </div>
                             <div class="row">
@@ -202,7 +203,7 @@
                             <div class="row">
                                 <div class="form-group col-sm-12">
                                     <label for="estado">Observa&ccedil;&atilde;o</label>
-                                    <textarea class="form-control" id="observacaoExame" rows="2"></textarea>
+                                    <textarea class="form-control" id="obsExame" rows="2"></textarea>
                                 </div>
                             </div>
                             <div class="row">
@@ -246,9 +247,9 @@
             $("#btnAddMedicamento").click(function(){
                 $.post("../ControllerConsulta", {
                     option        :   "AdicionarMedicamento",
-                    id            :   getQueryString('idConsulta'),
+                    idConsulta            :   getQueryString('idConsulta'),
                     idMedicamento : $("#idMedicamento").val(),
-                    observacaoMedicamento : $("#observacaoMedicamento").val(),
+                    obsMedicamento : $("#obsMedicamento").val()
                 }, function(){
                   console.log("Processando...");
                 })
@@ -260,10 +261,10 @@
             
             $("#btnAddExame").click(function(){
                 $.post("../ControllerConsulta", {
-                    option  :   "AdicionarExame",
-                    id      :   getQueryString('idConsulta'),
-                    idTipoExame : $("#idTipoExame").val(),
-                    observacaoExame : $("#observacaoExame").val()
+                    option      :   "AdicionarExame",
+                    idConsulta  :   getQueryString('idConsulta'),
+                    idTipoExame :   $("#idTipoExame").val(),
+                    obsExame : $("#obsExame").val()
                 }, function(){
                   console.log("Processando...");
                 })

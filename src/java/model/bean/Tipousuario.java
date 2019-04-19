@@ -13,7 +13,6 @@ public class Tipousuario  implements java.io.Serializable {
 
 
      private Integer id;
-     private String tipo;
      private String nome;
      private Integer status;
      private Date dtCadastro;
@@ -22,8 +21,7 @@ public class Tipousuario  implements java.io.Serializable {
     public Tipousuario() {
     }
 
-    public Tipousuario(String tipo, String nome, Integer status, Date dtCadastro, Set usuarios) {
-       this.tipo = tipo;
+    public Tipousuario(String nome, Integer status, Date dtCadastro, Set usuarios) {
        this.nome = nome;
        this.status = status;
        this.dtCadastro = dtCadastro;
@@ -37,13 +35,7 @@ public class Tipousuario  implements java.io.Serializable {
     public void setId(Integer id) {
         this.id = id;
     }
-    public String getTipo() {
-        return this.tipo;
-    }
     
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
-    }
     public String getNome() {
         return this.nome;
     }
@@ -72,10 +64,6 @@ public class Tipousuario  implements java.io.Serializable {
     public void setUsuarios(Set usuarios) {
         this.usuarios = usuarios;
     }
-
-
-
-
 }
 
 

@@ -42,20 +42,18 @@
                         <li><a href="<%= application.getContextPath() + "/agenda/AgendaCadastro.jsp" %>">Agenda </a></li>
                         <li><a href="<%= application.getContextPath() + "/especialidade/EspecialidadeCadastro.jsp" %>">Especialidades</a></li>
                         <li class="divider"></li>
-                        <li><a href="#">Tipo de Exames</a></li>
+                        <li><a href="<%= application.getContextPath() + "/tipoexame/TipoExameCadastro.jsp" %>">Tipo de Exames</a></li>
                     </ul>
                 </li>
                 
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Gerenciamento<span class="caret"></span></a>
                     <ul class="dropdown-menu" role="menu">
-                        <li><a href="<%= application.getContextPath() + "/medicamento/MedicamentoCadastro.jsp" %>">Acesso - Telas</a></li>
+                        <li><a href="<%= application.getContextPath() + "/acesso/AcessoCadastro.jsp" %>">Acesso - Telas</a></li>
                         <li class="divider"></li>
-                        <li><a href="<%= application.getContextPath() + "/medico/MedicoCadastro.jsp" %>">Gerenciar Usuarios </a></li>
-                        <li><a href="#">Agenda </a></li>
-                        <li><a href="<%= application.getContextPath() + "/especialidade/EspecialidadeCadastro.jsp" %>">Especialidades</a></li>
+                        <li><a href="<%= application.getContextPath() + "/usuario/UsuarioLista.jsp" %>">Gerenciar Usu&aacute;rios </a></li>
                         <li class="divider"></li>
-                        <li><a href="#">Tipo de Exames</a></li>
+                        <li><a href="#">Sobre</a></li>
                     </ul>
                 </li>
             </ul>

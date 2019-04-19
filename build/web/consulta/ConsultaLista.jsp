@@ -137,7 +137,12 @@
         
         <c:import url="../tags/javascript.jsp"/>
         <script>
-            
+            setInputFilter(document.getElementById("rg"), function(value) {
+                return /^\d*$/.test(value); 
+            });
+            setInputFilter(document.getElementById("cpf"), function(value) {
+                return /^\d*$/.test(value); 
+            });
             $(document).ready(function() {
                 $('#tableData').DataTable({
                     scrollY:        '40vh',

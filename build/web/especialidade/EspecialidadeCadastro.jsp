@@ -1,3 +1,5 @@
+<%@page import="model.bean.Especialidade"%>
+<%@page import="model.dao.EspecialidadeDao"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -30,6 +32,33 @@
                             <input type="text" class="form-control" id="descricao" autocomplete="off" name="descricao">
                         </div>
                     </div>
+                </div>
+                <div class="row">
+                    <table class="table table-bordered table-hover" id="tableData">
+                        <thead>
+                            <tr>
+                                <th>Especialidade</th>
+                                <th>Descri&ccedil;&atilde;o</th>
+                                <th>Dt. Cadastro</th>
+                                <th>Gerenciar</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        <%
+                             EspecialidadeDao especialidadeDao = new EspecialidadeDao();
+                             for(Especialidade especialidade : especialidadeDao.listaEspecialidade()){
+                        %>
+                            <tr>
+                                <td><%= especialidade.getNome() %></td>
+                                <td><%= especialidade.getDescricao() %></td>
+                                <td><%= especialidade.getDtCadastro() %></td>
+                                <td width="5%"><button class="btn btn-success btn-sm">Gerenciar</button></td>
+                            </tr>
+                        <%
+                             }
+                        %>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>

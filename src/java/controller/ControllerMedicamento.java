@@ -93,6 +93,7 @@ public class ControllerMedicamento extends HttpServlet {
         if (option.equals("CadastrarMedicamento")){
             fabricante = fabricanteDao.buscaFabricante(Integer.parseInt(request.getParameter("idFabricante")));
             medicamento.setNomeGenerico(request.getParameter("nomeGenerico"));
+            medicamento.setFabricante(fabricante);
             medicamento.setNomeDeFabrica(request.getParameter("nomeDeFabrica"));
             medicamento.setDtCadastro(new Date());
             printWriter.print(medicamentoDao.salvaMedicamento(medicamento));

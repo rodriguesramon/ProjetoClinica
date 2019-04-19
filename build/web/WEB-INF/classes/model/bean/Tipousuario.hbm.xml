@@ -8,9 +8,6 @@
             <column name="id" />
             <generator class="identity" />
         </id>
-        <property name="tipo" type="string">
-            <column name="tipo" length="50" />
-        </property>
         <property name="nome" type="string">
             <column name="nome" length="100" />
         </property>

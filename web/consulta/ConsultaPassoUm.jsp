@@ -20,21 +20,21 @@
                 <div class="row">
                     <input id="idPaciente" type="hidden">
                     <div class="form-group col-md-2">
-                        <label for="sigla">RG</label>
+                        <label for="rg">RG</label>
                         <div class="input-group input-group-sm">
                             <span class="input-group-addon"><i class="fas fa-grip-horizontal"></i></span>
                             <input type="text" class="form-control" id="rg" autocomplete="off" name="rg">
                         </div>
                     </div>
                     <div class="form-group col-md-3">
-                        <label for="sigla">CPF</label>
+                        <label for="cpf">CPF</label>
                         <div class="input-group input-group-sm">
                             <span class="input-group-addon"><i class="fas fa-grip-horizontal"></i></span>
                             <input type="text" class="form-control" id="cpf" autocomplete="off" name="cpf">
                         </div>
                     </div>
                     <div class="form-group col-sm-5">
-                        <label for="estado">Nome</label>
+                        <label for="nome">Nome</label>
                         <div class="input-group input-group-sm">
                             <span class="input-group-addon"><i class="fas fa-grip-horizontal"></i></span>
                             <input type="text" class="form-control" id="nome" autocomplete="off" name="nome" readonly>
@@ -44,7 +44,7 @@
                 
                 <div class="row">
                     <div class="form-group col-sm-5">
-                        <label for="estado">Especialidade</label>
+                        <label for="especialidade">Especialidade</label>
                         <div class="input-group input-group-sm">
                             <span class="input-group-addon"><i class="fas fa-grip-horizontal"></i></span>
                             <select class="form-control" id="especialidade">

@@ -119,8 +119,6 @@ public class ControllerConsulta extends HttpServlet {
         ReceitaDao receitaDao = new ReceitaDao();
         
         PrintWriter printWriter = response.getWriter();
-        Map<String, String> mapMedico = new HashMap<String, String>();
-               
         Boolean resultado;
         
         if(option.equals("BuscarConsulta")){
