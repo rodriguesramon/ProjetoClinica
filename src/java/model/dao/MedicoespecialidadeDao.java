@@ -76,6 +76,17 @@ public class MedicoespecialidadeDao {
         }
     }
     
+    public List<Medicoespecialidade> buscaEspecialidades(int idMedico) {
+        try{
+            query = session.createSQLQuery("SELECT * FROM medicoespecialidade WHERE idMedico = " + idMedico).addEntity(Medicoespecialidade.class);
+            lista = query.list();
+            return lista;
+        }catch(Exception erro){
+            System.out.println(erro.toString());
+            return null ;
+        }
+    }
+    
     public void atualizar(Medicoespecialidade medicoespecialidade ) {
         transaction = session.beginTransaction();
         session.update(medicoespecialidade);

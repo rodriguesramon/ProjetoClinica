@@ -103,11 +103,11 @@ public class ControllerMedico extends HttpServlet {
         if (option.equals("CadastrarMedico")) {
             medico.setNome(request.getParameter("nome"));
             medico.setRg(request.getParameter("rg"));
+            medico.setCrm(request.getParameter("crm"));
             medico.setCpf(request.getParameter("cpf"));
             medico.setEmail(request.getParameter("email"));
             medico.setFoneResidencial(request.getParameter("foneResidencial"));
             medico.setFoneCelular(request.getParameter("foneCelular"));
-            
             
             especialidade = especialidadeDao.buscaEspecialidade(Integer.parseInt(request.getParameter("idEspecialidade")));
             
@@ -117,9 +117,7 @@ public class ControllerMedico extends HttpServlet {
             medicoDao.salvaMedico(medico);
             
             printWriter.print(medicoEspecialidadeDao.salva(medicoEspecialidade));
-        }
-        
-        if (option.equals("BuscarMedico")) {
+        }else if (option.equals("BuscarMedico")) {
             medico = medicoDao.buscaMedico(Integer.parseInt(request.getParameter("id")));
             printWriter.print("{"
                                 + "\"id\" : \"" + medico.getId() + "\", "
@@ -127,6 +125,23 @@ public class ControllerMedico extends HttpServlet {
                                 + "\"rg\" : \"" + medico.getRg() + "\", "
                                 + "\"cpf\" : \"" + medico.getCpf() + "\" "
                             + "}");
+        }else if(option.equals("AdicionarEspecialidade")){
+            medico = medicoDao.buscaMedico(Integer.parseInt(request.getParameter("idMedico")));
+            especialidade = especialidadeDao.buscaEspecialidade(Integer.parseInt(request.getParameter("idEspecialidade")));
+            medicoEspecialidade.setMedico(medico);
+            medicoEspecialidade.setEspecialidade(especialidade);
+            printWriter.print(medicoEspecialidadeDao.salva(medicoEspecialidade));
+        }else if(option.equals("AtualizarMedico")){
+            medico = medicoDao.buscaMedico(Integer.parseInt(request.getParameter("idMedico")));
+            medico.setNome(request.getParameter("nome"));
+            medico.setRg(request.getParameter("rg"));
+            medico.setCrm(request.getParameter("crm"));
+            medico.setCpf(request.getParameter("cpf"));
+            medico.setEmail(request.getParameter("email"));
+            medico.setFoneResidencial(request.getParameter("foneResidencial"));
+            medico.setFoneCelular(request.getParameter("foneCelular"));
+            
+            medicoDao.atualizarMedico(medico);
         }
     }
 

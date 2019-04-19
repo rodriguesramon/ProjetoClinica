@@ -31,7 +31,7 @@
         $("#foneResidencial, #foneCelular").mask("(00) 00000-0000");
      });
      
-     function msgErro(msg){
+    function msgErro(msg){
          $.confirm({
             title: 'Sistema Cl&iacute;nico',
             content: msg,
@@ -47,8 +47,11 @@
             }
         });
      }
-     
-     // Restricts input for the given textbox to the given inputFilter.
+    
+    function resetPagina(){
+        window.location.href = window.location.pathname;
+    }
+    
     function setInputFilter(textbox, inputFilter) {
       ["input", "keydown", "keyup", "mousedown", "mouseup", "select", "contextmenu", "drop"].forEach(function(event) {
         textbox.addEventListener(event, function() {

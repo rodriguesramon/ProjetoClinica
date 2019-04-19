@@ -66,13 +66,19 @@ public class MedicoDao {
         }
     }
     
-    public List<Medico> listaMedicos(String nome, String rg, String cpf) {
+    public List<Medico> listaMedicos(String nome, String rg, String cpf, String crm) {
         try{
-            sql = "SELECT * " + 
-                  "  FROM medico " + 
-                  " WHERE nome LIKE '%"+ nome +"%' " + 
-                  "    OR nome LIKE '%"+ rg +"%' " + 
-                  "    OR cpf LIKE '%"+ cpf +"%'";
+            sql = "SELECT * FROM medico WHERE 1 = 1";
+            String sqlOld = sql;
+            if(nome != ""){ sql += " AND nome LIKE '%"+ nome +"%' "; }
+            if(rg != "")  { sql += " AND rg LIKE '%"+ rg +"%' "; }
+            if(cpf != "") { sql += " AND cpf LIKE '%"+ cpf +"%' "; }
+            if(crm != "") { sql += " AND crm LIKE '%"+ crm +"%' "; }
+            
+            if(sqlOld.equals(sql)){
+                sql = "SELECT * FROM medico WHERE id = 0";
+            }
+            
             query = session.createSQLQuery(sql).addEntity(Medico.class);
             listaMedico = query.list();
             return listaMedico;

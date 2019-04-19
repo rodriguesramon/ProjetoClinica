@@ -51,7 +51,7 @@
                                 <th>RG</th>
                                 <th>CPF</th>
                                 <th>Dt.&nbsp;Nascimento</th>
-                                
+                                <th></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -68,6 +68,7 @@
                                 <td><%= paciente.getRg() %></td>
                                 <td><%= paciente.getCpf() %></td>
                                 <td><%= paciente.getDtNascimento() %></td>
+                                <td><button class="btn btn-success btn-sm">Gerenciar</button></td>
                             </tr>
                             <% } %>
                            
@@ -77,8 +78,6 @@
             </div>
         </div>
         
-        
-        
         <c:import url="../tags/javascript.jsp"/>
         <script>
             $(document).ready(function() {
@@ -86,25 +85,22 @@
                     scrollY:        '40vh',
                     scrollCollapse: true,
                     paging:         false,
-                    bFilter: false
+                    bFilter: false,
+                    "language": {
+                        "info":"_TOTAL_ registros",
+                        "infoEmpty" : "0 registros",
+                        "zeroRecords":" "
+                    }
                 });
-            } );
+            });
             
             $( "#btnBusca" ).click(function() {
                 var stringUrl = "PacienteLista.jsp?nome="+$("#nome").val()+"&rg="+$("#rg").val()+"&cpf="+$("#cpf").val();
                 window.location = stringUrl;
-//                $.get("PacienteLista.jsp", {
-//                    nome   :   $("#nome").val(),
-//                    rg     :   $("#rg").val(),
-//                    cpf    :   $("#cpf").val()
-//                }, function(){
-//                    //$("#statusSalvando").css({"display":"block"});
-//                })
-//                .done(function(data) {
-//                    //$("#statusSalvando").css({"display":"none"});
-//                    //$("#statusSalvo").css({"display":"block"});
-//                    //alert("Agora realmente chegou  " + data);
-//                });
+            });
+            
+            $( "#btnReset" ).click(function() {
+                resetPagina();
             });
             
         </script>

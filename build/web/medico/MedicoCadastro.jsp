@@ -14,18 +14,15 @@
         <c:import url="../tags/metas.jsp"/>
         <c:import url="../tags/stylesheet.jsp"/>
         <title>Projeto Cl&iacute;nica</title>
-        
     </head>
     <body>
-        
         <div class="container">            
             <c:import url="../tags/menu.jsp"/>
         </div>
-        
         <div class="container" style='margin-top:80px'>
-            
+            <c:import url="../tags/status.jsp"/>
             <div class="well bs-component">
-                <legend>Cadastro - Medico<button class="btn btn-primary btn-sm pull-right" id="btnCadastrar" style="margin-top:-10px">Cadastrar <i class="fas fa-save fa-lg"></i></button> </legend>
+                <legend>Cadastro - M&eacute;dico<button class="btn btn-primary btn-sm pull-right" id="btnCadastrar" style="margin-top:-10px">Cadastrar <i class="fas fa-save fa-lg"></i></button> </legend>
                 <div class="row">
                     <div class="form-group col-sm-5">
                         <label for="estado">Nome</label>
@@ -122,9 +119,9 @@
                     cpf     :   $("#cpf").val(),
                     crm     :   $("#crm").val(),
                     idEspecialidade     :   $("#idEspecialidade").val(),
-                    email   :   $("#email").val(),
-                    foneCelular       :   $("#foneCelular").val(),
-                    foneResidencial   :   $("#foneResidencial").val()
+                    email               :   $("#email").val(),
+                    foneCelular         :   $("#foneCelular").val(),
+                    foneResidencial     :   $("#foneResidencial").val()
                 }, function(){
                     console.log("Processando...");
                 })
@@ -144,6 +141,7 @@
             function limparCamposCadastroMedico(){
                 $("#nome").val("");
                 $("#rg").val("");
+                $("#crm").val("");
                 $("#cpf").val("");
                 $("#email").val("");
                 $("#foneCelular").val("");

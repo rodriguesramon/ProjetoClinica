@@ -53,11 +53,17 @@ public class PacienteDao {
     
     public List<Paciente> listaPacientes(String nome, String rg, String cpf) {
         try{
-            sql = "SELECT * " + 
-                  "  FROM paciente " + 
-                  " WHERE nome LIKE '%"+ nome +"%' " + 
-                  "    OR nome LIKE '%"+ rg +"%' " + 
-                  "    OR cpf LIKE '%"+ cpf +"%'";
+            
+            sql = "SELECT * FROM paciente WHERE 1 = 1";
+            String sqlOld = sql;
+            if(nome != ""){ sql += " AND nome LIKE '%"+ nome +"%' "; }
+            if(rg != "")  { sql += " AND rg LIKE '%"+ rg +"%' "; }
+            if(cpf != "") { sql += " AND cpf LIKE '%"+ cpf +"%' "; }
+            
+            if(sqlOld.equals(sql)){
+                sql = "SELECT * FROM paciente WHERE id = 0";
+            }
+            
             query = session.createSQLQuery(sql).addEntity(Paciente.class);
             listaPaciente = query.list();
             return listaPaciente;
