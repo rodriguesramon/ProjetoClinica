@@ -1,3 +1,4 @@
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="model.dao.PacienteDao"%>
 <%@page import="model.bean.Paciente"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -19,7 +20,8 @@
                     <div class="btn-group btn-group-sm pull-right" style="margin-top:-10px">
                         <button type="button" id="btnBusca" class="btn btn-primary ">Buscar <i class="fas fa-search fa-lg"></i></button>
                         <button type="button" id="btnReset" class="btn btn-info ">Limpar <i class="fas fa-sync fa-lg"></i></button>
-                    </div></legend>
+                    </div>
+                </legend>
                 <div class="row">
                     <div class="form-group col-sm-4">
                         <label for="estado">Nome</label>
@@ -62,12 +64,13 @@
                                 String cpf = request.getParameter("cpf");
                                 
                                 for(Paciente paciente : pacienteDao.listaPacientes(nome, rg, cpf)){
+                                    SimpleDateFormat dt = new SimpleDateFormat("dd/MM/yyyy");
                             %>
                             <tr>
                                 <td><%= paciente.getNome() %></td>
                                 <td><%= paciente.getRg() %></td>
                                 <td><%= paciente.getCpf() %></td>
-                                <td><%= paciente.getDtNascimento() %></td>
+                                <td><%= dt.format(paciente.getDtNascimento())  %></td>
                                 <td width="5%"><button class="btn btn-success btn-sm" onclick="gerenciarPaciente(<%= paciente.getId() %>)" >Gerenciar</button></td>
                             </tr>
                             <% } %>

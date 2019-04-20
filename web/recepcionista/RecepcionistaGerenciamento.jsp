@@ -1,7 +1,5 @@
-<%@page import="model.bean.Acesso"%>
-<%@page import="model.dao.AcessoDao"%>
-<%@page import="model.dao.TelaDao"%>
-<%@page import="model.bean.Tela"%>
+<%@page import="model.bean.Recepcionista"%>
+<%@page import="model.dao.RecepcionistaDao"%>
 <%@page import="java.net.URL"%>
 <%@page import="model.bean.Usuario"%>
 <%@page import="model.bean.Especialidade"%>
@@ -22,39 +20,29 @@
         <div class="container" style='margin-top:80px'>
             <c:import url="../tags/status.jsp"/>
             <div class="well bs-component">
-                <legend>Cadastro - M&eacute;dico<button class="btn btn-primary btn-sm pull-right" id="btnCadastrar" style="margin-top:-10px">Cadastrar <i class="fas fa-save fa-lg"></i></button> </legend>
+                <%
+                    int idRecepcionista = Integer.parseInt(request.getParameter("idRecepcionista"));
+                    RecepcionistaDao recepcionistaDao = new RecepcionistaDao();
+                    Recepcionista recepcionista = recepcionistaDao.buscaRecepcionista(idRecepcionista) ;
+                %>
+                <legend>Gerenciar - Recepcionista<button class="btn btn-primary btn-sm pull-right" id="btnAtualizar" style="margin-top:-10px">Atualizar <i class="fas fa-save fa-lg"></i></button> </legend>
                 <div class="row">
+                    <input type="hidden" id="idRecepcionista" value="<%= recepcionista.getId() %>">
                     <div class="form-group col-sm-5">
                         <label for="estado">Nome</label>
                         <div class="input-group input-group-sm">
                             <span class="input-group-addon"><i class="fas fa-grip-horizontal"></i></span>
-                            <input type="text" class="form-control" id="nome" autocomplete="off" name="nome">
+                            <input type="text" class="form-control" id="nome" autocomplete="off" name="nome" value="<%= recepcionista.getNome() %>">
                        </div>
                     </div>
                     
-                     <div class="form-group col-md-2">
-                        <label for="sigla">CRM</label>
+                     <div class="form-group col-sm-4">
+                        <label for="estado">Email</label>
                         <div class="input-group input-group-sm">
                             <span class="input-group-addon"><i class="fas fa-grip-horizontal"></i></span>
-                            <input type="text" class="form-control" id="crm" autocomplete="off" name="crm">
-                        </div>
+                            <input type="text" class="form-control" id="email" autocomplete="off" name="email" value="<%= recepcionista.getEmail() %>">
+                       </div>
                     </div>
-                    
-                    <div class="form-group col-md-3">
-                        <label for="sigla">Especialidade</label>
-                        <div class="input-group input-group-sm">
-                            <span class="input-group-addon"><i class="fas fa-grip-horizontal"></i></span>
-                            <select class="form-control" id="idEspecialidade">
-                            <%
-                                EspecialidadeDao especialidadeDao = new EspecialidadeDao();
-                                for(Especialidade especialidade : especialidadeDao.listaEspecialidade() ){
-                            %>
-                                <option value="<%= especialidade.getId()%>"><%= especialidade.getNome()%></option>
-                            <%  }   %>
-                            </select>
-                        </div>
-                    </div>
-                    
                 </div>
                 
                 <div class="row">
@@ -62,35 +50,29 @@
                         <label for="sigla">RG</label>
                         <div class="input-group input-group-sm">
                             <span class="input-group-addon"><i class="fas fa-grip-horizontal"></i></span>
-                            <input type="text" class="form-control" id="rg" autocomplete="off" name="rg">
+                            <input type="text" class="form-control" id="rg" autocomplete="off" name="rg" value="<%= recepcionista.getRg() %>">
                         </div>
                     </div>
                     <div class="form-group col-md-2">
                         <label for="sigla">CPF</label>
                         <div class="input-group input-group-sm">
                             <span class="input-group-addon"><i class="fas fa-grip-horizontal"></i></span>
-                            <input type="text" class="form-control" id="cpf" autocomplete="off" name="cpf">
+                            <input type="text" class="form-control" id="cpf" autocomplete="off" name="cpf" value="<%= recepcionista.getCpf() %>">
                         </div>
                     </div>
-                    <div class="form-group col-sm-4">
-                        <label for="estado">Email</label>
-                        <div class="input-group input-group-sm">
-                            <span class="input-group-addon"><i class="fas fa-grip-horizontal"></i></span>
-                            <input type="text" class="form-control" id="email" autocomplete="off" name="email">
-                       </div>
-                    </div>
+                   
                     <div class="form-group col-md-2">
                         <label for="sigla">Fone&nbsp;Residencial</label>
                         <div class="input-group input-group-sm">
                             <span class="input-group-addon"><i class="fas fa-grip-horizontal"></i></span>
-                            <input type="text" class="form-control" id="foneResidencial" autocomplete="off" name="foneResidencial">
+                            <input type="text" class="form-control" id="foneResidencial" autocomplete="off" name="foneResidencial" value="<%= recepcionista.getFoneResidencial() %>">
                         </div>
                     </div>
                     <div class="form-group col-md-2">
                         <label for="sigla">Fone&nbsp;Celular</label>
                         <div class="input-group input-group-sm">
                             <span class="input-group-addon"><i class="fas fa-grip-horizontal"></i></span>
-                            <input type="text" class="form-control" id="foneCelular" autocomplete="off" name="foneCelular">
+                            <input type="text" class="form-control" id="foneCelular" autocomplete="off" name="foneCelular" value="<%= recepcionista.getFoneCelular() %>">
                         </div>
                     </div>
                 </div>
@@ -107,18 +89,13 @@
                 return /^\d*$/.test(value); 
             });
             
-            setInputFilter(document.getElementById("crm"), function(value) {
-                return /^\d*$/.test(value); 
-            });
-            
-            $( "#btnCadastrar" ).click(function() {
-                $.post("../ControllerMedico", {
-                    option  :   "CadastrarMedico",
+            $( "#btnAtualizar" ).click(function() {
+                $.post("../ControllerRecepcionista", {
+                    option  :   "AtualizarRecepcionista",
+                    idRecepcionista : $("#idRecepcionista").val(),
                     nome    :   $("#nome").val(),
                     rg      :   $("#rg").val(),
                     cpf     :   $("#cpf").val(),
-                    crm     :   $("#crm").val(),
-                    idEspecialidade     :   $("#idEspecialidade").val(),
                     email               :   $("#email").val(),
                     foneCelular         :   $("#foneCelular").val(),
                     foneResidencial     :   $("#foneResidencial").val()
@@ -131,22 +108,12 @@
                     console.log(value);
                     if(value == true){
                         processSuccess();
-                        limparCamposCadastroMedico();
                     }else{
                         processFail();
                     }
                 });
             });
             
-            function limparCamposCadastroMedico(){
-                $("#nome").val("");
-                $("#rg").val("");
-                $("#crm").val("");
-                $("#cpf").val("");
-                $("#email").val("");
-                $("#foneCelular").val("");
-                $("#foneResidencial").val("");
-            }
         </script>
     </body>
 </html>

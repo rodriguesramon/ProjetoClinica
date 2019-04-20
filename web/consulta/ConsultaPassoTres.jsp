@@ -21,7 +21,7 @@
         </div>
         <div class="container" style='margin-top:80px'>
             <div class="well bs-component">
-                <legend>Cadastro - Consulta <button class="btn btn-primary btn-sm pull-right" style="margin-top:-10px" id="btnCadastrar" >Buscar <i class="fas fa-search fa-lg"></i></button></legend>
+                <legend>Cadastro - Consulta <button class="btn btn-primary btn-sm pull-right" style="margin-top:-10px" id="btnCadastrar" >Cadastrar <i class="far fa-save fa-lg"></i></button></legend>
                 <div class="row">
                     <input id="idPaciente" type="hidden">
                     <div class="form-group col-md-2">
@@ -43,6 +43,13 @@
                         <div class="input-group input-group-sm">
                             <span class="input-group-addon"><i class="fas fa-grip-horizontal"></i></span>
                             <input type="text" class="form-control" id="nome" autocomplete="off" name="nome">
+                       </div>
+                    </div>
+                    <div class="form-group col-sm-2">
+                        <label for="sexo">Sexo</label>
+                        <div class="input-group input-group-sm">
+                            <span class="input-group-addon"><i class="fas fa-grip-horizontal"></i></span>
+                            <input type="text" class="form-control" id="sexo" autocomplete="off" name="sexo" readonly>
                        </div>
                     </div>
                 </div>
@@ -89,11 +96,7 @@
                         <textarea class="form-control" rows="2" id="observacao" autocomplete="off"></textarea>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="form-group col-md-2">
-                        <button type="button" class="btn btn-primary" id="btnCadastrar">Cadastrar <i class="far fa-save fa-lg"></i> </button> 
-                    </div>  
-                </div>
+                
             </div>
         </div>
         <c:import url="../tags/javascript.jsp"/>
@@ -112,6 +115,7 @@
                     
                     $("#idPaciente").val(value.id);
                     $("#nome").val(value.nome);
+                    $("#sexo").val(value.sexo);
                     $("#rg").val(value.rg);
                     $("#cpf").val(value.cpf);
                 });
@@ -157,7 +161,11 @@
                     observacao  :  $("#observacao").val()
                 })
                 .done(function(data) {
-                    
+                    var value = JSON.parse(data);
+                    if(value == true){
+                        msgSucessoRedirect("Consulta Cadastrada", "ConsultaPassoUm.jsp");
+                    }
+                     
                 });
             });
             

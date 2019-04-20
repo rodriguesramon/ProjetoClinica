@@ -1,3 +1,4 @@
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="model.bean.Acesso"%>
 <%@page import="model.dao.AcessoDao"%>
 <%@page import="model.dao.UsuarioDao"%>
@@ -16,7 +17,6 @@
         <title>Projeto Cl&iacute;nica</title>
     </head>
     <body>
-        
         <div class="container">            
             <c:import url="../tags/menu.jsp"/>
         </div>
@@ -73,13 +73,14 @@
                         <%
                             AcessoDao acessoDao = new AcessoDao();
                             for(Acesso acesso : acessoDao.listaAcesso()){
+                               SimpleDateFormat dt = new SimpleDateFormat("dd/MM/yyyy");
                         %>
                             <tr>
                                 <td><%= acesso.getUsuario().getTipousuario().getNome() %></td>
                                 <td><%= acesso.getUsuario().getNome() %></td>
                                 <td><%= acesso.getUsuario().getLogin() %></td>
                                 <td><%= acesso.getTela().getNome() %></td>
-                                <td><%= acesso.getDtCadastro() %></td>
+                                <td><%= dt.format(acesso.getDtCadastro()) %></td>
                                 <td width="5%"><button class="btn btn-danger btn-sm">Excluir</button></td>
                             </tr>
                         <%  } %>

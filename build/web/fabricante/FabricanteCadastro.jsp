@@ -1,3 +1,4 @@
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="model.bean.Fabricante"%>
 <%@page import="model.dao.FabricanteDao"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -40,10 +41,11 @@
                         <%
                              FabricanteDao fabricanteDao = new FabricanteDao();
                              for(Fabricante fabricante : fabricanteDao.listaFabricante()){
+                                 SimpleDateFormat dt = new SimpleDateFormat("dd/MM/yyyy");
                         %>
                             <tr>
                                 <td><%= fabricante.getNome() %></td>
-                                <td><%= fabricante.getDtCadastro() %></td>
+                                <td><%= dt.format(fabricante.getDtCadastro()) %></td>
                                 <td width="5%"><button class="btn btn-success btn-sm">Gerenciar</button></td>
                             </tr>
                         <%

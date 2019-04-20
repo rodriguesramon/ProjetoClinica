@@ -48,6 +48,13 @@
                             <input type="text" class="form-control" id="nome" autocomplete="off" name="nome" readonly>
                        </div>
                     </div>
+                    <div class="form-group col-sm-2">
+                        <label for="sexo">Sexo</label>
+                        <div class="input-group input-group-sm">
+                            <span class="input-group-addon"><i class="fas fa-grip-horizontal"></i></span>
+                            <input type="text" class="form-control" id="sexo" autocomplete="off" name="sexo" readonly>
+                       </div>
+                    </div>
                 </div>
                 
                 <input id="idEspecialidade" type="hidden">
@@ -103,6 +110,7 @@
                     
                     $("#idPaciente").val(value.id);
                     $("#nome").val(value.nome);
+                    $("#sexo").val(value.sexo);
                     $("#rg").val(value.rg);
                     $("#cpf").val(value.cpf);
                 });

@@ -1,3 +1,4 @@
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="model.bean.Fabricante"%>
 <%@page import="model.dao.FabricanteDao"%>
 <%@page import="model.bean.Medicamento"%>
@@ -64,12 +65,13 @@
                         <%
                             MedicamentoDao medicamentoDao = new MedicamentoDao();
                             for(Medicamento medicamento : medicamentoDao.listaMedicamento()){
+                                SimpleDateFormat dt = new SimpleDateFormat("dd/MM/yyyy");
                         %>
                             <tr>
                                 <td><%= medicamento.getNomeGenerico() %></td>
                                 <td><%= medicamento.getNomeDeFabrica() %></td>
                                 <td><%= medicamento.getFabricante().getNome() %></td>
-                                <td><%= medicamento.getDtCadastro() %></td>
+                                <td><%= dt.format(medicamento.getDtCadastro()) %></td>
                             </tr>
                         <%  } %>
                         </tbody>

@@ -17,7 +17,7 @@
                 <legend>Cadastro - Paciente<button class="btn btn-primary btn-sm pull-right" id="btnCadastrar" style="margin-top:-10px">Cadastrar <i class="fas fa-save fa-lg"></i></button> </legend>
                 
                 <div class="row">
-                    <div class="form-group col-sm-5">
+                    <div class="form-group col-sm-4">
                         <label for="estado">Nome</label>
                         <div class="input-group input-group-sm">
                             <span class="input-group-addon"><i class="fas fa-grip-horizontal"></i></span>
@@ -31,18 +31,31 @@
                             <input type="text" class="form-control" id="rg" autocomplete="off" name="rg">
                         </div>
                     </div>
-                    <div class="form-group col-md-3">
+                    <div class="form-group col-md-2">
                         <label for="sigla">CPF</label>
                         <div class="input-group input-group-sm">
                             <span class="input-group-addon"><i class="fas fa-grip-horizontal"></i></span>
                             <input type="text" class="form-control" id="cpf" autocomplete="off" name="cpf">
                         </div>
                     </div>
+                    
                      <div class="form-group col-md-2">
                         <label for="sigla">Dt.&nbsp;Nascimento</label>
                         <div class="input-group input-group-sm">
                             <span class="input-group-addon"><i class="fas fa-grip-horizontal"></i></span>
                             <input type="text" class="form-control datepicker" id="dtNascimento" autocomplete="off" name="dtNascimento">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group col-md-2">
+                        <label for="sexo">Sexo</label>
+                        <div class="input-group input-group-sm">
+                            <span class="input-group-addon"><i class="fas fa-grip-horizontal"></i></span>
+                            <select class="form-control" id="sexo">
+                                <option></option>
+                                <option value="Femenino">Femenino</option>
+                                <option value="Masculino">Masculino</option>
+                            </select>
                         </div>
                     </div>
                 </div>
@@ -170,6 +183,7 @@
                 $.post("../ControllerPaciente", {
                     option          :   "CadastrarPaciente",
                     nome            :   $("#nome").val(),
+                    sexo            :   $("#sexo").val(),
                     rg              :   $("#rg").val(),
                     cpf             :   $("#cpf").val(),
                     email           :   $("#email").val(),
@@ -198,6 +212,7 @@
             function limparCamposCadastroPaciente(){
                 $("#nome").val("");
                 $("#rg").val("");
+                $("#sexo").val("");
                 $("#cpf").val("");
                 $("#email").val("");
                 $("#foneCelular").val("");

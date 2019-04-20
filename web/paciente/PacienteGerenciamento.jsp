@@ -20,12 +20,11 @@
                     int idPaciente = Integer.parseInt(request.getParameter("idPaciente"));
                     PacienteDao pacienteDao = new PacienteDao();
                     Paciente paciente = pacienteDao.buscaPaciente(idPaciente) ;
-                    
                 %>
-                <legend>Cadastro - Paciente<button class="btn btn-primary btn-sm pull-right" id="btnAtualizar" style="margin-top:-10px">Atualizar <i class="fas fa-save fa-lg"></i></button> </legend>
+                <legend>Gerenciar - Paciente<button class="btn btn-primary btn-sm pull-right" id="btnAtualizar" style="margin-top:-10px">Atualizar <i class="fas fa-save fa-lg"></i></button> </legend>
                 <div class="row">
                     <input type="hidden" id="idPaciente" value="<%= paciente.getId() %>">
-                    <div class="form-group col-sm-5">
+                    <div class="form-group col-sm-4">
                         <label for="nome">Nome</label>
                         <div class="input-group input-group-sm">
                             <span class="input-group-addon"><i class="fas fa-grip-horizontal"></i></span>
@@ -39,7 +38,7 @@
                             <input type="text" class="form-control" id="rg" autocomplete="off" name="rg" value="<%= paciente.getRg() %>">
                         </div>
                     </div>
-                    <div class="form-group col-md-3">
+                    <div class="form-group col-md-2">
                         <label for="cpf">CPF</label>
                         <div class="input-group input-group-sm">
                             <span class="input-group-addon"><i class="fas fa-grip-horizontal"></i></span>
@@ -53,6 +52,17 @@
                             <input type="text" class="form-control datepicker" id="dtNascimento" autocomplete="off" name="dtNascimento" value="<%= paciente.getDtNascimento() %>">
                         </div>
                     </div>
+                    <div class="form-group col-md-2">
+                        <label for="sexo">Sexo</label>
+                        <div class="input-group input-group-sm">
+                            <span class="input-group-addon"><i class="fas fa-grip-horizontal"></i></span>
+                            <select class="form-control" id="sexo">
+                                <option></option>
+                                <option value="Femenino" <% if(paciente.getSexo().equals("Femenino")){%> selected <% } %> >Femenino</option>
+                                <option value="Masculino" <% if(paciente.getSexo().equals("Masculino")){%> selected <% } %> >Masculino</option>
+                            </select>
+                        </div>
+                    </div>    
                 </div>
                 
                 <div class="row">
@@ -108,7 +118,7 @@
                         <label for="cidade">Cidade</label>
                         <div class="input-group input-group-sm">
                             <span class="input-group-addon"><i class="fas fa-grip-horizontal"></i></span>
-                            <input type="text" class="form-control" id="cidade" autocomplete="off" name="cidade" disabled>
+                            <input type="text" class="form-control" id="cidade" autocomplete="off" name="cidade" disabled value="<%= paciente.getEnderecoCidade() %>">
                        </div>
                     </div>
                      <div class="form-group col-sm-2">
@@ -156,13 +166,12 @@
             $("#btnAtualizar").click(function() {
                 var contentErro = "";
                 if(!$("#nome").val()){ contentErro += "<br>- Nome";}
+                if(!$("#sexo").val()){ contentErro += "<br>- Sexo";}
                 if(!$("#rg").val()){ contentErro += "<br>- RG";}
                 if(!$("#cpf").val()){ contentErro += "<br>- CPF ";}
-                
                 if(!$("#email").val()){ contentErro += "<br>- Email ";}
                 if(!$("#foneResidencial").val()){ contentErro += "<br>- Fone Residencial ";}
                 if(!$("#foneCelular").val()){ contentErro += "<br>- Fone Celular ";}
-                
                 if(!$("#dtNascimento").val()){ contentErro += "<br>- Dt. Nascimento ";}
                 if(!$("#cep").val()){ contentErro += "<br>- CEP";}
                 if(!$("#logradouro").val()){ contentErro += "<br>- Logradouro ";}
@@ -179,6 +188,7 @@
                     option          :   "AtualizarPaciente",
                     idPaciente      :   $("#idPaciente").val(),
                     nome            :   $("#nome").val(),
+                    sexo            :   $("#sexo").val(),
                     rg              :   $("#rg").val(),
                     cpf             :   $("#cpf").val(),
                     email           :   $("#email").val(),

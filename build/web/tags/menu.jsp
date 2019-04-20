@@ -42,6 +42,9 @@
                         <li><a href="<%= application.getContextPath() + "/agenda/AgendaCadastro.jsp" %>">Agenda </a></li>
                         <li><a href="<%= application.getContextPath() + "/especialidade/EspecialidadeCadastro.jsp" %>">Especialidades</a></li>
                         <li class="divider"></li>
+                        <li><a href="<%= application.getContextPath() + "/recepcionista/RecepcionistaCadastro.jsp" %>">Recepcionista </a></li>
+                        <li><a href="<%= application.getContextPath() + "/recepcionista/RecepcionistaLista.jsp" %>">Gerenciar</a></li>
+                        <li class="divider"></li>
                         <li><a href="<%= application.getContextPath() + "/tipoexame/TipoExameCadastro.jsp" %>">Tipo de Exames</a></li>
                     </ul>
                 </li>
@@ -51,7 +54,7 @@
                     <ul class="dropdown-menu" role="menu">
                         <li><a href="<%= application.getContextPath() + "/acesso/AcessoCadastro.jsp" %>">Acesso - Telas</a></li>
                         <li class="divider"></li>
-                        <li><a href="<%= application.getContextPath() + "/usuario/UsuarioLista.jsp" %>">Gerenciar Usu&aacute;rios </a></li>
+                        <li><a href="#">Gerenciar Usu&aacute;rios </a></li>
                         <li class="divider"></li>
                         <li><a href="#">Sobre</a></li>
                     </ul>

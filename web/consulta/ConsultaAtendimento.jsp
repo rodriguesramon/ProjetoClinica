@@ -46,7 +46,7 @@
                                 </select>
                             </div>
                             <div class="form-group">
-                                <textarea class="form-control" id="observacaoMedicamento" name="observacaoMedicamento" placeholder="Observa&ccedil;&atilde;o"></textarea>
+                                <textarea class="form-control" id="obsMedicamento" name="obsMedicamento" placeholder="Observa&ccedil;&atilde;o"></textarea>
                             </div>    
                         </div>
                         <div class="modal-footer">
@@ -62,8 +62,8 @@
                     <div class="modal-content">
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal">&times;</button>
-                            <h4 class="modal-title">Exame</h4>                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-
+                            <h4 class="modal-title">Exame</h4>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
                         </div>
                         <div class="modal-body">
                             <div class="form-group">
@@ -78,7 +78,7 @@
                                 </select>
                             </div>
                             <div class="form-group">
-                                <textarea class="form-control" id="observacaoExame" name="observacaoExame" placeholder="Observa&ccedil;&atilde;o"></textarea>
+                                <textarea class="form-control" id="obsExame" name="obsExame" placeholder="Observa&ccedil;&atilde;o"></textarea>
                             </div>    
                         </div>
                         <div class="modal-footer">
@@ -90,9 +90,17 @@
              </div>
                             
             <div class="well bs-component">
-                <legend>Atendimento - Consulta</legend>
+                <legend>Atendimento - Consulta
+                    <div class="btn-group btn-group-sm pull-right" style="margin-top:-10px">
+                        <button type="button" class="btn btn-primary btn-sm" id="btnRegistrarAtendimento">Registrar <i class="far fa-save fa-lg"></i> </button>
+                        <button type="button" id="btnImpressao" class="btn btn-info ">Emiss&atilde;o de Prescri&ccedil;&atilde;o <i class="far fa-file-powerpoint fa-lg"></i></button>
+                    </div>
+                </legend>
                 <div class="row">
-                    <input id="idPaciente" type="hidden">
+                    <%
+                        int idConsulta = Integer.parseInt(request.getParameter("idConsulta"));
+                    %>
+                    <input id="idConsulta" type="hidden" value="<%= idConsulta %>">
                     <div class="form-group col-md-2">
                         <label for="rg">RG</label>
                         <div class="input-group input-group-sm">
@@ -108,17 +116,24 @@
                         </div>
                     </div>
                     <div class="form-group col-sm-5">
-                        <label for="estado">Nome</label>
+                        <label >Nome</label>
                         <div class="input-group input-group-sm">
                             <span class="input-group-addon"><i class="fas fa-grip-horizontal"></i></span>
                             <input type="text" class="form-control" id="nome" autocomplete="off" name="nome" readonly>
+                       </div>
+                    </div>
+                    <div class="form-group col-sm-2">
+                        <label for="sexo">Sexo</label>
+                        <div class="input-group input-group-sm">
+                            <span class="input-group-addon"><i class="fas fa-grip-horizontal"></i></span>
+                            <input type="text" class="form-control" id="sexo" autocomplete="off" name="sexo" readonly>
                        </div>
                     </div>
                 </div>
                 
                 <div class="row">
                     <div class="form-group col-sm-5">
-                        <label for="estado">Especialidade</label>
+                        <label >Especialidade</label>
                         <div class="input-group input-group-sm">
                             <span class="input-group-addon"><i class="fas fa-grip-horizontal"></i></span>
                             <input class="form-control" id="especialidade" autocomplete="off" readonly>
@@ -126,14 +141,14 @@
                     </div>
                     
                     <div class="form-group col-sm-4">
-                        <label for="estado">M&eacute;dico</label>
+                        <label >M&eacute;dico</label>
                         <div class="input-group input-group-sm">
                             <span class="input-group-addon"><i class="fas fa-grip-horizontal"></i></span>
                             <input type="text" class="form-control" id="medico" autocomplete="off" readonly>
                        </div>
                     </div>
                     <div class="form-group col-sm-3">
-                        <label for="estado">Agenda</label>
+                        <label >Agenda</label>
                         <div class="input-group input-group-sm">
                             <span class="input-group-addon"><i class="fas fa-grip-horizontal"></i></span>
                             <input type="text" class="form-control" id="agenda" autocomplete="off" readonly>
@@ -160,7 +175,7 @@
                             <div class="row">
                                 <div class="form-group col-sm-12">
                                     <label for="observacaoReceita">Observa&ccedil;&atilde;o</label>
-                                    <textarea class="form-control" id="obsMedicamento" rows="2"></textarea>
+                                    <textarea class="form-control" id="observacaoReceita" rows="2"></textarea>
                                 </div>
                             </div>
                             <div class="row">
@@ -170,17 +185,18 @@
                                             <tr>
                                                 <th>Medicamento</th>
                                                 <th>Orienta&ccedil;&atilde;o</th>
+                                                <th></th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <%
                                                 ReceitaDao receitaDao = new ReceitaDao();
-                                                int idConsulta = Integer.parseInt(request.getParameter("idConsulta"));
                                                 for(Receita receita : receitaDao.listaReceitaMedicamentos(idConsulta)){
                                             %>
                                             <tr>
                                                 <td width="20%"><%= receita.getMedicamento().getNomeGenerico() %></td>
                                                 <td width="40%"><%= receita.getObservacao() %></td>
+                                                <td width="5%" align="center"><button onclick="removeMedicamento(<%= receita.getId() %>)" class="btn btn-danger btn-sm">Excluir</button></td>
                                             </tr>
                                             <%  }%>
                                         </tbody>
@@ -202,8 +218,8 @@
                         <div class="panel-body">
                             <div class="row">
                                 <div class="form-group col-sm-12">
-                                    <label for="estado">Observa&ccedil;&atilde;o</label>
-                                    <textarea class="form-control" id="obsExame" rows="2"></textarea>
+                                    <label for="observacaoExame">Observa&ccedil;&atilde;o</label>
+                                    <textarea class="form-control" id="observacaoExame" rows="2"></textarea>
                                 </div>
                             </div>
                             <div class="row">
@@ -214,6 +230,7 @@
                                                 <th>Exame</th>
                                                 <th>Observa&ccedil;&atilde;o</th>
                                                 <th>Resultado</th>
+                                                <th></th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -225,6 +242,7 @@
                                                 <td><%= exame.getTipoexame().getNome() %></td>
                                                 <td><%= exame.getObservacao() %></td>
                                                 <td></td>
+                                                <td width="5%" align="center"><button onclick="removeExame(<%= exame.getId() %>)" class="btn btn-danger btn-sm">Excluir</button></td>
                                             </tr>
                                         <%  } %>
                                         </tbody>
@@ -234,28 +252,40 @@
                         </div>
                     </div>
                 </div>
-                
-                <div class="row">
-                    <div class="form-group col-md-2">
-                        <button type="button" class="btn btn-primary" id="btnProsseguirConsultaPassoUm">Registrar <i class="far fa-save fa-lg"></i> </button> 
-                    </div>  
-                </div>
             </div>
         </div>
         <c:import url="../tags/javascript.jsp"/>
         <script>
-            $("#btnAddMedicamento").click(function(){
+            $("#btnRegistrarAtendimento").click(function(){
                 $.post("../ControllerConsulta", {
-                    option        :   "AdicionarMedicamento",
-                    idConsulta            :   getQueryString('idConsulta'),
-                    idMedicamento : $("#idMedicamento").val(),
-                    obsMedicamento : $("#obsMedicamento").val()
+                    option        :   "RegistrarAtendimento",
+                    idConsulta    :   getQueryString('idConsulta'),
+                    observacaoExame   : $("#observacaoExame").val(),
+                    observacaoReceita : $("#observacaoReceita").val(),
+                    observacao        : $("#observacao").val()
                 }, function(){
                   console.log("Processando...");
                 })
                 .done(function(data){
                     var value = JSON.parse(data);
-                    $("#idConsulta").val(value.id);
+                    if(value == true){
+                        msgSucessoRedirect("Atendimento Realizado", "ConsultaLista.jsp");
+                    }
+                });
+            });
+            
+            $("#btnAddMedicamento").click(function(){
+                $.post("../ControllerConsulta", {
+                    option        :   "AdicionarMedicamento",
+                    idConsulta    :   getQueryString('idConsulta'),
+                    idMedicamento : $("#idMedicamento").val(),
+                    obsMedicamento : $("#obsMedicamento").val(),
+                    obsExame : $("#obsExame").val()
+                }, function(){
+                  console.log("Processando...");
+                })
+                .done(function(data){
+                    location.reload();
                 });
             });
             
@@ -270,10 +300,27 @@
                 })
                 .done(function(data){
                     var value = JSON.parse(data);
-                    $("#idConsulta").val(value.id);
-                    
+                    location.reload();
                 });
             });
+            
+            function removeMedicamento(idReceita){
+                $.post("../ControllerConsulta", {
+                    option      :   "RemoverMedicamento",
+                    idReceita   :   idReceita
+                }, function(){
+                    location.reload();
+                });
+            }
+            
+            function removeExame(idExame){
+                $.post("../ControllerConsulta", {
+                    option    :   "RemoverExame",
+                    idExame   :   idExame
+                }, function(){
+                    location.reload();
+                });
+            }
             
             $("#btnAdicionarMedicamento").click(function(){
                 $("#modalMedicamento").modal();
@@ -281,6 +328,13 @@
             
             $("#btnAdicionarExame").click(function(){
                 $("#modalExame").modal();
+            });
+            
+            $( "#btnImpressao" ).click(function() {
+                var stringUrl = "Prescricao.jsp?";
+                stringUrl += "idConsulta=" + $("#idConsulta").val();
+                
+                window.open(stringUrl, '_blank', 'location=yes,height=570,width=520,scrollbars=yes,status=yes');
             });
             
             function buscarDadosConsulta(){
@@ -294,6 +348,7 @@
                     var value = JSON.parse(data);
                     $("#idConsulta").val(value.id);
                     $("#nome").val(value.paciente);
+                    $("#sexo").val(value.sexo);
                     $("#rg").val(value.rg);
                     $("#cpf").val(value.cpf);
                     $("#medico").val(value.medico);

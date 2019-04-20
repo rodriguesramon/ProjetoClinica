@@ -22,7 +22,7 @@
         <div class="container" style='margin-top:80px'>
             <c:import url="../tags/status.jsp"/>
             <div class="well bs-component">
-                <legend>Cadastro - M&eacute;dico<button class="btn btn-primary btn-sm pull-right" id="btnCadastrar" style="margin-top:-10px">Cadastrar <i class="fas fa-save fa-lg"></i></button> </legend>
+                <legend>Cadastro - Recepcionista<button class="btn btn-primary btn-sm pull-right" id="btnCadastrar" style="margin-top:-10px">Cadastrar <i class="fas fa-save fa-lg"></i></button> </legend>
                 <div class="row">
                     <div class="form-group col-sm-5">
                         <label for="estado">Nome</label>
@@ -32,29 +32,13 @@
                        </div>
                     </div>
                     
-                     <div class="form-group col-md-2">
-                        <label for="sigla">CRM</label>
+                     <div class="form-group col-sm-4">
+                        <label for="estado">Email</label>
                         <div class="input-group input-group-sm">
                             <span class="input-group-addon"><i class="fas fa-grip-horizontal"></i></span>
-                            <input type="text" class="form-control" id="crm" autocomplete="off" name="crm">
-                        </div>
+                            <input type="text" class="form-control" id="email" autocomplete="off" name="email">
+                       </div>
                     </div>
-                    
-                    <div class="form-group col-md-3">
-                        <label for="sigla">Especialidade</label>
-                        <div class="input-group input-group-sm">
-                            <span class="input-group-addon"><i class="fas fa-grip-horizontal"></i></span>
-                            <select class="form-control" id="idEspecialidade">
-                            <%
-                                EspecialidadeDao especialidadeDao = new EspecialidadeDao();
-                                for(Especialidade especialidade : especialidadeDao.listaEspecialidade() ){
-                            %>
-                                <option value="<%= especialidade.getId()%>"><%= especialidade.getNome()%></option>
-                            <%  }   %>
-                            </select>
-                        </div>
-                    </div>
-                    
                 </div>
                 
                 <div class="row">
@@ -72,13 +56,7 @@
                             <input type="text" class="form-control" id="cpf" autocomplete="off" name="cpf">
                         </div>
                     </div>
-                    <div class="form-group col-sm-4">
-                        <label for="estado">Email</label>
-                        <div class="input-group input-group-sm">
-                            <span class="input-group-addon"><i class="fas fa-grip-horizontal"></i></span>
-                            <input type="text" class="form-control" id="email" autocomplete="off" name="email">
-                       </div>
-                    </div>
+                   
                     <div class="form-group col-md-2">
                         <label for="sigla">Fone&nbsp;Residencial</label>
                         <div class="input-group input-group-sm">
@@ -107,18 +85,12 @@
                 return /^\d*$/.test(value); 
             });
             
-            setInputFilter(document.getElementById("crm"), function(value) {
-                return /^\d*$/.test(value); 
-            });
-            
             $( "#btnCadastrar" ).click(function() {
-                $.post("../ControllerMedico", {
-                    option  :   "CadastrarMedico",
+                $.post("../ControllerRecepcionista", {
+                    option  :   "CadastrarRecepcionista",
                     nome    :   $("#nome").val(),
                     rg      :   $("#rg").val(),
                     cpf     :   $("#cpf").val(),
-                    crm     :   $("#crm").val(),
-                    idEspecialidade     :   $("#idEspecialidade").val(),
                     email               :   $("#email").val(),
                     foneCelular         :   $("#foneCelular").val(),
                     foneResidencial     :   $("#foneResidencial").val()
@@ -131,17 +103,16 @@
                     console.log(value);
                     if(value == true){
                         processSuccess();
-                        limparCamposCadastroMedico();
+                        limparCamposCadastroRecepcionista();
                     }else{
                         processFail();
                     }
                 });
             });
             
-            function limparCamposCadastroMedico(){
+            function limparCamposCadastroRecepcionista(){
                 $("#nome").val("");
                 $("#rg").val("");
-                $("#crm").val("");
                 $("#cpf").val("");
                 $("#email").val("");
                 $("#foneCelular").val("");

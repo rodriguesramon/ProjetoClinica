@@ -14,6 +14,7 @@ public class Paciente  implements java.io.Serializable {
 
      private Integer id;
      private String nome;
+     private String sexo;
      private String rg;
      private String cpf;
      private Date dtNascimento;
@@ -31,8 +32,9 @@ public class Paciente  implements java.io.Serializable {
     public Paciente() {
     }
 
-    public Paciente(String nome, String rg, String cpf, Date dtNascimento, String email, String foneResidencial, String foneCelular, String enderecoCep, String enderecoLogradouro, String enderecoNumero, String enderecoCidade, String enderecoUf, Date dtCadastro, Set consultas) {
+    public Paciente(String nome, String sexo, String rg, String cpf, Date dtNascimento, String email, String foneResidencial, String foneCelular, String enderecoCep, String enderecoLogradouro, String enderecoNumero, String enderecoCidade, String enderecoUf, Date dtCadastro, Set consultas) {
        this.nome = nome;
+       this.sexo = sexo;
        this.rg = rg;
        this.cpf = cpf;
        this.dtNascimento = dtNascimento;
@@ -62,6 +64,15 @@ public class Paciente  implements java.io.Serializable {
     public void setNome(String nome) {
         this.nome = nome;
     }
+    
+    public String getSexo() {
+        return this.sexo;
+    }
+    
+    public void setSexo(String sexo) {
+        this.sexo = sexo;
+    }
+    
     public String getRg() {
         return this.rg;
     }

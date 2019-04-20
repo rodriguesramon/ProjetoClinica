@@ -14,9 +14,6 @@
         <property name="nome" type="string">
             <column name="nome" length="45" />
         </property>
-        <property name="crm" type="string">
-            <column name="crm" length="45" />
-        </property>
         <property name="rg" type="string">
             <column name="rg" length="45" />
         </property>

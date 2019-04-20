@@ -80,10 +80,16 @@ public class ExameDao {
         session.close();
     }
 
-    public void deletaExame(Exame exame) {
-        transaction = session.beginTransaction();
-        session.delete(exame);
-        transaction.commit();
-        session.close();
+    public boolean deletaExame(Exame exame) {
+        try{
+            transaction = session.beginTransaction();
+            session.delete(exame);
+            transaction.commit();
+            session.close();
+            return true;
+        }catch(Exception erro){
+            System.out.println(erro.toString());
+            return false;
+        }
     }
 }

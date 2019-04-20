@@ -96,6 +96,7 @@ public class ControllerPaciente extends HttpServlet {
         
         if (option.equals("CadastrarPaciente")) {
             paciente.setNome(request.getParameter("nome"));
+            paciente.setSexo(request.getParameter("sexo"));
             paciente.setRg(request.getParameter("rg"));
             paciente.setCpf(request.getParameter("cpf"));
             
@@ -118,22 +119,25 @@ public class ControllerPaciente extends HttpServlet {
         }else if(option.equals("BuscarPaciente")) {
             paciente = pacienteDao.buscaPaciente(request.getParameter("rg"), request.getParameter("cpf"));
             printWriter.print("{"
-                            + "\"id\" : \"" + paciente.getId() + "\", "
-                            + "\"nome\" : \"" + paciente.getNome() + "\", "
-                            + "\"rg\" : \"" + paciente.getRg() + "\", "
-                            + "\"cpf\" : \"" + paciente.getCpf() + "\" "
-                        + "}");
+                                + "\"id\" : \"" + paciente.getId() + "\", "
+                                + "\"nome\" : \"" + paciente.getNome() + "\", "
+                                + "\"sexo\" : \"" + paciente.getSexo()+ "\", "
+                                + "\"rg\" : \"" + paciente.getRg() + "\", "
+                                + "\"cpf\" : \"" + paciente.getCpf() + "\" "
+                            + "}");
         }else if (option.equals("BuscarPacienteId")) {
             paciente = pacienteDao.buscaPaciente(Integer.parseInt(request.getParameter("id")));
             printWriter.print("{"
                                 + "\"id\" : \"" + paciente.getId() + "\", "
                                 + "\"nome\" : \"" + paciente.getNome() + "\", "
+                                + "\"sexo\" : \"" + paciente.getSexo()+ "\", "
                                 + "\"rg\" : \"" + paciente.getRg() + "\", "
                                 + "\"cpf\" : \"" + paciente.getCpf() + "\" "
                             + "}");
         }else if (option.equals("AtualizarPaciente")){
             paciente = pacienteDao.buscaPaciente(Integer.parseInt(request.getParameter("idPaciente")));
             paciente.setNome(request.getParameter("nome"));
+            paciente.setSexo(request.getParameter("sexo"));
             paciente.setRg(request.getParameter("rg"));
             paciente.setCpf(request.getParameter("cpf"));
             

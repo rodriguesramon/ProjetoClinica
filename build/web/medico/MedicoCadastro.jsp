@@ -147,7 +147,6 @@
                 $("#foneCelular").val("");
                 $("#foneResidencial").val("");
             }
-            
         </script>
     </body>
 </html>

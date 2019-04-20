@@ -1,3 +1,4 @@
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="model.bean.Medico"%>
 <%@page import="model.dao.MedicoDao"%>
 <%@page import="model.bean.Consulta"%>
@@ -114,17 +115,19 @@
                             <%
                                 ConsultaDao consultaDao = new ConsultaDao();
                                 for(Consulta consulta : consultaDao.listaConsulta()){
+                                SimpleDateFormat dt = new SimpleDateFormat("dd/MM/yyyy");
                             %>
                             <tr>
                                 <td><%= consulta.getPaciente().getNome() %></td>
                                 <td><%= consulta.getAgenda().getEspecialidade().getNome() %></td>
                                 <td><%= consulta.getAgenda().getMedico().getNome() %></td>
-                                <td><%= consulta.getAgenda().getDia() %></td>
+                                <td><%= dt.format(consulta.getAgenda().getDia()) %></td>
                                 <td><%= consulta.getAgenda().getHora() %></td>
-                                <td width="15%" align="center" style="padding-bottom: 0px; padding-top: 0px; padding-right: 0px; padding-left: 0px;">
+                                <td align="center">
                                     <div class="btn-group">
-                                        <button type="button" onclick="acessarConsulta(<%= consulta.getId() %>)" class="btn btn-success btn-sm">Atender</button>
-                                        <button type="button" class="btn btn-danger btn-sm">Cancelar</button>
+                                        <button type="button" onclick="acessarConsulta(<%= consulta.getId() %>)" class="btn btn-success btn-sm"><i class="fas fa-tasks fa-lg"></i></button>
+                                        <button type="button" class="btn btn-danger btn-sm" onclick="removeConsulta(<%= consulta.getId() %>)"><i class="fas fa-times-circle fa-lg"></i></button>
+                                        <button type="button" class="btn btn-info btn-sm" onclick="impressaoPrescricao(<%= consulta.getId() %>)"><i class="far fa-file-powerpoint fa-lg"></i></button>
                                     </div>
                                 </td>
                             </tr>
@@ -155,6 +158,22 @@
                     }
                 });
             });
+            
+            function removeConsulta(idConsulta){
+                $.post("../ControllerConsulta", {
+                    option      :   "RemoverConsulta",
+                    idConsulta   :   idConsulta
+                }, function(){
+                    msgSucessoRedirect("Consulta Removida", "ConsultaLista.jsp");
+                });
+            }
+            
+            function impressaoPrescricao(idConsulta){
+                var stringUrl = "Prescricao.jsp?";
+                stringUrl += "idConsulta=" + idConsulta;
+                
+                window.open(stringUrl, '_blank', 'location=yes,height=570,width=520,scrollbars=yes,status=yes');
+            }
             
             function acessarConsulta(idConsulta){
                 var stringUrl = "ConsultaAtendimento.jsp?";

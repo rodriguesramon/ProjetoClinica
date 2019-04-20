@@ -126,6 +126,7 @@ public class ControllerConsulta extends HttpServlet {
             respostaJson = "{"
                                 + "\"id\" : \"" + consulta.getId() + "\", "
                                 + "\"paciente\" : \"" + consulta.getPaciente().getNome() + "\", "
+                                + "\"sexo\" : \"" + consulta.getPaciente().getSexo() + "\", "
                                 + "\"rg\" : \"" + consulta.getPaciente().getRg() + "\", "
                                 + "\"cpf\" : \"" + consulta.getPaciente().getCpf() + "\", "
                                 + "\"medico\" : \"" + consulta.getAgenda().getMedico().getNome() + "\", "
@@ -153,22 +154,22 @@ public class ControllerConsulta extends HttpServlet {
             printWriter.print(resultado);
             
             
-        }else if(option.equals("RegistrarConsulta")){
-            consulta = consultaDao.buscaConsulta(Integer.parseInt(request.getParameter("idConsulta")));
+        }else if(option.equals("RegistrarAtendimento")){
             
+            consulta = consultaDao.buscaConsulta(Integer.parseInt(request.getParameter("idConsulta")));
             consulta.setObservacao(request.getParameter("observacao"));
             consulta.setObservacaoExame(request.getParameter("observacaoExame"));
             consulta.setObservacaoReceita(request.getParameter("observacaoReceita"));
-            
             consulta.setStatus(1);//Define como atendido
-            consultaDao.atualizarConsulta(consulta);
+            printWriter.print(consultaDao.atualizarConsulta(consulta));
+            
         }else if(option.equals("AdicionarMedicamento")){
             consulta = consultaDao.buscaConsulta(Integer.parseInt(request.getParameter("idConsulta")));
             medicamento = medicamentoDao.buscaMedicamento(Integer.parseInt(request.getParameter("idMedicamento")));
             receita.setConsulta(consulta);
             receita.setDtCadastro(new Date());
             receita.setMedicamento(medicamento);
-            receita.setObservacao(request.getParameter("observacaoMedicamento"));
+            receita.setObservacao(request.getParameter("obsMedicamento"));
             printWriter.print(receitaDao.salvaReceita(receita));
             
         }else if(option.equals("AdicionarExame")){
@@ -177,11 +178,19 @@ public class ControllerConsulta extends HttpServlet {
             
             exame.setConsulta(consulta);
             exame.setTipoexame(tipoExame);
-            exame.setObservacao(request.getParameter("observacaoExame"));
+            exame.setObservacao(request.getParameter("obsExame"));
             exame.setDtCadastro(new Date());
             printWriter.print(exameDao.salvaExame(exame));
-            
-        }
+       }else if(option.equals("RemoverExame")){
+           exame = exameDao.buscaExame(Integer.parseInt(request.getParameter("idExame")));
+            printWriter.print(exameDao.deletaExame(exame));
+       }else if(option.equals("RemoverMedicamento")){
+           receita = receitaDao.buscaReceita(Integer.parseInt(request.getParameter("idReceita")));
+           printWriter.print(receitaDao.deletaReceita(receita));
+       }else if(option.equals("RemoverConsulta")){
+           consulta = consultaDao.buscaConsulta(Integer.parseInt(request.getParameter("idConsulta")));
+           printWriter.print(consultaDao.deletaConsulta(consulta));
+       }
     }
 
     /**

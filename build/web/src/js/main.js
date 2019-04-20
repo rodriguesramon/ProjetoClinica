@@ -30,10 +30,28 @@
         
         $("#foneResidencial, #foneCelular").mask("(00) 00000-0000");
      });
-     
+    
+    function msgSucessoRedirect(msg, link){
+         $.confirm({
+            title: 'Sistema Cl&iacute;nica',
+            content: msg,
+            type: 'green',
+            typeAnimated: true,
+            buttons: {
+                btn: {
+                    text: 'Ok',
+                    btnClass: 'btn-red',
+                    action: function(){
+                        location.href = link;
+                    }
+                }
+            }
+        });
+     }
+ 
     function msgErro(msg){
          $.confirm({
-            title: 'Sistema Cl&iacute;nico',
+            title: 'Sistema Cl&iacute;nica',
             content: msg,
             type: 'red',
             typeAnimated: true,

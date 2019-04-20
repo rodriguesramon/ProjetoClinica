@@ -120,7 +120,7 @@
                     <input type="text" class="form-control" name="login" id="login"  placeholder="Login" required="required" autocomplete="off" >
                 </div>
                         <div class="form-group">
-                    <input type="password" class="form-control" name="senha" id="senha" placeholder="Senha" required="required">
+                    <input type="password" class="form-control" name="senha" id="senha" placeholder="Senha" required="off">
                 </div>        
                 <div class="form-group">
                     <button type="button" id="btnEntrar" class="btn btn-primary btn-lg btn-block">Entrar</button>

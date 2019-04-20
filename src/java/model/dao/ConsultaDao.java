@@ -50,6 +50,18 @@ public class ConsultaDao {
         }
     }
     
+    
+    public List<Consulta> listaConsultaFiltro() {
+        try{
+           query = session.createSQLQuery("SELECT * FROM consulta").addEntity(Consulta.class);
+           listaConsulta = query.list();
+            return listaConsulta;
+        }catch(Exception erro){
+            System.out.println(erro.toString());
+            return null ;
+        }
+    }
+    
     public Consulta buscaConsulta(int id){
         try{
             query = session.createSQLQuery("SELECT * FROM consulta WHERE id = " + id).addEntity(Consulta.class);
@@ -61,17 +73,29 @@ public class ConsultaDao {
         }
     }
     
-    public void atualizarConsulta(Consulta consulta) {
-        transaction = session.beginTransaction();
-        session.update(consulta);
-        transaction.commit();
-        session.close();
+    public boolean atualizarConsulta(Consulta consulta) {
+        try{
+            transaction = session.beginTransaction();
+            session.update(consulta);
+            transaction.commit();
+            session.close();
+            return true;
+        }catch(Exception erro){
+            System.out.println(erro.toString());
+            return false;
+        }
     }
 
-    public void deletaConsulta(Consulta consulta) {
-        transaction = session.beginTransaction();
-        session.delete(consulta);
-        transaction.commit();
-        session.close();
+    public boolean deletaConsulta(Consulta consulta) {
+        try{
+            transaction = session.beginTransaction();
+            session.delete(consulta);
+            transaction.commit();
+            session.close();
+            return true;
+        }catch(Exception erro){
+            System.out.println(erro.toString());
+            return false;
+        }
     }
 }

@@ -83,10 +83,16 @@ public class ReceitaDao {
         session.close();
     }
 
-    public void deletaReceita(Receita receita) {
-        transaction = session.beginTransaction();
-        session.delete(receita);
-        transaction.commit();
-        session.close();
+    public boolean deletaReceita(Receita receita) {
+        try{
+            transaction = session.beginTransaction();
+            session.delete(receita);
+            transaction.commit();
+            session.close();
+            return true;
+        }catch(Exception erro){
+            System.out.println(erro.toString());
+            return false;
+        }
     }
 }
