@@ -94,10 +94,16 @@ public class MedicoespecialidadeDao {
         session.close();
     }
 
-    public void deleta(Medicoespecialidade medicoespecialidade) {
-        transaction = session.beginTransaction();
-        session.delete(medicoespecialidade);
-        transaction.commit();
-        session.close();
+    public boolean deleta(Medicoespecialidade medicoespecialidade) {
+        try{
+            transaction = session.beginTransaction();
+            session.delete(medicoespecialidade);
+            transaction.commit();
+            session.close();
+            return true;
+        }catch(Exception erro){
+            System.out.println(erro.toString());
+            return false;
+        }
     }   
 }

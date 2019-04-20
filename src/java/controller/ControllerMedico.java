@@ -141,7 +141,11 @@ public class ControllerMedico extends HttpServlet {
             medico.setFoneResidencial(request.getParameter("foneResidencial"));
             medico.setFoneCelular(request.getParameter("foneCelular"));
             
-            medicoDao.atualizarMedico(medico);
+            printWriter.print(medicoDao.atualizarMedico(medico));
+        }else if(option.equals("DeletarEspecialidade")){
+            medicoEspecialidade = medicoEspecialidadeDao.buscaMedicoespecialidade(Integer.parseInt(request.getParameter("idMedicoEspecialidade")));
+            printWriter.print(medicoEspecialidadeDao.deleta(medicoEspecialidade));    
+            
         }
     }
 

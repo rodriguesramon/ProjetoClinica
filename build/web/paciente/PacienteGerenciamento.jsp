@@ -1,3 +1,5 @@
+<%@page import="model.dao.PacienteDao"%>
+<%@page import="model.bean.Paciente"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -14,35 +16,41 @@
         <div class="container" style='margin-top:80px'>
             <c:import url="../tags/status.jsp"/>
             <div class="well bs-component">
-                <legend>Cadastro - Paciente<button class="btn btn-primary btn-sm pull-right" id="btnCadastrar" style="margin-top:-10px">Cadastrar <i class="fas fa-save fa-lg"></i></button> </legend>
-                
+                <%
+                    int idPaciente = Integer.parseInt(request.getParameter("idPaciente"));
+                    PacienteDao pacienteDao = new PacienteDao();
+                    Paciente paciente = pacienteDao.buscaPaciente(idPaciente) ;
+                    
+                %>
+                <legend>Cadastro - Paciente<button class="btn btn-primary btn-sm pull-right" id="btnAtualizar" style="margin-top:-10px">Atualizar <i class="fas fa-save fa-lg"></i></button> </legend>
                 <div class="row">
+                    <input type="hidden" id="idPaciente" value="<%= paciente.getId() %>">
                     <div class="form-group col-sm-5">
-                        <label for="estado">Nome</label>
+                        <label for="nome">Nome</label>
                         <div class="input-group input-group-sm">
                             <span class="input-group-addon"><i class="fas fa-grip-horizontal"></i></span>
-                            <input type="text" class="form-control" id="nome" autocomplete="off" name="nome">
+                            <input type="text" class="form-control" id="nome" autocomplete="off" name="nome" value="<%= paciente.getNome() %>" >
                        </div>
                     </div>
                     <div class="form-group col-md-2">
-                        <label for="sigla">RG</label>
+                        <label for="rg">RG</label>
                         <div class="input-group input-group-sm">
                             <span class="input-group-addon"><i class="fas fa-grip-horizontal"></i></span>
-                            <input type="text" class="form-control" id="rg" autocomplete="off" name="rg">
+                            <input type="text" class="form-control" id="rg" autocomplete="off" name="rg" value="<%= paciente.getRg() %>">
                         </div>
                     </div>
                     <div class="form-group col-md-3">
-                        <label for="sigla">CPF</label>
+                        <label for="cpf">CPF</label>
                         <div class="input-group input-group-sm">
                             <span class="input-group-addon"><i class="fas fa-grip-horizontal"></i></span>
-                            <input type="text" class="form-control" id="cpf" autocomplete="off" name="cpf">
+                            <input type="text" class="form-control" id="cpf" autocomplete="off" name="cpf" value="<%= paciente.getCpf() %>">
                         </div>
                     </div>
                      <div class="form-group col-md-2">
-                        <label for="sigla">Dt.&nbsp;Nascimento</label>
+                        <label for="dtNascimento">Dt.&nbsp;Nascimento</label>
                         <div class="input-group input-group-sm">
                             <span class="input-group-addon"><i class="fas fa-grip-horizontal"></i></span>
-                            <input type="text" class="form-control datepicker" id="dtNascimento" autocomplete="off" name="dtNascimento">
+                            <input type="text" class="form-control datepicker" id="dtNascimento" autocomplete="off" name="dtNascimento" value="<%= paciente.getDtNascimento() %>">
                         </div>
                     </div>
                 </div>
@@ -52,31 +60,31 @@
                         <label for="estado">Email</label>
                         <div class="input-group input-group-sm">
                             <span class="input-group-addon"><i class="fas fa-grip-horizontal"></i></span>
-                            <input type="text" class="form-control" id="email" autocomplete="off" name="email">
+                            <input type="text" class="form-control" id="email" autocomplete="off" name="email" value="<%= paciente.getEmail() %>">
                        </div>
                     </div>
                     <div class="form-group col-md-3">
                         <label for="sigla">Fone&nbsp;Residencial</label>
                         <div class="input-group input-group-sm">
                             <span class="input-group-addon"><i class="fas fa-grip-horizontal"></i></span>
-                            <input type="text" class="form-control" id="foneResidencial" pattern="\([0-9]{2}\)[\s][0-9]{4}-[0-9]{4,5}" autocomplete="off" name="foneResidencial">
+                            <input type="text" class="form-control" id="foneResidencial" value="<%= paciente.getFoneResidencial() %>" pattern="\([0-9]{2}\)[\s][0-9]{4}-[0-9]{4,5}" autocomplete="off" name="foneResidencial">
                         </div>
                     </div>
                     <div class="form-group col-md-3">
                         <label for="sigla">Fone&nbsp;Celular</label>
                         <div class="input-group input-group-sm">
                             <span class="input-group-addon"><i class="fas fa-grip-horizontal"></i></span>
-                            <input type="text" class="form-control" id="foneCelular" autocomplete="off" name="foneCelular">
+                            <input type="text" class="form-control" id="foneCelular" value="<%= paciente.getFoneCelular() %>" autocomplete="off" name="foneCelular">
                         </div>
                     </div>
                 </div>
                 
                 <div class="row">
                     <div class="form-group col-sm-2">
-                        <label for="estado">CEP</label>
+                        <label for="cep">CEP</label>
                         <div class="input-group input-group-sm">
                             <span class="input-group-addon"><i class="fas fa-grip-horizontal"></i></span>
-                            <input type="text" class="form-control" id="cep" autocomplete="off" name="cep">
+                            <input type="text" class="form-control" id="cep" autocomplete="off" name="cep" value="<%= paciente.getEnderecoCep() %>">
                        </div>
                     </div>
                     
@@ -84,7 +92,7 @@
                         <label for="estado">Logradouro</label>
                         <div class="input-group input-group-sm">
                             <span class="input-group-addon"><i class="fas fa-grip-horizontal"></i></span>
-                            <input type="text" class="form-control" id="logradouro" autocomplete="off" name="logradouro">
+                            <input type="text" class="form-control" id="logradouro" autocomplete="off" name="logradouro" value="<%= paciente.getEnderecoLogradouro() %>">
                        </div>
                     </div>
                     
@@ -92,22 +100,22 @@
                         <label for="estado">Nº</label>
                         <div class="input-group input-group-sm">
                             <span class="input-group-addon"><i class="fas fa-grip-horizontal"></i></span>
-                            <input type="text" class="form-control" id="numeroEndereco" autocomplete="off" name="numeroEndereco">
+                            <input type="text" class="form-control" id="numeroEndereco" autocomplete="off" name="numeroEndereco" value="<%= paciente.getEnderecoNumero() %>">
                        </div>
                     </div>
                     
                     <div class="form-group col-sm-2">
-                        <label for="estado">Cidade</label>
+                        <label for="cidade">Cidade</label>
                         <div class="input-group input-group-sm">
                             <span class="input-group-addon"><i class="fas fa-grip-horizontal"></i></span>
                             <input type="text" class="form-control" id="cidade" autocomplete="off" name="cidade" disabled>
                        </div>
                     </div>
                      <div class="form-group col-sm-2">
-                        <label for="estado">UF</label>
+                        <label for="uf">UF</label>
                         <div class="input-group input-group-sm">
                             <span class="input-group-addon"><i class="fas fa-grip-horizontal"></i></span>
-                            <input type="text" class="form-control" id="uf" autocomplete="off" name="uf" disabled>
+                            <input type="text" class="form-control" id="uf" autocomplete="off" name="uf" disabled value="<%= paciente.getEnderecoUf() %>">
                        </div>
                     </div>
                 </div>
@@ -145,7 +153,7 @@
                 }
             });
             
-            $("#btnCadastrar").click(function() {
+            $("#btnAtualizar").click(function() {
                 var contentErro = "";
                 if(!$("#nome").val()){ contentErro += "<br>- Nome";}
                 if(!$("#rg").val()){ contentErro += "<br>- RG";}
@@ -168,7 +176,8 @@
                 
                 $("#statusSalvando").css({"display":"block"});
                 $.post("../ControllerPaciente", {
-                    option          :   "CadastrarPaciente",
+                    option          :   "AtualizarPaciente",
+                    idPaciente      :   $("#idPaciente").val(),
                     nome            :   $("#nome").val(),
                     rg              :   $("#rg").val(),
                     cpf             :   $("#cpf").val(),
@@ -188,27 +197,11 @@
                     console.log(value);
                     if(value == true){
                         processSuccess();
-                        limparCamposCadastroPaciente();
                     }else{
                         processFail();
                     }
                 });
             });
-            
-            function limparCamposCadastroPaciente(){
-                $("#nome").val("");
-                $("#rg").val("");
-                $("#cpf").val("");
-                $("#email").val("");
-                $("#foneCelular").val("");
-                $("#foneResidencial").val("");
-                $("#dtNascimento").val("");
-                $("#cep").val("");
-                $("#logradouro").val("");
-                $("#numeroEndereco").val("");
-                $("#cidade").val("");
-                $("#uf").val("");
-            }
             
         </script>
     </body>

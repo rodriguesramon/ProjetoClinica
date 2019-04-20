@@ -84,7 +84,7 @@
                                 <td><%= medico.getEmail() %></td>
                                 <td><%= medico.getFoneCelular() %></td>
                                 <td><%= medico.getFoneResidencial() %></td>
-                                <td width="5%"><button class="btn btn-success btn-sm">Gerenciar</button> </td>
+                                <td width="5%"><button class="btn btn-success btn-sm" onclick="gerenciarMedico(<%= medico.getId() %>)">Gerenciar</button> </td>
                             </tr>
                             <% } %>
                            
@@ -109,6 +109,11 @@
                     }
                 });
             });
+            
+            function gerenciarMedico(idMedico){
+                var stringUrl = "MedicoGerenciamento.jsp?idMedico="+idMedico;
+                window.location = stringUrl;
+            }
             
             $("#btnBusca").click(function() {
                 var stringUrl = "MedicoLista.jsp?nome="+$("#nome").val()+"&rg="+$("#rg").val()+"&cpf="+$("#cpf").val()+"&crm="+$("#crm").val();

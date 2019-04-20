@@ -86,7 +86,14 @@ public class PacienteDao {
     
      public Paciente buscaPaciente(String rg, String cpf) {
         try{
-            query = session.createSQLQuery("SELECT * FROM paciente WHERE rg = '" + rg + "'  OR cpf = '" + cpf + "' ").addEntity(Paciente.class);
+            sql = "SELECT * FROM paciente WHERE 1 = 1";
+            String sqlOld = sql;
+            
+            if(rg != ""){ sql += " AND rg = '"+ rg +"' "; }
+            if(cpf != ""){ sql += " AND cpf = '"+ cpf +"' ";}
+            if(sql.equals(sqlOld)){ sql += " AND id = 0 "; }
+            
+            query = session.createSQLQuery(sql).addEntity(Paciente.class);
             listaPaciente = query.list();
             return listaPaciente.get(0);
         }catch(Exception erro){
@@ -95,11 +102,17 @@ public class PacienteDao {
         }
     }
     
-    public void atualizarPaciente(Paciente paciente) {
-        transaction = session.beginTransaction();
-        session.update(paciente);
-        transaction.commit();
-        session.close();
+    public boolean atualizarPaciente(Paciente paciente) {
+         try{
+            transaction = session.beginTransaction();
+            session.save(paciente);
+            transaction.commit();
+            session.close();
+            return true;
+        }catch(Exception erro){
+            System.out.println(erro.toString());
+            return false;
+        }
     }
 
     public void deletaPaciente(Paciente paciente) {

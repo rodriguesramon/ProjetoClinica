@@ -27,8 +27,9 @@
             <c:import url="../tags/status.jsp"/>
             <div class="well bs-component">
                 <%
+                    int idMedico = Integer.parseInt(request.getParameter("idMedico"));
                     MedicoDao medicoDao = new MedicoDao();
-                    Medico medico = medicoDao.buscaMedico(6);
+                    Medico medico = medicoDao.buscaMedico(idMedico);
                 %>
                 
                 <legend>Gerenciar - M&eacute;dico<button class="btn btn-primary btn-sm pull-right" id="btnAtualizar" style="margin-top:-10px">Atualizar <i class="fas fa-save fa-lg"></i></button> </legend>
@@ -67,8 +68,6 @@
                                     <i class="fa fa-plus"></i>
                                 </button>
                             </div>
-                            
-                            
                         </div>
                     </div>
                 </div>
@@ -126,7 +125,7 @@
                         %>
                             <tr>
                                 <td><%= medicoespecialidade.getEspecialidade().getNome() %></td>
-                                <td width="5%"> <button class="btn btn-danger btn-sm">Excluir</button> </td>
+                                <td width="5%"> <button class="btn btn-danger btn-sm" onclick="deletarEspecialidade(<%= medicoespecialidade.getId() %>)" id="btnDeleteEspecialidade">Excluir</button> </td>
                             </tr>
                         <%  } %>
                         </tbody>
@@ -161,6 +160,20 @@
                 return /^\d*$/.test(value); 
             });
             
+            function deletarEspecialidade(idMedicoEspecialidade){
+                $.post("../ControllerMedico",{
+                    option  :   "DeletarEspecialidade",
+                    idMedicoEspecialidade  :   idMedicoEspecialidade
+                }, function(){
+                    console.log("Processando...");
+                }).done(function(data){
+                    var value = JSON.parse(data);
+                    if(value == true){
+                        location.reload();
+                    }
+                });
+            };
+            
             $("#btnAddEspecialidade").click(function(){
                 $.post("../ControllerMedico",{
                     option  :   "AdicionarEspecialidade",
@@ -174,7 +187,7 @@
                     console.log(value);
                     if(value == true){
                         processSuccess();
-                        resetPagina();
+                        location.reload();
                     }else{
                         processFail();
                     }
@@ -195,14 +208,13 @@
                     foneResidencial     :   $("#foneResidencial").val()
                 }, function(){
                     console.log("Processando...");
-                })
-                .done(function(data) {
+                }).done(function(data) {
                     $("#statusSalvando").css({"display":"none"});
                     var value = JSON.parse(data);
                     console.log(value);
                     if(value == true){
                         processSuccess();
-                        resetPagina();
+                        location.reload();
                     }else{
                         processFail();
                     }

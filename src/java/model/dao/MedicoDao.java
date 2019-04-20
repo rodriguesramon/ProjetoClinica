@@ -99,11 +99,17 @@ public class MedicoDao {
         }
     }
     
-    public void atualizarMedico(Medico medico) {
-        transaction = session.beginTransaction();
-        session.update(medico);
-        transaction.commit();
-        session.close();
+    public boolean atualizarMedico(Medico medico) {
+        try{
+            transaction = session.beginTransaction();
+            session.update(medico);
+            transaction.commit();
+            session.close();
+            return true;
+        }catch(Exception erro){
+            System.out.println(erro.toString());
+            return false;
+        }
     }
 
     public void deletaMedico(Medico medico) {

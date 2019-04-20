@@ -68,7 +68,7 @@
                                 <td><%= paciente.getRg() %></td>
                                 <td><%= paciente.getCpf() %></td>
                                 <td><%= paciente.getDtNascimento() %></td>
-                                <td><button class="btn btn-success btn-sm">Gerenciar</button></td>
+                                <td width="5%"><button class="btn btn-success btn-sm" onclick="gerenciarPaciente(<%= paciente.getId() %>)" >Gerenciar</button></td>
                             </tr>
                             <% } %>
                            
@@ -94,14 +94,17 @@
                 });
             });
             
+            function gerenciarPaciente(idPaciente){
+                var stringUrl = "PacienteGerenciamento.jsp?idPaciente="+idPaciente;
+                window.location = stringUrl;
+            }
+            
             $( "#btnBusca" ).click(function() {
                 var stringUrl = "PacienteLista.jsp?nome="+$("#nome").val()+"&rg="+$("#rg").val()+"&cpf="+$("#cpf").val();
                 window.location = stringUrl;
             });
             
-            $( "#btnReset" ).click(function() {
-                resetPagina();
-            });
+            $( "#btnReset" ).click(function() {resetPagina();});
             
         </script>
     </body>

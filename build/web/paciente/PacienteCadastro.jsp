@@ -134,7 +134,7 @@
                     $.getJSON("https://viacep.com.br/ws/"+ $( "#cep" ).val() +"/json/?callback=?", function(dados) {
                          if (!("erro" in dados)) {
                              $("#cep").val(dados.cep);
-                             $("#logradouro").val(dados.logradouro);
+                             $("#logradouro").val(dados.logradouro + " - " + dados.bairro);
                              $("#cidade").val(dados.localidade);
                              $("#uf").val(dados.uf);
                         }else{

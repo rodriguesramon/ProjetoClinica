@@ -93,7 +93,6 @@ public class ControllerPaciente extends HttpServlet {
         PacienteDao pacienteDao = new PacienteDao();
         Paciente paciente = new Paciente();
         PrintWriter printWriter = response.getWriter();
-        Map<String, String> mapPaciente = new HashMap<String, String>();
         
         if (option.equals("CadastrarPaciente")) {
             paciente.setNome(request.getParameter("nome"));
@@ -109,7 +108,6 @@ public class ControllerPaciente extends HttpServlet {
             paciente.setEmail(request.getParameter("email"));
             paciente.setFoneResidencial(request.getParameter("foneResidencial"));
             paciente.setFoneCelular(request.getParameter("foneCelular"));
-            
             paciente.setEnderecoCep(request.getParameter("cep"));
             paciente.setEnderecoLogradouro(request.getParameter("logradouro"));
             paciente.setEnderecoNumero(request.getParameter("numeroEndereco"));
@@ -117,9 +115,7 @@ public class ControllerPaciente extends HttpServlet {
             paciente.setEnderecoUf(request.getParameter("uf"));
             paciente.setDtCadastro(new Date());
             printWriter.print(pacienteDao.salvaPaciente(paciente));
-        }
-        
-        if (option.equals("BuscarPaciente")) {
+        }else if(option.equals("BuscarPaciente")) {
             paciente = pacienteDao.buscaPaciente(request.getParameter("rg"), request.getParameter("cpf"));
             printWriter.print("{"
                             + "\"id\" : \"" + paciente.getId() + "\", "
@@ -127,9 +123,7 @@ public class ControllerPaciente extends HttpServlet {
                             + "\"rg\" : \"" + paciente.getRg() + "\", "
                             + "\"cpf\" : \"" + paciente.getCpf() + "\" "
                         + "}");
-        }
-        
-        if (option.equals("BuscarPacienteId")) {
+        }else if (option.equals("BuscarPacienteId")) {
             paciente = pacienteDao.buscaPaciente(Integer.parseInt(request.getParameter("id")));
             printWriter.print("{"
                                 + "\"id\" : \"" + paciente.getId() + "\", "
@@ -137,8 +131,29 @@ public class ControllerPaciente extends HttpServlet {
                                 + "\"rg\" : \"" + paciente.getRg() + "\", "
                                 + "\"cpf\" : \"" + paciente.getCpf() + "\" "
                             + "}");
+        }else if (option.equals("AtualizarPaciente")){
+            paciente = pacienteDao.buscaPaciente(Integer.parseInt(request.getParameter("idPaciente")));
+            paciente.setNome(request.getParameter("nome"));
+            paciente.setRg(request.getParameter("rg"));
+            paciente.setCpf(request.getParameter("cpf"));
+            
+            try {
+                paciente.setDtNascimento(DateFormat.getDateInstance().parse(request.getParameter("dtNascimento")));
+            } catch (ParseException ex) {
+                Logger.getLogger(ControllerPaciente.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+            paciente.setEmail(request.getParameter("email"));
+            paciente.setFoneResidencial(request.getParameter("foneResidencial"));
+            paciente.setFoneCelular(request.getParameter("foneCelular"));
+            paciente.setEnderecoCep(request.getParameter("cep"));
+            paciente.setEnderecoLogradouro(request.getParameter("logradouro"));
+            paciente.setEnderecoNumero(request.getParameter("numeroEndereco"));
+            paciente.setEnderecoCidade(request.getParameter("cidade"));
+            paciente.setEnderecoUf(request.getParameter("uf"));
+            paciente.setDtCadastro(new Date());
+            printWriter.print(pacienteDao.atualizarPaciente(paciente));
         }
-        
     }
 
     /**

@@ -21,7 +21,7 @@
         </div>
         <div class="container" style='margin-top:80px'>
             <div class="well bs-component">
-                <legend>Cadastro - Consulta</legend>
+                <legend>Cadastro - Consulta <button class="btn btn-primary btn-sm pull-right" style="margin-top:-10px" id="btnCadastrar" >Buscar <i class="fas fa-search fa-lg"></i></button></legend>
                 <div class="row">
                     <input id="idPaciente" type="hidden">
                     <div class="form-group col-md-2">
