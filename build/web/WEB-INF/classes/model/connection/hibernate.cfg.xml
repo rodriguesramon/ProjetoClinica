@@ -4,9 +4,9 @@
   <session-factory>
     <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
     <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
-    <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/dbclinica?zeroDateTimeBehavior=convertToNull</property>
-    <property name="hibernate.connection.username">root</property>
-    <property name="hibernate.connection.password">12345</property>
+    <property name="hibernate.connection.url">jdbc:mysql://mysql.clinica.kinghost.net:3306/clinica01?zeroDateTimeBehavior=convertToNull</property>
+    <property name="hibernate.connection.username">clinica01</property>
+    <property name="hibernate.connection.password">k4f3medeiros</property>
     <mapping resource="model/bean/Tela.hbm.xml"/>
     <mapping resource="model/bean/Medicamento.hbm.xml"/>
     <mapping resource="model/bean/Tipousuario.hbm.xml"/>

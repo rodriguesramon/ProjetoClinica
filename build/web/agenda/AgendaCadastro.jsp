@@ -109,11 +109,14 @@
                 
                 $("#statusSalvando").css({"display":"block"});
                 
+                 var dia = FormataStringData($("#dia").val());
+                
                 $.post("../ControllerAgenda", {
                     option          :   "CadastrarAgenda",
                     idMedicoEspecialidade :   $("#idMedicoEspecialidade").val(),
-                    dia     :   $("#dia").val(),
+                    dia     :   dia,
                     hora    :   $("#hora").val()
+                    
                 })
                 .done(function(data) {
                     $("#statusSalvando").css({"display":"none"});

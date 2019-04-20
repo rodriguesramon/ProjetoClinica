@@ -17,7 +17,6 @@
         $("#statusErro").show( "fast").delay(5000).fadeOut('fast', function() {
           $(this).fadeOut(600);
         });    
-        //$("#statusErro").fadeOut(5000);
     }
     
     $(function(){
@@ -30,6 +29,14 @@
         
         $("#foneResidencial, #foneCelular").mask("(00) 00000-0000");
      });
+    
+    function FormataStringData(data) {
+        var dia  = data.split("/")[0];
+        var mes  = data.split("/")[1];
+        var ano  = data.split("/")[2];
+        return ano + '-' + ("0"+mes).slice(-2) + '-' + ("0"+dia).slice(-2);
+      }
+
     
     function msgSucessoRedirect(msg, link){
          $.confirm({
@@ -86,9 +93,9 @@
     }
     
     function logoff(){
-        $.post("ControllerUsuario", {
+        $.post("http://clinica.kinghost.net/ProjetoClinica/ControllerUsuario", {
             option  :   "Logoff"
         }).done(function() {
-          msgSucessoRedirect("Realize a autenticação para acessar o sistema!", "index.jsp");
+          msgSucessoRedirect("Realize a autenticação para acessar o sistema!", "http://clinica.kinghost.net/ProjetoClinica/index.jsp");
         });
     }

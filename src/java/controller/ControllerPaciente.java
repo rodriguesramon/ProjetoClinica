@@ -94,14 +94,18 @@ public class ControllerPaciente extends HttpServlet {
         Paciente paciente = new Paciente();
         PrintWriter printWriter = response.getWriter();
         
+        String pattern = "yyyy-MM-dd";
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+
+        //Date date = simpleDateFormat.parse("2018-09-09");
+        
         if (option.equals("CadastrarPaciente")) {
             paciente.setNome(request.getParameter("nome"));
             paciente.setSexo(request.getParameter("sexo"));
             paciente.setRg(request.getParameter("rg"));
             paciente.setCpf(request.getParameter("cpf"));
-            
             try {
-                paciente.setDtNascimento(DateFormat.getDateInstance().parse(request.getParameter("dtNascimento")));
+                paciente.setDtNascimento(simpleDateFormat.parse(request.getParameter("dtNascimento")));
             } catch (ParseException ex) {
                 Logger.getLogger(ControllerPaciente.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -141,8 +145,8 @@ public class ControllerPaciente extends HttpServlet {
             paciente.setRg(request.getParameter("rg"));
             paciente.setCpf(request.getParameter("cpf"));
             
-            try {
-                paciente.setDtNascimento(DateFormat.getDateInstance().parse(request.getParameter("dtNascimento")));
+           try {
+                paciente.setDtNascimento(simpleDateFormat.parse(request.getParameter("dtNascimento")));
             } catch (ParseException ex) {
                 Logger.getLogger(ControllerPaciente.class.getName()).log(Level.SEVERE, null, ex);
             }

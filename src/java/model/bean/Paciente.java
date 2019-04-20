@@ -1,5 +1,5 @@
 package model.bean;
-// Generated 18/04/2019 20:52:02 by Hibernate Tools 3.2.1.GA
+// Generated 20/04/2019 15:26:40 by Hibernate Tools 3.2.1.GA
 
 
 import java.util.Date;
@@ -64,7 +64,6 @@ public class Paciente  implements java.io.Serializable {
     public void setNome(String nome) {
         this.nome = nome;
     }
-    
     public String getSexo() {
         return this.sexo;
     }
@@ -72,7 +71,6 @@ public class Paciente  implements java.io.Serializable {
     public void setSexo(String sexo) {
         this.sexo = sexo;
     }
-    
     public String getRg() {
         return this.rg;
     }

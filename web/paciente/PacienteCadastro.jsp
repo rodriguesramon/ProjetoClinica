@@ -178,6 +178,7 @@
                 
                 console.log(contentErro);
                 if(contentErro){ msgErro("Preencha todos os campos" + contentErro); return false; }
+                var dtNascimento = FormataStringData($("#dtNascimento").val());
                 
                 $("#statusSalvando").css({"display":"block"});
                 $.post("../ControllerPaciente", {
@@ -189,7 +190,7 @@
                     email           :   $("#email").val(),
                     foneCelular     :   $("#foneCelular").val(),
                     foneResidencial :   $("#foneResidencial").val(),
-                    dtNascimento    :   $("#dtNascimento").val(),
+                    dtNascimento    :   dtNascimento,
                     cep             :   $("#cep").val(),
                     logradouro      :   $("#logradouro").val(),
                     numeroEndereco  :   $("#numeroEndereco").val(),

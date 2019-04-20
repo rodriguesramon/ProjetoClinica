@@ -1,9 +1,9 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated 18/04/2019 20:52:06 by Hibernate Tools 3.2.1.GA -->
+<!-- Generated 20/04/2019 15:26:45 by Hibernate Tools 3.2.1.GA -->
 <hibernate-mapping>
-    <class name="model.bean.Usuario" table="usuario" catalog="dbclinica">
+    <class name="model.bean.Usuario" table="usuario" catalog="clinica01">
         <id name="id" type="java.lang.Integer">
             <column name="id" />
             <generator class="identity" />

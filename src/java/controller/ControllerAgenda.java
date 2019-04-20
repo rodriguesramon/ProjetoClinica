@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.DateFormat;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -90,6 +91,9 @@ public class ControllerAgenda extends HttpServlet {
         PrintWriter printWriter = response.getWriter();
         Agenda agenda = new Agenda();
         AgendaDao agendaDao = new AgendaDao();
+        String pattern = "yyyy-MM-dd";
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+        
         
         Medicoespecialidade medicoEspecialidade = new Medicoespecialidade();
         MedicoespecialidadeDao medicoEspecialidadeDao = new MedicoespecialidadeDao();
@@ -99,8 +103,8 @@ public class ControllerAgenda extends HttpServlet {
             agenda.setEspecialidade(medicoEspecialidade.getEspecialidade());
             agenda.setMedico(medicoEspecialidade.getMedico());
             
-            try {
-                agenda.setDia(DateFormat.getDateInstance().parse(request.getParameter("dia")));
+             try {
+                agenda.setDia(simpleDateFormat.parse(request.getParameter("dia")));
             } catch (ParseException ex) {
                 Logger.getLogger(ControllerPaciente.class.getName()).log(Level.SEVERE, null, ex);
             }

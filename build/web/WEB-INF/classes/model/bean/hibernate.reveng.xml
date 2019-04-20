@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE hibernate-reverse-engineering PUBLIC "-//Hibernate/Hibernate Reverse Engineering DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-reverse-engineering-3.0.dtd">
 <hibernate-reverse-engineering>
-  <schema-selection match-catalog="dbclinica"/>
+  <schema-selection match-catalog="clinica01"/>
+  <table-filter match-name="tipoexame"/>
+  <table-filter match-name="tipousuario"/>
   <table-filter match-name="exame"/>
+  <table-filter match-name="recepcionista"/>
   <table-filter match-name="acesso"/>
-  <table-filter match-name="usuario"/>
-  <table-filter match-name="fabricante"/>
-  <table-filter match-name="consulta"/>
-  <table-filter match-name="tela"/>
   <table-filter match-name="paciente"/>
+  <table-filter match-name="medicamento"/>
+  <table-filter match-name="tela"/>
+  <table-filter match-name="resultado"/>
+  <table-filter match-name="usuario"/>
   <table-filter match-name="medicoespecialidade"/>
+  <table-filter match-name="agenda"/>
+  <table-filter match-name="especialidade"/>
+  <table-filter match-name="consulta"/>
+  <table-filter match-name="fabricante"/>
   <table-filter match-name="medico"/>
   <table-filter match-name="receita"/>
-  <table-filter match-name="resultado"/>
-  <table-filter match-name="tipousuario"/>
-  <table-filter match-name="especialidade"/>
-  <table-filter match-name="tipoexame"/>
-  <table-filter match-name="recepcionista"/>
-  <table-filter match-name="medicamento"/>
-  <table-filter match-name="agenda"/>
 </hibernate-reverse-engineering>
