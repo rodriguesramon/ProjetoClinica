@@ -84,3 +84,11 @@
         });
       });
     }
+    
+    function logoff(){
+        $.post("ControllerUsuario", {
+            option  :   "Logoff"
+        }).done(function() {
+          msgSucessoRedirect("Realize a autenticação para acessar o sistema!", "index.jsp");
+        });
+    }

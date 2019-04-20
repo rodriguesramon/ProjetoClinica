@@ -15,7 +15,7 @@
 <html>
     <head>
         <c:import url="../tags/metas.jsp"/>
-        <c:import url="../tags/stylesheet.jsp"/>
+        <c:import url="../tags/stylesheet.jsp"/><c:import url="../tags/validasessao.jsp"/>
         <title>Projeto Cl&iacute;nica</title>
     </head>
     <body>
@@ -153,7 +153,8 @@
                     paging:         false,
                     bFilter: false,
                     "language": {
-                        "info":"_TOTAL_ registro(s)",
+                        "info":"_TOTAL_ registros",
+                        "infoEmpty" : "0 registros",
                         "zeroRecords":" "
                     }
                 });

@@ -15,10 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import model.bean.Recepcionista;
 import model.dao.RecepcionistaDao;
 
-/**
- *
- * @author Ramon Costa
- */
+
 @WebServlet(name = "ControllerRecepcionista", urlPatterns = {"/ControllerRecepcionista"})
 public class ControllerRecepcionista extends HttpServlet {
 

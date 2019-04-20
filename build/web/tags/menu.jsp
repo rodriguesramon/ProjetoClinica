@@ -69,9 +69,11 @@
                     usuarioSistema = usuario.getLogin().toUpperCase() ;
                 }
                 
+                
+                
             %>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="#"><%= usuarioSistema %> <i class="fa fa-power-off"></i></a></li>
+                <li><a href="#" onclick="logoff()"><%= usuarioSistema %> <i class="fa fa-power-off"></i></a></li>
             </ul>
         </div>
     </div>

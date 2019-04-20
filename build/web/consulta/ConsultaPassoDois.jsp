@@ -10,7 +10,7 @@
 <html>
     <head>
         <c:import url="../tags/metas.jsp"/>
-        <c:import url="../tags/stylesheet.jsp"/>
+        <c:import url="../tags/stylesheet.jsp"/><c:import url="../tags/validasessao.jsp"/>
         <title>Projeto Cl&iacute;nica</title>
     </head>
     <body>

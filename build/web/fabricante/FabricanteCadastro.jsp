@@ -7,7 +7,7 @@
 <html>
     <head>
         <c:import url="../tags/metas.jsp"/>
-        <c:import url="../tags/stylesheet.jsp"/>
+        <c:import url="../tags/stylesheet.jsp"/><c:import url="../tags/validasessao.jsp"/>
         <title>Projeto Cl&iacute;nica</title>
     </head>
     <body>
@@ -34,7 +34,6 @@
                             <tr>
                                 <th>Especialidade</th>
                                 <th>Dt. Cadastro</th>
-                                <th>Gerenciar</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -46,7 +45,6 @@
                             <tr>
                                 <td><%= fabricante.getNome() %></td>
                                 <td><%= dt.format(fabricante.getDtCadastro()) %></td>
-                                <td width="5%"><button class="btn btn-success btn-sm">Gerenciar</button></td>
                             </tr>
                         <%
                              }

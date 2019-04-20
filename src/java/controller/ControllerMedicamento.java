@@ -17,10 +17,6 @@ import model.bean.Medicamento;
 import model.dao.FabricanteDao;
 import model.dao.MedicamentoDao;
 
-/**
- *
- * @author Ramon Costa
- */
 @WebServlet(name = "ControllerMedicamento", urlPatterns = {"/ControllerMedicamento"})
 public class ControllerMedicamento extends HttpServlet {
 

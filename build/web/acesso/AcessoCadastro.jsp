@@ -13,7 +13,7 @@
 <html>
     <head>
         <c:import url="../tags/metas.jsp"/>
-        <c:import url="../tags/stylesheet.jsp"/>
+        <c:import url="../tags/stylesheet.jsp"/><c:import url="../tags/validasessao.jsp"/>
         <title>Projeto Cl&iacute;nica</title>
     </head>
     <body>
@@ -66,7 +66,6 @@
                                 <th>Login</th>
                                 <th>Tela</th>
                                 <th>Dt. Cadastro</th>
-                                <th></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -81,7 +80,6 @@
                                 <td><%= acesso.getUsuario().getLogin() %></td>
                                 <td><%= acesso.getTela().getNome() %></td>
                                 <td><%= dt.format(acesso.getDtCadastro()) %></td>
-                                <td width="5%"><button class="btn btn-danger btn-sm">Excluir</button></td>
                             </tr>
                         <%  } %>
                         </tbody>
@@ -127,21 +125,6 @@
                     }
                 });
             });
-            
-            $( "#btnProsseguirConsultaPassoUm" ).click(function() {
-                if($("#nome").val() == ""){
-                    msgErro("Defina um paciente!<br>Busque pelo RG ou CPF");
-                    return;
-                }
-                
-                var stringUrl = "ConsultaPassoDois.jsp?idPaciente="+$("#idPaciente").val()+"&idEspecialidade="+$("#especialidade").val();
-                window.location = stringUrl;
-            });
-            
-           $(function() {
-                 var valor =  location.search.split('id=')[1];
-                 console.log("vain: " + valor);
-           });
             
         </script>
     </body>

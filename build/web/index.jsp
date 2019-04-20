@@ -125,31 +125,45 @@
                 <div class="form-group">
                     <button type="button" id="btnEntrar" class="btn btn-primary btn-lg btn-block">Entrar</button>
                 </div>
-                        <div class="clearfix">
+                <div class="clearfix">
+                    <p style="padding: 0px; display: none" id="statusLogin" >...</p>
                 </div>            
                 <!--    <p class="text-center small">Don't have an account? <a href="#">Sign up here!</a></p>-->
             </form>
         </div>
     </body>
     <script>
-        $( "#btnEntrar" ).click(function() {
-            //$("#statusSalvando").css({"display":"block"});
+        
+        $( "#senha" ).keypress(function(e) {
+            if(e.which === 13) {
+                autentica();
+            }
+        });
+        
+        function autentica(){
+            $("#statusLogin").css({"display":"block"});
+            $("#statusLogin").text("Autenticando...");
+            
             $.post("ControllerUsuario", {
                 option  :  "Autenticar",
                 login   :  $("#login").val(),
                 senha   :  $("#senha").val()
             })
             .done(function(data) {
-                //$("#statusSalvando").css({"display":"none"});
                 var value = JSON.parse(data);
                 console.log(value);
                 console.log(value.result);
                 if(value.result == "true"){
                     window.location.href = "mainpage.jsp";
                 }else{
-                    //processFail();d
+                    $("#statusLogin").css({"color":"red"});
+                    $("#statusLogin").text("Autenticação inválida, cheque os dados e tente novamente!");
                 }
             });
+        }
+        
+        $( "#btnEntrar" ).click(function() {
+            autentica();
         });
     </script>
 </html>                            

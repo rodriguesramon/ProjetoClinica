@@ -19,10 +19,6 @@ import model.dao.AcessoDao;
 import model.dao.TelaDao;
 import model.dao.UsuarioDao;
 
-/**
- *
- * @author Ramon Costa
- */
 @WebServlet(name = "ControllerAcesso", urlPatterns = {"/ControllerAcesso"})
 public class ControllerAcesso extends HttpServlet {
 

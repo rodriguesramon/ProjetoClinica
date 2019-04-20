@@ -117,7 +117,6 @@ public class ControllerUsuario extends HttpServlet {
             }
         }else if (option.equals("Logoff")) {
             httpSession.invalidate();
-            printWriter.print("<script>location='autenticacao.jsp';</script>");
         }
     }
 
